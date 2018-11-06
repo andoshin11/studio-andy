@@ -1,4 +1,14 @@
 body {
   font-family: Arial, YuGothic, 游ゴシック, Hiragino Kaku Gothic Pro, Meiryo,
     MS PGothic, sans-serif;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
