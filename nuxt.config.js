@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const devConfig = require('./webpack/webpack.config.dev')
 
 module.exports = {
   mode: 'universal',
@@ -53,6 +54,11 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+
+      if (ctx.isDev) {
+        devConfig(config)
+        return
       }
     }
   }

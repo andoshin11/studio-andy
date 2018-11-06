@@ -6,9 +6,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import ArticleCard from '../../components/Modules/ArticleCard.vue'
+
+import Presenter, { IPresenter } from './presenter'
 
 // Use Case
 
@@ -18,12 +20,18 @@ import ArticleCard from '../../components/Modules/ArticleCard.vue'
 
 // components
 
+interface IData {
+  test: boolean
+}
+
 export default Vue.extend({
   components: {
     ArticleCard
   },
-  data() {
-    return {}
+  data(): IData {
+    return {
+      test: false
+    }
   }
 })
 </script>
