@@ -1,14 +1,13 @@
 <template>
   <div class="Home">
-    <div class="Home__ArticleList">
-      <ArticleCard />
+    <div class="PostList">
+      <PostList />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import ArticleCard from '../../components/Modules/ArticleCard.vue'
 
 import Presenter, { IPresenter } from './presenter'
 
@@ -19,6 +18,7 @@ import Presenter, { IPresenter } from './presenter'
 // Service
 
 // components
+import PostList from '@/components/Modules/PostList'
 
 interface IData {
   test: boolean
@@ -26,7 +26,7 @@ interface IData {
 
 export default Vue.extend({
   components: {
-    ArticleCard
+    PostList
   },
   data(): IData {
     return {
@@ -40,5 +40,10 @@ export default Vue.extend({
 .Home {
   display: flex;
   flex-direction: column;
+  padding-bottom: 200px;
+}
+
+.PostList {
+  width: 1180px;
 }
 </style>
