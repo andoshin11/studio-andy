@@ -1,11 +1,12 @@
-import Store from '@/store'
+import { Store } from 'vuex'
+import { RootState } from '@/store'
 import { StoreLatestPosts, StorePosts } from '@/store/modules/Post/types'
 import PostEntity, { IPostProps } from '@/entities/Post'
 
 export default class PostRepository {
-  private _store: typeof Store
+  private _store: Store<RootState>
 
-  constructor(store: typeof Store) {
+  constructor(store: Store<RootState>) {
     this._store = store
   }
 
