@@ -1,15 +1,22 @@
 <template>
-  <h1 class="Title" :class="{ empty: title.length < 1 }">
+  <h1 class="Title">
+    <div v-if="title.length < 1 " class="empty">
+      <Empty />
+    </div>
     {{ title }}
   </h1>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Empty from '@/components/Base/Empty'
 
 interface IData {}
 
 export default Vue.extend({
+  components: {
+    Empty
+  },
   props: {
     title: {
       type: String,
@@ -32,8 +39,8 @@ export default Vue.extend({
   margin: 0 0 24px;
 }
 
-.Title.empty {
+.empty {
+  width: 100%;
   height: 48px;
-  background-color: #eee;
 }
 </style>
