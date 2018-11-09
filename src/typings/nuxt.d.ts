@@ -13,7 +13,7 @@ export interface ApplicationContext {
   route: Route
   store: Store<RootState>
   env: object
-  params: object
+  params?: any
   query: object
   req: any
   res: any
@@ -47,7 +47,7 @@ declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     layout?: string | ((context: ApplicationContext) => string)
     fetch?: (context: ApplicationContext) => void
-    asyncData?: () => Promise<void>
+    asyncData?: (context: ApplicationContext) => Promise<void>
     head?: object | (() => object)
     transition?: string | Transition | ((from: any, to: any) => string)
     scrollToTop?: boolean

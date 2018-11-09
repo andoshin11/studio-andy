@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import store from '@/store'
 
 import Presenter, { IPresenter, ListType } from './presenter'
 
@@ -38,7 +37,7 @@ export default Vue.extend({
   computed: {
     presenter(): IPresenter {
       return Presenter({
-        postRepository: new PostRepository(store),
+        postRepository: new PostRepository(this.$store),
         listType: this.listType
       })
     }
@@ -51,7 +50,7 @@ export default Vue.extend({
   methods: {
     async fetchLatestPosts() {
       const usecase = new FetchLatestPostsUseCase({
-        postRepository: new PostRepository(store),
+        postRepository: new PostRepository(this.$store),
         errorService: new ErrorService({ context: 'Fetching Latest Posts' }),
         contentfulGateway: new ContentfulGateway()
       })
@@ -60,9 +59,6 @@ export default Vue.extend({
     showLatest() {
       this.listType = ListType.Latest
     }
-  },
-  async mounted() {
-    await this.fetchLatestPosts()
   }
 })
 </script>

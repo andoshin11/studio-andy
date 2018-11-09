@@ -33,7 +33,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import store from '@/store'
 
 import Presenter, { IPresenter } from './presenter'
 
@@ -75,7 +74,7 @@ export default Vue.extend({
   computed: {
     presenter(): IPresenter {
       return Presenter({
-        postRepository: new PostRepository(store),
+        postRepository: new PostRepository(this.$store),
         id: this.id
       })
     }
@@ -86,15 +85,12 @@ export default Vue.extend({
   methods: {
     async fetchPost() {
       const usecase = new FetchPostUseCase({
-        postRepository: new PostRepository(store),
+        postRepository: new PostRepository(this.$store),
         errorService: new ErrorService({ context: 'Fetching a Post' }),
         contentfulGateway: new ContentfulGateway()
       })
       await usecase.execute(this.id)
     }
-  },
-  async mounted() {
-    await this.fetchPost()
   }
 })
 </script>
