@@ -26,4 +26,9 @@ export default class PostRepository {
     const posts = propsList.map(props => new PostEntity(props))
     return posts
   }
+
+  getPost(id: string): PostEntity | null {
+    const post = this._store.state.post.byIds[id]
+    return post ? new PostEntity(post) : null
+  }
 }

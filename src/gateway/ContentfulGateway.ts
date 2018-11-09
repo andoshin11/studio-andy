@@ -31,4 +31,10 @@ export default class ContentfulGateway {
     })
     return posts.items.map(this.transtormEntry)
   }
+
+  async getPost(id: string): Promise<IPostProps> {
+    const client = createClient()
+    const post = await client.getEntry<IPostProps>(id)
+    return this.transtormEntry(post)
+  }
 }
