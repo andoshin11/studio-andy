@@ -1,8 +1,8 @@
 <template>
   <div class="PostList">
-    <a v-for="post in data" :key="post.props.id" :href="postPath(post)" class="post">
+    <nuxt-link v-for="post in data" :key="post.props.id" :to="postPath(post)" class="post">
       <PostCard :post="post" />
-    </a>
+    </nuxt-link>
   </div>
 </template>
 
