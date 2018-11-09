@@ -11,9 +11,7 @@
       <div class="title">{{ post.props.title }}</div>
       <div class="summary">{{ post.props.summary }}</div>
       <div class="tagList">
-        <div class="tag">JavaScript</div>
-        <div class="tag">Nuxt</div>
-        <div class="tag">ES6</div>
+        <div v-for="tag in post.props.tags" class="tag" :key="tag.id">{{ tag.name }}</div>
       </div>
     </div>
   </div>
