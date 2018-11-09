@@ -65,7 +65,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      if (ctx.isDev) {
+      if (true || ctx.isDev) {
         devConfig(config)
         return
       }
