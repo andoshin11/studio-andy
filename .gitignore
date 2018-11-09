@@ -80,5 +80,8 @@ dist
 # Contentful
 .contentful.json
 
+# PWA module
+sw.js
+
 # Others
 .DS_Store
