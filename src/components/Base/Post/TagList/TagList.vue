@@ -1,0 +1,58 @@
+<template>
+  <ul class="TagList">
+    <li v-for="tag in list" :key="tag.id" class="tag">{{ tag.name }}</li>
+    <li v-if="list.length < 1" class="empty">
+      <Empty />
+    </li>
+  </ul>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { ITagProps } from '@/entities/Tag'
+import Empty from '@/components/Base/Empty'
+
+interface IData {}
+
+export default Vue.extend({
+  components: {
+    Empty
+  },
+  props: {
+    list: {
+      type: Array as () => ITagProps[],
+      required: true
+    }
+  },
+  data(): IData {
+    return {}
+  }
+})
+</script>
+
+<style scoped>
+.TagList {
+  margin-bottom: 24px;
+}
+
+.tag {
+  border: solid 1px #5b3cc4;
+  display: inline;
+  margin-right: 8px;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: 0.15s;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background: #5b3cc4;
+  color: #fff;
+}
+
+.empty {
+  width: 240px;
+  height: 24px;
+}
+</style>
