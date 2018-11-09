@@ -1,9 +1,18 @@
 const pkg = require('./package')
 const devConfig = require('./webpack/webpack.config.dev')
+const contentfulConfig = require('./.contentful.json')
 
 module.exports = {
   mode: 'universal',
   srcDir: 'src/',
+
+  /*
+  ** Environmental Variables
+  */
+  env: {
+    CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: contentfulConfig.CTF_CDA_ACCESS_TOKEN
+  },
 
   /*
   ** Headers of the page

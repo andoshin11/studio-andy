@@ -77,5 +77,8 @@ dist
 # IDE
 .idea
 
+# Contentful
+.contentful.json
+
 # Others
 .DS_Store
