@@ -58,6 +58,11 @@ module.exports = {
   modules: ['@nuxtjs/pwa'],
 
   /*
+  ** Extensions
+  */
+  extensions: ['ts', 'js'],
+
+  /*
   ** PWA settings
   */
   workbox: {
