@@ -1,6 +1,6 @@
+require('dotenv').config()
 const pkg = require('./package')
 const devConfig = require('./webpack/webpack.config.dev')
-const contentfulConfig = require('./.contentful.json')
 
 module.exports = {
   mode: 'universal',
@@ -10,8 +10,8 @@ module.exports = {
   ** Environmental Variables
   */
   env: {
-    CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: contentfulConfig.CTF_CDA_ACCESS_TOKEN
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
   },
 
   /*
