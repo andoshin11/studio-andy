@@ -1,4 +1,5 @@
 import { Asset } from 'contentful'
+import { ITagProps } from '@/entities/Tag'
 
 export interface IPostProps {
   id: string
@@ -7,6 +8,7 @@ export interface IPostProps {
   summary: string
   publishedAt: string
   title: string
+  tags: ITagProps[]
 }
 
 export default class PostEntity {
@@ -24,6 +26,12 @@ export default class PostEntity {
 export const PostFactory = (): PostEntity => {
   const dummyProps: IPostProps = {
     id: 'dummyId',
+    tags: [
+      {
+        id: '1',
+        name: 'Vue.js'
+      }
+    ],
     summary:
       '海外ゲストのアテンドスタッフとして、日本初のVue.jsカンファレンスに参加してきました。イベントの参加レポートと、翌日の東京観光の様子をお届けします。 ',
     content:
