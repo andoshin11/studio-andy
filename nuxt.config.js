@@ -55,7 +55,14 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [],
+  modules: ['@nuxtjs/pwa'],
+
+  /*
+  ** PWA settings
+  */
+  workbox: {
+    importScripts: ['mains-sw.js']
+  },
 
   /*
   ** Build configuration
