@@ -1,0 +1,29 @@
+import Store from '@/store'
+import { StoreLatestPosts, StorePosts } from '@/store/modules/Post/types'
+import PostEntity, { IPostProps } from '@/entities/Post'
+
+export default class PostRepository {
+  private _store: typeof Store
+
+  constructor(store: typeof Store) {
+    this._store = store
+  }
+
+  savePosts(posts: IPostProps[]) {
+    this._store.commit(new StorePosts(posts))
+  }
+
+  saveLatestPosts(posts: IPostProps[]) {
+    const ids = posts.map(movie => movie.id)
+
+    this.savePosts(posts)
+    this._store.commit(new StoreLatestPosts(ids))
+  }
+
+  getLatestPosts(): PostEntity[] {
+    const ids = this._store.state.post.latestPosts
+    const propsList = ids.map(id => this._store.state.post.byIds[id])
+    const posts = propsList.map(props => new PostEntity(props))
+    return posts
+  }
+}
