@@ -2,16 +2,14 @@
   <div class="PostCard">
     <div class="header">
       <img
-        src="https://cdn-ak.f.st-hatena.com/images/fotolife/a/andoshin11/20180922/20180922222723.png"
+        :src="post.props.headerImage.fields.file.url"
         alt=""
         class="img">
     </div>
     <div class="body">
-      <div class="date">9.23.18</div>
-      <div class="title">Nuxt.js v2.0.0がリリースされたので触ってみた【変更点まとめ】</div>
-      <div class="summary">
-        去る2018年9月21日にVue.jsのユニバーサルフレームワークであるNuxt.jsのメジャーアップデート版、v2.0.0がリリースされました。
-      </div>
+      <div class="date">{{ publishedAt }}</div>
+      <div class="title">{{ post.props.title }}</div>
+      <div class="summary">{{ post.props.summary }}</div>
       <div class="tagList">
         <div class="tag">JavaScript</div>
         <div class="tag">Nuxt</div>
@@ -23,12 +21,29 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import dayjs from 'dayjs'
+import PostEntity from '@/entities/Post'
 
 interface IData {}
 
 export default Vue.extend({
+  props: {
+    post: {
+      type: Object as () => PostEntity,
+      required: true
+    }
+  },
   data(): IData {
     return {}
+  },
+  computed: {
+    publishedAt(): string {
+      if (this.post) {
+        const publishedAt = dayjs(this.post.props.publishedAt)
+        return publishedAt.format('M.D.YY')
+      }
+      return ''
+    }
   }
 })
 </script>
