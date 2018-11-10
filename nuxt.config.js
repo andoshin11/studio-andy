@@ -34,6 +34,12 @@ module.exports = {
         re: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=M+PLUS+1p'
       }
+    ],
+    script: [
+      {
+        src: '//cdn.embedly.com/widgets/platform.js',
+        async: true
+      }
     ]
   },
 
