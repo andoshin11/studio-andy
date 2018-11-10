@@ -35,6 +35,12 @@ export default Vue.extend({
   margin-bottom: 24px;
 }
 
+@media screen and (max-width: 768px) {
+  .TagList {
+    margin-bottom: 16px;
+  }
+}
+
 .tag {
   border: solid 1px #5b3cc4;
   display: inline;
@@ -44,6 +50,12 @@ export default Vue.extend({
   border-radius: 4px;
   transition: 0.15s;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .tag {
+    font-size: 14px;
+  }
 }
 
 .tag:hover {

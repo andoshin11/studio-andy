@@ -70,7 +70,19 @@ export default Vue.extend({
   padding-bottom: 200px;
 }
 
+@media screen and (max-width: 768px) {
+  .Home {
+    width: 100%;
+  }
+}
+
 .PostList {
   width: 1180px;
+}
+
+@media screen and (max-width: 768px) {
+  .PostList {
+    width: 100%;
+  }
 }
 </style>

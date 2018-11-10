@@ -12,8 +12,6 @@ import Vue from 'vue'
 import dayjs from 'dayjs'
 import Empty from '@/components/Base/Empty'
 
-interface IData {}
-
 export default Vue.extend({
   components: {
     Empty
@@ -23,9 +21,6 @@ export default Vue.extend({
       type: String,
       default: ''
     }
-  },
-  data(): IData {
-    return {}
   },
   computed: {
     date(): string {
@@ -42,12 +37,24 @@ export default Vue.extend({
 .Date {
   color: #aaa;
   font-size: 18px;
-  font-family: MetaSerifPro, serif;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .Date {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
 }
 
 .empty {
   width: 64px;
   height: 27px;
+}
+
+@media screen and (max-width: 768px) {
+  .empty {
+    height: 21px;
+  }
 }
 </style>

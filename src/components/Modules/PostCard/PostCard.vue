@@ -72,6 +72,14 @@ export default Vue.extend({
   transition: 0.3s ease-out;
 }
 
+@media screen and (max-width: 768px) {
+  .PostCard {
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
 .PostCard:hover {
   box-shadow: 0 28.3px 88.94px rgba(67, 54, 102, 0.2);
 }
@@ -92,6 +100,12 @@ export default Vue.extend({
   position: relative;
 }
 
+@media screen and (max-width: 768px) {
+  .body {
+    padding: 20px;
+  }
+}
+
 .img {
   width: 100%;
   transition: 0.4s ease-out;
@@ -99,6 +113,12 @@ export default Vue.extend({
 
 .PostCard:hover img {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  .PostCard:hover img {
+    transform: none;
+  }
 }
 
 .date {

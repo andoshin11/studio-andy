@@ -37,10 +37,25 @@ export default Vue.extend({
   font-weight: bold;
   text-align: center;
   margin: 0 0 24px;
+  min-height: 48px;
+}
+
+@media screen and (max-width: 768px) {
+  .Title {
+    font-size: 28px;
+    width: 90%;
+    margin-bottom: 16px;
+  }
 }
 
 .empty {
   width: 100%;
   height: 48px;
+}
+
+@media screen and (max-width: 768px) {
+  .empty {
+    height: 36px;
+  }
 }
 </style>

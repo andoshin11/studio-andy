@@ -40,9 +40,23 @@ export default Vue.extend({
   position: relative;
 }
 
+@media screen and (max-width: 768px) {
+  .PostList {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .post {
   box-sizing: border-box;
   width: 50%;
   padding: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post {
+    width: 100%;
+    padding: 0;
+  }
 }
 </style>

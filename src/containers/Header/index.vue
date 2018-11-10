@@ -51,6 +51,12 @@ export default Vue.extend({
   position: relative;
 }
 
+@media screen and (max-width: 768px) {
+  .Header__Nav > nav {
+    width: 100%;
+  }
+}
+
 .Header__NavList {
   display: flex;
   padding: 16px 0;

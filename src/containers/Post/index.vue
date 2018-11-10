@@ -101,12 +101,26 @@ export default Vue.extend({
   flex-direction: column;
 }
 
+@media screen and (max-width: 768px) {
+  .Post {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 45px;
-  min-height: 840px;
+  overflow: visible;
+  min-height: 790px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    min-height: 365px;
+  }
 }
 
 .body {
@@ -121,6 +135,12 @@ export default Vue.extend({
   position: sticky;
   top: 30px;
   z-index: 100;
+}
+
+@media screen and (max-width: 768px) {
+  .socialLinks {
+    display: none;
+  }
 }
 
 .socialButton {

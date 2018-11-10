@@ -44,6 +44,13 @@ export default Vue.extend({
   text-align: left;
 }
 
+@media screen and (max-width: 768px) {
+  .PostBody,
+  .PostBody > div {
+    width: 100vw;
+  }
+}
+
 .PostBody p,
 .PostBody h1,
 .PostBody h2,
@@ -53,9 +60,18 @@ export default Vue.extend({
   margin-left: 20%;
 }
 
+@media screen and (max-width: 768px) {
+  .PostBody p,
+  .PostBody h1,
+  .PostBody h2,
+  .PostBody ul,
+  .PostBody pre {
+    width: 90%;
+  }
+}
+
 .PostBody img {
-  margin-left: -236px;
-  width: 1180px;
+  width: 100%;
 }
 
 .PostBody p {
@@ -63,6 +79,13 @@ export default Vue.extend({
   line-height: 33px;
   letter-spacing: 0.65px;
   margin: 50px auto 0;
+}
+
+@media screen and (max-width: 768px) {
+  .PostBody p {
+    font-size: 16px;
+    line-height: 30px;
+  }
 }
 
 .PostBody p:first-child {
@@ -76,6 +99,12 @@ export default Vue.extend({
   padding-left: 8px;
 }
 
+@media screen and (max-width: 768px) {
+  .PostBody h1 {
+    margin-left: 5%;
+  }
+}
+
 .PostBody h1::before {
   height: 34px;
   content: '';
@@ -87,6 +116,12 @@ export default Vue.extend({
 
 .PostBody h2 {
   font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .PostBody h2 {
+    margin-left: 5%;
+  }
 }
 
 .PostBody h2::after {
@@ -120,10 +155,24 @@ export default Vue.extend({
   list-style: none;
 }
 
+@media screen and (max-width: 768px) {
+  .PostBody ul {
+    margin-top: 16px;
+    margin-left: 5%;
+  }
+}
+
 .PostBody li {
   font-size: 20px;
   line-height: 2;
   padding-left: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .PostBody li {
+    padding-left: 28px;
+    font-size: 16px;
+  }
 }
 
 .PostBody li::before {
@@ -135,7 +184,21 @@ export default Vue.extend({
   color: #5b3cc4;
 }
 
+@media screen and (max-width: 768px) {
+  .PostBody li::before {
+    line-height: 32px;
+  }
+}
+
 .PostBody pre {
   margin-top: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .PostBody pre {
+    margin-left: 5%;
+    box-sizing: border-box;
+    margin-right: 0;
+  }
 }
 </style>

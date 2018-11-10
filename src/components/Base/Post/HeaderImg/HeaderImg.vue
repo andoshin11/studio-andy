@@ -32,7 +32,16 @@ export default Vue.extend({
 
 <style scoped>
 .HeaderImg {
+  display: flex;
+  align-items: center;
   width: 100%;
+  height: 620px;
+}
+
+@media screen and (max-width: 768px) {
+  .HeaderImg {
+    height: 196px;
+  }
 }
 
 .img {
@@ -42,5 +51,11 @@ export default Vue.extend({
 .empty {
   width: 100%;
   height: 620px;
+}
+
+@media screen and (max-width: 768px) {
+  .empty {
+    height: 196px;
+  }
 }
 </style>
