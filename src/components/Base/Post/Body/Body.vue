@@ -46,6 +46,7 @@ export default Vue.extend({
 
 .PostBody p,
 .PostBody h1,
+.PostBody h2,
 .PostBody ul,
 .PostBody pre {
   width: 60%;
@@ -82,6 +83,14 @@ export default Vue.extend({
   border-left: solid 3px #5b3cc4;
   position: absolute;
   left: 0;
+}
+
+.PostBody h2 {
+  font-size: 20px;
+}
+
+.PostBody h2::after {
+  content: ':';
 }
 
 .PostBody a {
