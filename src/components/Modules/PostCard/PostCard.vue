@@ -1,6 +1,6 @@
 <template>
   <div class="PostCard">
-    <div class="header">
+    <div class="header" ref="header" :style="headerStyle">
       <img
         :src="post.props.headerImage.fields.file.url"
         alt=""
@@ -22,7 +22,9 @@ import Vue from 'vue'
 import dayjs from 'dayjs'
 import PostEntity from '@/entities/Post'
 
-interface IData {}
+interface IData {
+  clientWidth: number
+}
 
 export default Vue.extend({
   props: {
@@ -32,7 +34,9 @@ export default Vue.extend({
     }
   },
   data(): IData {
-    return {}
+    return {
+      clientWidth: 0
+    }
   },
   computed: {
     publishedAt(): string {
@@ -41,7 +45,18 @@ export default Vue.extend({
         return publishedAt.format('M.D.YY')
       }
       return ''
+    },
+    headerStyle(): any {
+      const posterHight = this.clientWidth / 2
+      return {
+        height: `${posterHight}px`
+      }
     }
+  },
+  mounted() {
+    if (!this.$refs.header) return
+    const clientWidth = this.$refs.header.clientWidth
+    this.clientWidth = clientWidth
   }
 })
 </script>
@@ -62,6 +77,9 @@ export default Vue.extend({
 }
 
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   max-height: 300px;
   overflow: hidden;
@@ -97,6 +115,7 @@ export default Vue.extend({
   font-weight: bold;
   text-align: left;
   font-size: 18px;
+  min-height: 54px;
   margin-bottom: 16px;
 }
 
@@ -104,6 +123,7 @@ export default Vue.extend({
   text-align: left;
   color: #777;
   font-size: 14px;
+  min-height: 64px;
   margin-bottom: 32px;
 }
 
