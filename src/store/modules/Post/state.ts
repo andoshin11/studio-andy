@@ -5,9 +5,11 @@ export interface IPostState {
     [id: number]: IPostProps
   }
   latestPosts: string[]
+  currentPost: string | null
 }
 
 export const initialState = (): IPostState => ({
   byIds: {},
-  latestPosts: []
+  latestPosts: [],
+  currentPost: null
 })

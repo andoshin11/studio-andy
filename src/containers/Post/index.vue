@@ -55,8 +55,6 @@ import TagList from '@/components/Base/Post/TagList'
 import HeaderImg from '@/components/Base/Post/HeaderImg'
 import PostBody from '@/components/Base/Post/Body'
 
-interface IData {}
-
 export default Vue.extend({
   components: {
     PostBody,
@@ -65,31 +63,11 @@ export default Vue.extend({
     TagList,
     HeaderImg
   },
-  props: {
-    id: {
-      type: String,
-      required: true
-    }
-  },
   computed: {
     presenter(): IPresenter {
       return Presenter({
-        postRepository: new PostRepository(this.$store),
-        id: this.id
+        postRepository: new PostRepository(this.$store)
       })
-    }
-  },
-  data(): IData {
-    return {}
-  },
-  methods: {
-    async fetchPost() {
-      const usecase = new FetchPostUseCase({
-        postRepository: new PostRepository(this.$store),
-        errorService: new ErrorService({ context: 'Fetching a Post' }),
-        contentfulGateway: new ContentfulGateway()
-      })
-      await usecase.execute(this.id)
     }
   }
 })

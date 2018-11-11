@@ -26,7 +26,7 @@ export default class FetchPostUseCase implements BaseUseCase {
   async execute(id: string) {
     try {
       const post = await this.contentfulGateway.getPost(id)
-      this.postRepository.savePosts([post])
+      this.postRepository.saveCurrentPost(post)
     } catch (error) {
       await this.errorService.handle(error)
       throw new Error(error)
