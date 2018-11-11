@@ -201,4 +201,14 @@ export default Vue.extend({
     margin-right: 0;
   }
 }
+
+.PostBody hr {
+  margin: 48px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .PostBody hr {
+    margin: 32px 0;
+  }
+}
 </style>

@@ -7,15 +7,17 @@ export default class ContentfulGateway {
   transtormEntry(entry: Entry<IPostProps>): IPostProps {
     const { id } = entry.sys
     const fields = entry.fields
-    const tags = fields.tags.map(
-      (tag: any): ITagProps => {
-        const entry: Entry<ITagProps> = tag
-        return {
-          id: entry.sys.id,
-          name: entry.fields.name
-        }
-      }
-    )
+    const tags = fields.tags
+      ? fields.tags.map(
+          (tag: any): ITagProps => {
+            const entry: Entry<ITagProps> = tag
+            return {
+              id: entry.sys.id,
+              name: entry.fields.name
+            }
+          }
+        )
+      : []
 
     return {
       ...fields,
