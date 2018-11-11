@@ -35,7 +35,6 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   width: 100%;
-  height: 620px;
 }
 
 @media screen and (max-width: 768px) {
