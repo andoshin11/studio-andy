@@ -25,7 +25,7 @@
         </button>
       </div>
       <div class="content">
-        <PostBody v-if="presenter.post" :text="presenter.post.props.content" />
+        <Markdown :text="presenter.post ? presenter.post.props.content : ''"/>
       </div>
     </div>
   </div>
@@ -53,15 +53,15 @@ import PostTitle from '@/components/Base/Post/Title'
 import PostDate from '@/components/Base/Post/Date'
 import TagList from '@/components/Base/Post/TagList'
 import HeaderImg from '@/components/Base/Post/HeaderImg'
-import PostBody from '@/components/Base/Post/Body'
+import Markdown from '@/components/Base/Markdown'
 
 export default Vue.extend({
   components: {
-    PostBody,
     PostTitle,
     PostDate,
     TagList,
-    HeaderImg
+    HeaderImg,
+    Markdown
   },
   computed: {
     presenter(): IPresenter {
@@ -90,9 +90,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 45px;
-  overflow: visible;
-  min-height: 790px;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 768px) {
@@ -143,5 +141,9 @@ export default Vue.extend({
   background: #5b3cc4;
   border: 1px solid #5b3cc4;
   fill: #fff;
+}
+
+.content {
+  width: 60%;
 }
 </style>
