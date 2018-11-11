@@ -20,7 +20,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
 .App {
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ export default Vue.extend({
 }
 
 .App__Header,
-.APp__Body {
+.App__Body {
   width: 1180px;
 }
 

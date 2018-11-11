@@ -36,7 +36,7 @@ export default Vue.extend({
 </script>
 
 
-<style>
+<style scoped>
 .container {
   width: 1180px;
   margin: 0 auto;

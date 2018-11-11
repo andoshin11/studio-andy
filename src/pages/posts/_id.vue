@@ -36,7 +36,7 @@ export default Vue.extend({
 </script>
 
 
-<style>
+<style scoped>
 .Post {
   width: 100%;
 }

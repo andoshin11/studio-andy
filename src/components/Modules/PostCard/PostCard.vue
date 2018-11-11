@@ -69,7 +69,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
 .PostCard {
   display: flex;
   flex-direction: column;
