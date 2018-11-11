@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="Post">
     <PostContainer :id="$route.params.id" />
   </section>
 </template>
@@ -37,14 +37,7 @@ export default Vue.extend({
 
 
 <style>
-.container {
-  width: 1180px;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    width: 100%;
-  }
+.Post {
+  width: 100%;
 }
 </style>

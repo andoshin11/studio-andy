@@ -43,4 +43,10 @@ export default Vue.extend({
   justify-content: center;
   text-align: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+}
 </style>

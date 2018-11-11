@@ -39,9 +39,16 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 130px;
+  width: 100%;
+  height: 100%;
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .Header {
+    height: 100px;
+    margin: 0;
+  }
 }
 
 .Header__Nav > nav {
@@ -49,6 +56,12 @@ export default Vue.extend({
   z-index: 1000;
   margin: 0 auto;
   position: relative;
+}
+
+@media screen and (max-width: 1024px) {
+  .Header__Nav > nav {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {

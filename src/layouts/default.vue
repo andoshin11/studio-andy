@@ -3,7 +3,9 @@
     <div class="App__Header">
       <HeaderContainer />
     </div>
-    <nuxt/>
+    <div class="App__Body">
+      <nuxt/>
+    </div>
   </div>
 </template>
 
@@ -19,4 +21,31 @@ export default Vue.extend({
 </script>
 
 <style>
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App__Header,
+.APp__Body {
+  width: 1180px;
+}
+
+@media screen and (max-width: 1024px) {
+  .App__Header,
+  .App__Body {
+    width: 100%;
+  }
+}
+
+.App__Header {
+  height: 130px;
+}
+
+@media screen and (max-width: 1024px) {
+  .App__Header {
+    height: 100px;
+  }
+}
 </style>
