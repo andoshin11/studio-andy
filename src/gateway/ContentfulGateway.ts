@@ -7,12 +7,6 @@ enum ContentType {
 }
 
 export default class ContentfulGateway {
-  private _client: ContentfulClientApi
-
-  constuctor() {
-    this._client = createClient()
-  }
-
   transtormEntry(entry: Entry<IPostProps>): IPostProps {
     const { id } = entry.sys
     const fields = entry.fields
@@ -37,9 +31,10 @@ export default class ContentfulGateway {
     return this.transtormEntry(post)
   }
 
-  async getPostsByTagId(tagId: string): Promise<IPostProps[]> {
-    const posts = await this._client.getEntries<IPostProps>({
-      content_type: ContentType.POST
+  async getPostsByTag(tag: string): Promise<IPostProps[]> {
+    const posts = await createClient().getEntries<IPostProps>({
+      content_type: ContentType.POST,
+      'fields.tags[in]': tag
     })
 
     return posts.items.map(this.transtormEntry)
