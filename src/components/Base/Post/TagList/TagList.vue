@@ -1,6 +1,10 @@
 <template>
   <ul class="TagList">
-    <li v-for="tag in list" :key="tag" class="tag">{{ tag }}</li>
+    <li v-for="tag in list" :key="tag" class="tag">
+      <nuxt-link :to="tagPath(tag)">
+      {{ tag }}
+      </nuxt-link>
+    </li>
     <li v-if="list.length < 1" class="empty">
       <Empty />
     </li>
@@ -25,6 +29,14 @@ export default Vue.extend({
   },
   data(): IData {
     return {}
+  },
+  methods: {
+    tagPath(tag: string): string {
+      if (tag) {
+        return `/tags/${tag}`
+      }
+      return ''
+    }
   }
 })
 </script>
@@ -57,8 +69,15 @@ export default Vue.extend({
   }
 }
 
+.tag a {
+  color: #222;
+}
+
 .tag:hover {
   background: #5b3cc4;
+}
+
+.tag:hover a {
   color: #fff;
 }
 

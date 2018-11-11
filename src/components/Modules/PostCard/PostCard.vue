@@ -11,7 +11,7 @@
       <div class="title">{{ post.props.title }}</div>
       <div class="summary">{{ post.props.summary }}</div>
       <div class="tagList">
-        <div v-for="tag in post.props.tags" class="tag" :key="tag">{{ tag }}</div>
+        <nuxt-link v-for="tag in post.props.tags" class="tag" :key="tag" :to="tagPath(tag)">{{ tag }}</nuxt-link>
       </div>
     </div>
   </div>
@@ -51,6 +51,14 @@ export default Vue.extend({
       return {
         height: `${posterHight}px`
       }
+    }
+  },
+  methods: {
+    tagPath(tag: string): string {
+      if (tag) {
+        return `/tags/${tag}`
+      }
+      return ''
     }
   },
   mounted() {
@@ -153,6 +161,7 @@ export default Vue.extend({
 }
 
 .tag {
+  color: #222;
   border: solid 1px #5b3cc4;
   display: inline;
   margin-right: 4px;
