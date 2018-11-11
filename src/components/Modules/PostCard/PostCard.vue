@@ -11,7 +11,7 @@
       <div class="title">{{ post.props.title }}</div>
       <div class="summary">{{ post.props.summary }}</div>
       <div class="tagList">
-        <div v-for="tag in post.props.tags" class="tag" :key="tag.id">{{ tag.name }}</div>
+        <div v-for="tag in post.props.tags" class="tag" :key="tag">{{ tag }}</div>
       </div>
     </div>
   </div>

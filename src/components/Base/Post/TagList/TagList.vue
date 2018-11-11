@@ -1,6 +1,6 @@
 <template>
   <ul class="TagList">
-    <li v-for="tag in list" :key="tag.id" class="tag">{{ tag.name }}</li>
+    <li v-for="tag in list" :key="tag" class="tag">{{ tag }}</li>
     <li v-if="list.length < 1" class="empty">
       <Empty />
     </li>
@@ -9,7 +9,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ITagProps } from '@/entities/Tag'
 import Empty from '@/components/Base/Empty'
 
 interface IData {}
@@ -20,7 +19,7 @@ export default Vue.extend({
   },
   props: {
     list: {
-      type: Array as () => ITagProps[],
+      type: Array as () => string[],
       required: true
     }
   },

@@ -1,27 +1,24 @@
-import { Entry } from 'contentful'
+import { Entry, ContentfulClientApi } from 'contentful'
 import { createClient } from '@/infra/contentful/client'
 import { IPostProps } from '@/entities/Post'
-import { ITagProps } from '@/entities/Tag'
+
+enum ContentType {
+  POST = 'post'
+}
 
 export default class ContentfulGateway {
+  private _client: ContentfulClientApi
+
+  constuctor() {
+    this._client = createClient()
+  }
+
   transtormEntry(entry: Entry<IPostProps>): IPostProps {
     const { id } = entry.sys
     const fields = entry.fields
-    const tags = fields.tags
-      ? fields.tags.map(
-          (tag: any): ITagProps => {
-            const entry: Entry<ITagProps> = tag
-            return {
-              id: entry.sys.id,
-              name: entry.fields.name
-            }
-          }
-        )
-      : []
 
     return {
       ...fields,
-      tags,
       id
     }
   }
@@ -38,5 +35,13 @@ export default class ContentfulGateway {
     const client = createClient()
     const post = await client.getEntry<IPostProps>(id)
     return this.transtormEntry(post)
+  }
+
+  async getPostsByTagId(tagId: string): Promise<IPostProps[]> {
+    const posts = await this._client.getEntries<IPostProps>({
+      content_type: ContentType.POST
+    })
+
+    return posts.items.map(this.transtormEntry)
   }
 }
