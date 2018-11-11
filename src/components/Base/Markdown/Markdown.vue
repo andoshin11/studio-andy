@@ -80,7 +80,8 @@ export default Vue.extend({
 
 @media screen and (max-width: 768px) {
   .Markdown h1 {
-    margin-left: 5%;
+    margin-left: 0;
+    border-bottom: solid 2px #666;
   }
 }
 
@@ -91,6 +92,12 @@ export default Vue.extend({
   border-left: solid 4px #5b3cc4;
   position: absolute;
   left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .Markdown h1::before {
+    content: none;
+  }
 }
 
 .Markdown h2 {
@@ -161,14 +168,6 @@ export default Vue.extend({
 
 .Markdown pre {
   margin-top: 16px;
-}
-
-@media screen and (max-width: 768px) {
-  .Markdown pre {
-    margin-left: 5%;
-    box-sizing: border-box;
-    margin-right: 0;
-  }
 }
 
 .Markdown hr {

@@ -37,12 +37,6 @@ export default Vue.extend({
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .HeaderImg {
-    height: 196px;
-  }
-}
-
 .img {
   width: 100%;
   max-height: 100%;

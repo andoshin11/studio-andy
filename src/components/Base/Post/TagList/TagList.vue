@@ -1,10 +1,10 @@
 <template>
   <ul class="TagList">
-    <li v-for="tag in list" :key="tag" class="tag">
-      <nuxt-link :to="tagPath(tag)">
+    <nuxt-link v-for="tag in list" :key="tag" :to="tagPath(tag)">
+    <li class="tag">
       {{ tag }}
-      </nuxt-link>
     </li>
+    </nuxt-link>
     <li v-if="list.length < 1" class="empty">
       <Empty />
     </li>
@@ -44,12 +44,6 @@ export default Vue.extend({
 <style scoped>
 .TagList {
   margin-bottom: 24px;
-}
-
-@media screen and (max-width: 768px) {
-  .TagList {
-    margin-bottom: 16px;
-  }
 }
 
 .tag {

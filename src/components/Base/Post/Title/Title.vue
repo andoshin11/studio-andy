@@ -42,7 +42,7 @@ export default Vue.extend({
 
 @media screen and (max-width: 768px) {
   .Title {
-    font-size: 28px;
+    font-size: 24px;
     width: 90%;
     margin-bottom: 16px;
   }

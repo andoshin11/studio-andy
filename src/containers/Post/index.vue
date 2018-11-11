@@ -93,12 +93,6 @@ export default Vue.extend({
   margin-bottom: 40px;
 }
 
-@media screen and (max-width: 768px) {
-  .header {
-    min-height: 365px;
-  }
-}
-
 .body {
   display: flex;
   flex-direction: column;
@@ -145,5 +139,11 @@ export default Vue.extend({
 
 .content {
   width: 60%;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 90%;
+  }
 }
 </style>
