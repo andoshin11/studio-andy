@@ -1,13 +1,14 @@
 <template>
   <ul class="TagList">
-    <nuxt-link 
+    <li 
       v-for="tag in list" 
       :key="tag" 
-      :to="tagPath(tag)">
-      <li class="tag">
-        #{{ tag }}
-      </li>
-    </nuxt-link>
+      class="tag" >
+      <nuxt-link 
+        :to="tagPath(tag)">
+        {{ tag }}
+      </nuxt-link>
+    </li>
     <li 
       v-if="list.length < 1" 
       class="empty">
@@ -48,20 +49,19 @@ export default Vue.extend({
 
 <style scoped>
 .TagList {
-  margin-bottom: 24px;
+  width: 90%;
 }
 
 .tag {
   display: inline;
   margin-right: 8px;
   padding: 4px 8px;
-  /* border: solid 1px #181b3a; */
-  /* border-bottom: solid 1px #151515; */
-  color: #ef6530;
   font-size: 16px;
+  background: #ef6530;
+  border: solid 1px #ef6530;
+  border-radius: 1px;
   cursor: pointer;
-  /* border-radius: 4px; */
-  transition: 0.15s;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 768px) {
@@ -71,15 +71,17 @@ export default Vue.extend({
 }
 
 .tag a {
-  color: #ef6530;
-}
-
-.tag:hover {
-  background: #5b3cc4;
-}
-
-.tag:hover a {
   color: #fff;
+}
+
+.tag:hover,
+.tag:focus {
+  background: #fff;
+}
+
+.tag:hover a,
+.tag:focus a {
+  color: #ef6530;
 }
 
 .empty {

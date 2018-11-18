@@ -47,7 +47,7 @@ export default Vue.extend({
   margin-bottom: 30px;
   color: #151515;
   background-color: #fff;
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px #ddd;
 }
 
 @media screen and (max-width: 768px) {

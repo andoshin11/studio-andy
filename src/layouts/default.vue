@@ -28,8 +28,7 @@ export default Vue.extend({
   },
   methods: {
     scrollToTop() {
-      const targetElement =
-        document.scrollingElement || document.documentElement
+      const targetElement = document.scrollingElement || document.documentElement
       if (targetElement) {
         scrollWithDuration(targetElement)
       }
@@ -80,6 +79,7 @@ export default Vue.extend({
   position: fixed;
   right: 24px;
   bottom: 24px;
+  display: none;
   width: 36px;
   height: 36px;
   color: #fdfdfe;

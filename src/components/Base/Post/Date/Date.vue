@@ -37,15 +37,14 @@ export default Vue.extend({
 
 <style scoped>
 .Date {
-  margin-bottom: 20px;
-  color: #fdfdfd;
+  width: 90%;
+  margin-bottom: 8px;
   font-size: 18px;
-  background: #151515;
 }
 
 @media screen and (max-width: 768px) {
   .Date {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     font-size: 14px;
   }
 }
