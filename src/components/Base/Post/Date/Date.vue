@@ -1,6 +1,8 @@
 <template>
   <div class="Date">
-    <div v-if="text.length < 1 " class="empty">
+    <div 
+      v-if="text.length < 1 " 
+      class="empty">
       <Empty />
     </div>
     {{ date }}
@@ -35,16 +37,16 @@ export default Vue.extend({
 
 <style scoped>
 .Date {
-  background: #151515;
+  margin-bottom: 20px;
   color: #fdfdfd;
   font-size: 18px;
-  margin-bottom: 20px;
+  background: #151515;
 }
 
 @media screen and (max-width: 768px) {
   .Date {
-    font-size: 14px;
     margin-bottom: 16px;
+    font-size: 14px;
   }
 }
 

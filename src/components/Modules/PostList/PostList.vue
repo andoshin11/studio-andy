@@ -1,6 +1,10 @@
 <template>
   <div class="PostList">
-    <nuxt-link v-for="post in data" :key="post.props.id" :to="postPath(post)" class="post">
+    <nuxt-link 
+      v-for="post in data" 
+      :key="post.props.id" 
+      :to="postPath(post)" 
+      class="post">
       <PostCard :post="post" />
     </nuxt-link>
   </div>
@@ -34,10 +38,10 @@ export default Vue.extend({
 
 <style scoped>
 .PostList {
-  width: 100%;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

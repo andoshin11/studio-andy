@@ -1,12 +1,15 @@
 <template>
   <header class="Header">
-    <nav class="nav"></nav>
-    <nuxt-link exact to="/" class="logo">
+    <nav class="nav"/>
+    <nuxt-link 
+      exact 
+      to="/" 
+      class="logo">
       Studio Andy
     </nuxt-link>
     <div class="actions">
       <div class="search">
-        <button class="searchButton"></button>
+        <button class="searchButton"/>
       </div>
     </div>
   </header>
@@ -15,7 +18,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import Presenter, { IPresenter } from './presenter'
+// import Presenter, { IPresenter } from './presenter'
 
 // Use Case
 
@@ -38,12 +41,12 @@ export default Vue.extend({
 .Header {
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
-  color: #151515;
   align-items: center;
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
+  color: #151515;
+  background-color: #fff;
   border-bottom: solid 1px #ccc;
 }
 
@@ -54,10 +57,10 @@ export default Vue.extend({
 }
 
 .logo {
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 24px;
   color: #151515;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 1px;
 }
 
 @media screen and (max-width: 768px) {

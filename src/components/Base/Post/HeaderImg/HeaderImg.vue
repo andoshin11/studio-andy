@@ -1,11 +1,16 @@
 <template>
   <div class="HeaderImg">
     <template v-if="headerImg">
-      <img class="img" :src="headerImg.fields.file.url" :alt="headerImg.fields.title">
-      <div class="mask"></div>
+      <img 
+        :src="headerImg.fields.file.url" 
+        :alt="headerImg.fields.title" 
+        class="img">
+      <div class="mask"/>
       <div class="date">Nov 9, 2018</div>
     </template>
-    <div v-else class="empty">
+    <div 
+      v-else 
+      class="empty">
       <Empty/>
     </div>
 
@@ -37,10 +42,10 @@ export default Vue.extend({
 
 <style scoped>
 .HeaderImg {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  position: relative;
 }
 
 .img {
@@ -73,7 +78,7 @@ export default Vue.extend({
   position: absolute;
   top: 60%;
   left: 0;
-  background: #ef6530;
   color: #fdfdfd;
+  background: #ef6530;
 }
 </style>

@@ -1,11 +1,16 @@
 <template>
   <ul class="TagList">
-    <nuxt-link v-for="tag in list" :key="tag" :to="tagPath(tag)">
-    <li class="tag">
-      #{{ tag }}
-    </li>
+    <nuxt-link 
+      v-for="tag in list" 
+      :key="tag" 
+      :to="tagPath(tag)">
+      <li class="tag">
+        #{{ tag }}
+      </li>
     </nuxt-link>
-    <li v-if="list.length < 1" class="empty">
+    <li 
+      v-if="list.length < 1" 
+      class="empty">
       <Empty />
     </li>
   </ul>
@@ -47,16 +52,16 @@ export default Vue.extend({
 }
 
 .tag {
+  display: inline;
+  margin-right: 8px;
+  padding: 4px 8px;
   /* border: solid 1px #181b3a; */
   /* border-bottom: solid 1px #151515; */
   color: #ef6530;
-  display: inline;
-  margin-right: 8px;
   font-size: 16px;
-  padding: 4px 8px;
+  cursor: pointer;
   /* border-radius: 4px; */
   transition: 0.15s;
-  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

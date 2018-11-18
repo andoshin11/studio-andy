@@ -1,10 +1,10 @@
-export interface IPresenterParams {
-}
+// export interface IPresenterParams {
+// }
 
-export interface IPresenter {
-}
+// export interface IPresenter {
+// }
 
-export default ({}: IPresenterParams): IPresenter => {
-  return {
-  }
-}
+// export default ({}: IPresenterParams): IPresenter => {
+//   return {
+//   }
+// }

@@ -9,7 +9,9 @@
     <div class="App__Footer">
       <FooterContainer />
     </div>
-    <div @click="scrollToTop" class="scrollToTop">↑</div>
+    <div 
+      class="scrollToTop" 
+      @click="scrollToTop">↑</div>
   </div>
 </template>
 
@@ -38,18 +40,18 @@ export default Vue.extend({
 
 <style scoped>
 .App {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 
 .App__Header {
+  position: fixed;
+  z-index: 1000;
   width: 100%;
   height: 130px;
-  position: fixed;
   background: #fff;
-  z-index: 1000;
 }
 
 @media screen and (max-width: 1024px) {
@@ -64,6 +66,7 @@ export default Vue.extend({
 
 .App__Footer {
   width: 100%;
+  height: 400px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -73,22 +76,18 @@ export default Vue.extend({
   }
 }
 
-.App__Footer {
-  height: 400px;
-}
-
 .scrollToTop {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
   width: 36px;
   height: 36px;
-  border-radius: 4px;
-  background-color: #ef6530;
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
   color: #fdfdfe;
-  text-align: center;
-  font-size: 16px;
   font-weight: bold;
+  font-size: 16px;
   line-height: 36px;
+  text-align: center;
+  background-color: #ef6530;
+  border-radius: 4px;
 }
 </style>

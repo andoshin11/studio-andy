@@ -1,13 +1,13 @@
 <template>
   <div class="Footer">
-    <div class="divider"></div>
+    <div class="divider"/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-import Presenter, { IPresenter } from './presenter'
+// import Presenter, { IPresenter } from './presenter'
 
 // Use Case
 
@@ -34,9 +34,9 @@ export default Vue.extend({
 }
 
 .divider {
-  height: 1px;
-  border-top: solid 1px #ccc;
   width: 90%;
+  height: 1px;
   margin: 0 auto;
+  border-top: solid 1px #ccc;
 }
 </style>

@@ -38,9 +38,9 @@ export default Vue.extend({
 
 <style scoped>
 .container {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
+  min-height: 100vh;
   text-align: center;
 }
 
