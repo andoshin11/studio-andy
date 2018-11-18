@@ -1,13 +1,13 @@
 <template>
   <header class="Header">
-    <div class="Header__Nav">
-      <nav>
-        <ul class="Header__NavList">
-          <nuxt-link class="Header__NavItem logo" exact to="/">
-            <li>STUDIO ANDY</li>
-          </nuxt-link>
-        </ul>
-      </nav>
+    <nav class="nav"></nav>
+    <nuxt-link exact to="/" class="logo">
+      Studio Andy
+    </nuxt-link>
+    <div class="actions">
+      <div class="search">
+        <button class="searchButton"></button>
+      </div>
     </div>
   </header>
 </template>
@@ -37,56 +37,42 @@ export default Vue.extend({
 <style scoped>
 .Header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  background-color: #fff;
+  color: #151515;
   align-items: center;
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
+  border-bottom: solid 1px #ccc;
 }
 
 @media screen and (max-width: 768px) {
   .Header {
-    height: 100px;
     margin: 0;
   }
 }
 
-.Header__Nav > nav {
-  width: 1180px;
-  z-index: 1000;
-  margin: 0 auto;
-  position: relative;
-}
-
-@media screen and (max-width: 1024px) {
-  .Header__Nav > nav {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .Header__Nav > nav {
-    width: 100%;
-  }
-}
-
-.Header__NavList {
-  display: flex;
-  padding: 16px 0;
-}
-
 .logo {
-  color: #000;
   font-weight: bold;
   letter-spacing: 1px;
   font-size: 24px;
+  color: #151515;
 }
 
+@media screen and (max-width: 768px) {
+  .logo {
+    font-size: 18px;
+  }
+}
+
+/*
 .logo::after {
   width: 100%;
   height: 1px;
   content: '';
   display: block;
-  border-bottom: solid 3px #5b3cc4;
+  border-bottom: solid 3px #ff6b00;
 }
+*/
 </style>

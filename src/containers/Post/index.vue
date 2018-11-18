@@ -1,10 +1,10 @@
 <template>
   <div class="Post">
     <div class="header">
-      <PostTitle :title="presenter.post ? presenter.post.props.title : ''" />
-      <PostDate :text="presenter.post ? presenter.post.props.publishedAt : ''" />
-      <TagList :list="presenter.post ? presenter.post.props.tags : []" />
       <HeaderImg :headerImg="presenter.post ? presenter.post.props.headerImage : null"/>
+      <PostDate :text="presenter.post ? presenter.post.props.publishedAt : ''" />
+      <PostTitle :title="presenter.post ? presenter.post.props.title : ''" />
+      <TagList :list="presenter.post ? presenter.post.props.tags : []" />
     </div>
     <div class="body">
       <div class="socialLinks">
@@ -76,6 +76,7 @@ export default Vue.extend({
 <style scoped>
 .Post {
   display: flex;
+  padding-bottom: 100px;
   flex-direction: column;
 }
 

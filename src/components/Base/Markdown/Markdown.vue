@@ -62,7 +62,7 @@ export default Vue.extend({
 }
 
 .Markdown a {
-  color: #5b3cc4;
+  color: #ef6530;
   text-decoration: underline;
   transition: 0.3s;
 }

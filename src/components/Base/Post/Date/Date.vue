@@ -25,7 +25,7 @@ export default Vue.extend({
   computed: {
     date(): string {
       if (this.text.length > 1) {
-        return dayjs(this.text).format('M.D.YY')
+        return dayjs(this.text).format('MMM D, YYYY')
       }
       return ''
     }
@@ -35,7 +35,8 @@ export default Vue.extend({
 
 <style scoped>
 .Date {
-  color: #aaa;
+  background: #151515;
+  color: #fdfdfd;
   font-size: 18px;
   margin-bottom: 20px;
 }

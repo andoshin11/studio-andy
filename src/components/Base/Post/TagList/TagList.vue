@@ -2,7 +2,7 @@
   <ul class="TagList">
     <nuxt-link v-for="tag in list" :key="tag" :to="tagPath(tag)">
     <li class="tag">
-      {{ tag }}
+      #{{ tag }}
     </li>
     </nuxt-link>
     <li v-if="list.length < 1" class="empty">
@@ -47,12 +47,14 @@ export default Vue.extend({
 }
 
 .tag {
-  border: solid 1px #5b3cc4;
+  /* border: solid 1px #181b3a; */
+  /* border-bottom: solid 1px #151515; */
+  color: #ef6530;
   display: inline;
   margin-right: 8px;
   font-size: 16px;
   padding: 4px 8px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   transition: 0.15s;
   cursor: pointer;
 }
@@ -64,7 +66,7 @@ export default Vue.extend({
 }
 
 .tag a {
-  color: #222;
+  color: #ef6530;
 }
 
 .tag:hover {

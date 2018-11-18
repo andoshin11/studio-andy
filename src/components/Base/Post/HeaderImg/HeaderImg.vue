@@ -1,9 +1,14 @@
 <template>
   <div class="HeaderImg">
-    <img v-if="headerImg" class="img" :src="headerImg.fields.file.url" :alt="headerImg.fields.title">
+    <template v-if="headerImg">
+      <img class="img" :src="headerImg.fields.file.url" :alt="headerImg.fields.title">
+      <div class="mask"></div>
+      <div class="date">Nov 9, 2018</div>
+    </template>
     <div v-else class="empty">
       <Empty/>
     </div>
+
   </div>
 </template>
 
@@ -35,6 +40,7 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .img {
@@ -51,5 +57,23 @@ export default Vue.extend({
   .empty {
     height: 196px;
   }
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.3;
+}
+
+.date {
+  position: absolute;
+  top: 60%;
+  left: 0;
+  background: #ef6530;
+  color: #fdfdfd;
 }
 </style>
