@@ -57,8 +57,11 @@ jobs:
       - attach_workspace:
           at: /repo
       - run:
-          name: Built and Deploy
-          command: GOOGLE_APPLICATION_CREDENTIALS=./secret.json yarn run deploy
+          name: Build
+          command: yarn run build
+      - run:
+          name: Deploy
+          command: GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy
       - run:
           name: Clean up
           command: rm ./secret.json
