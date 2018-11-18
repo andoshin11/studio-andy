@@ -40,14 +40,14 @@ export default Vue.extend({
 <style scoped>
 .Header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
-  color: #151515;
+  color: #4d4d4d;
   background-color: #fff;
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px #ddd;
 }
 
 @media screen and (max-width: 768px) {
@@ -78,4 +78,9 @@ export default Vue.extend({
   border-bottom: solid 3px #ff6b00;
 }
 */
+
+.actions,
+.nav {
+  display: none;
+}
 </style>

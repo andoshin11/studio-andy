@@ -47,6 +47,8 @@ export default Vue.extend({
     width: 90%;
     margin-bottom: 16px;
     font-size: 24px;
+    line-height: 1.3;
+    text-align: left;
   }
 }
 

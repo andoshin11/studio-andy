@@ -5,8 +5,6 @@
         :src="headerImg.fields.file.url" 
         :alt="headerImg.fields.title" 
         class="img">
-      <div class="mask"/>
-      <div class="date">Nov 9, 2018</div>
     </template>
     <div 
       v-else 
@@ -44,8 +42,12 @@ export default Vue.extend({
 .HeaderImg {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: calc(100vw / 16 * 9);
+  margin-bottom: 16px;
+  border-bottom: solid 1px #ccc;
 }
 
 .img {
@@ -62,23 +64,5 @@ export default Vue.extend({
   .empty {
     height: 196px;
   }
-}
-
-.mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: 0.3;
-}
-
-.date {
-  position: absolute;
-  top: 60%;
-  left: 0;
-  color: #fdfdfd;
-  background: #ef6530;
 }
 </style>
