@@ -54,23 +54,22 @@ jobs:
     working_directory: /repo
     steps:
       - checkout
+      - attach_workspace:
+          at: /repo
       - run:
           name: Built and Deploy
           command: GOOGLE_APPLICATION_CREDENTIALS=./secret.json yarn run deploy
+      - run:
+          name: Clean up
+          command: rm ./secret.json
 
 workflows:
   version: 2
   test-workflow:
     jobs:
       - test
-      - prepare_gcp:
-          filters:
-            branches:
-              only: master
+      - prepare_gcp
       - deploy:
           requires:
             - test
             - prepare_gcp
-          filters:
-            branches:
-              only: master
