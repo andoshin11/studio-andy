@@ -45,7 +45,7 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
-  color: #151515;
+  color: #4d4d4d;
   background-color: #fff;
   border-bottom: solid 1px #ddd;
 }

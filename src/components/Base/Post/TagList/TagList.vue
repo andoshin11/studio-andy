@@ -59,7 +59,7 @@ export default Vue.extend({
   font-size: 16px;
   background: #ef6530;
   border: solid 1px #ef6530;
-  border-radius: 1px;
+  border-radius: 4px;
   cursor: pointer;
   transition: 0.3s;
 }

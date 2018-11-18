@@ -62,7 +62,7 @@ export default Vue.extend({
 }
 
 .Markdown a {
-  color: #ef6530;
+  color: #b38639;
   text-decoration: underline;
   transition: 0.3s;
 }
@@ -81,7 +81,8 @@ export default Vue.extend({
 @media screen and (max-width: 768px) {
   .Markdown h1 {
     margin-left: 0;
-    border-bottom: solid 2px #666;
+    color: #4d4d4d;
+    border-bottom: solid 2px #4d4d4d;
   }
 }
 
@@ -146,18 +147,22 @@ export default Vue.extend({
 
 @media screen and (max-width: 768px) {
   .Markdown li {
-    padding-left: 28px;
+    padding-left: 12px;
     font-size: 16px;
   }
 }
 
 .Markdown li::before {
   position: absolute;
-  margin-left: -30px;
-  color: #5b3cc4;
-  font-size: 14px;
+  width: 8px;
+  height: 8px;
+  margin-top: 13px;
+  margin-left: -20px;
+  color: #ef6530;
   line-height: 40px;
-  content: '■';
+  background: #ef6530;
+  border-radius: 50%;
+  content: '';
 }
 
 @media screen and (max-width: 768px) {
