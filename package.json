@@ -25,6 +25,29 @@
     "precommit": "npm run lint",
     "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.vue": [
+      "stylelint --fix",
+      "eslint -c .eslintrc.vue.js --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.ts": [
+      "eslint -c .eslintrc.typescript.js --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@nuxtjs/pwa": "^2.6.0",
     "contentful": "^7.0.5",
