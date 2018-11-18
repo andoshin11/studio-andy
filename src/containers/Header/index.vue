@@ -40,7 +40,7 @@ export default Vue.extend({
 <style scoped>
 .Header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -78,4 +78,9 @@ export default Vue.extend({
   border-bottom: solid 3px #ff6b00;
 }
 */
+
+.actions,
+.nav {
+  display: none;
+}
 </style>
