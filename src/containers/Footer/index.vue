@@ -34,9 +34,9 @@ export default Vue.extend({
 }
 
 .divider {
-  height: 1px;
-  border-top: solid 1px #ccc;
   width: 90%;
+  height: 1px;
   margin: 0 auto;
+  border-top: solid 1px #ccc;
 }
 </style>

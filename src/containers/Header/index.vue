@@ -41,12 +41,12 @@ export default Vue.extend({
 .Header {
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
-  color: #151515;
   align-items: center;
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
+  color: #151515;
+  background-color: #fff;
   border-bottom: solid 1px #ccc;
 }
 
@@ -57,10 +57,10 @@ export default Vue.extend({
 }
 
 .logo {
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 24px;
   color: #151515;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 1px;
 }
 
 @media screen and (max-width: 768px) {

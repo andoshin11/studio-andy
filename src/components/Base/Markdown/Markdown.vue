@@ -40,10 +40,10 @@ export default Vue.extend({
 
 /* Element Styles */
 .Markdown p {
+  margin: 50px auto 0;
   font-size: 18px;
   line-height: 33px;
   letter-spacing: 0.65px;
-  margin: 50px auto 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -72,10 +72,10 @@ export default Vue.extend({
 }
 
 .Markdown h1 {
-  margin-top: 50px;
-  font-size: 24px;
   position: relative;
+  margin-top: 50px;
   padding-left: 8px;
+  font-size: 24px;
 }
 
 @media screen and (max-width: 768px) {
@@ -86,12 +86,12 @@ export default Vue.extend({
 }
 
 .Markdown h1::before {
-  height: 34px;
-  content: '';
-  display: block;
-  border-left: solid 4px #5b3cc4;
   position: absolute;
   left: 0;
+  display: block;
+  height: 34px;
+  border-left: solid 4px #5b3cc4;
+  content: '';
 }
 
 @media screen and (max-width: 768px) {
@@ -115,11 +115,11 @@ export default Vue.extend({
 }
 
 .Markdown div.embedly-card {
-  padding: 8px;
   box-sizing: border-box;
-  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
+  padding: 8px;
   overflow: hidden;
   border-radius: 8px;
+  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
   transition: 0.3s ease-out;
 }
 
@@ -139,9 +139,9 @@ export default Vue.extend({
 }
 
 .Markdown li {
+  padding-left: 24px;
   font-size: 20px;
   line-height: 2;
-  padding-left: 24px;
 }
 
 @media screen and (max-width: 768px) {
@@ -152,12 +152,12 @@ export default Vue.extend({
 }
 
 .Markdown li::before {
-  content: '■';
   position: absolute;
   margin-left: -30px;
+  color: #5b3cc4;
   font-size: 14px;
   line-height: 40px;
-  color: #5b3cc4;
+  content: '■';
 }
 
 @media screen and (max-width: 768px) {

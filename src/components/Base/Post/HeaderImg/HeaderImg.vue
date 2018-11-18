@@ -42,10 +42,10 @@ export default Vue.extend({
 
 <style scoped>
 .HeaderImg {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  position: relative;
 }
 
 .img {
@@ -78,7 +78,7 @@ export default Vue.extend({
   position: absolute;
   top: 60%;
   left: 0;
-  background: #ef6530;
   color: #fdfdfd;
+  background: #ef6530;
 }
 </style>

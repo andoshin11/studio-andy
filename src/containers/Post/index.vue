@@ -86,8 +86,8 @@ export default Vue.extend({
 <style scoped>
 .Post {
   display: flex;
-  padding-bottom: 100px;
   flex-direction: column;
+  padding-bottom: 100px;
 }
 
 @media screen and (max-width: 768px) {
@@ -111,11 +111,11 @@ export default Vue.extend({
 }
 
 .socialLinks {
-  width: 100%;
-  height: 0;
   position: sticky;
   top: 30px;
   z-index: 100;
+  width: 100%;
+  height: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -130,15 +130,15 @@ export default Vue.extend({
   align-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  fill: #777;
-  border: 1px solid #d9d9d9;
-  background: trans;
-  -webkit-appearance: none;
   margin-bottom: 15px;
-  -webkit-box-align: center;
+  background: trans;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
   cursor: pointer;
   transition: 0.3s ease-out;
+  -webkit-appearance: none;
+  fill: #777;
+  -webkit-box-align: center;
 }
 
 .socialButton:hover,

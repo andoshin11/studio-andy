@@ -34,19 +34,19 @@ export default Vue.extend({
 <style scoped>
 .Title {
   width: 80%;
-  line-height: 1.2;
-  font-size: 40px;
-  font-weight: bold;
-  text-align: center;
-  margin: 0 0 24px;
   min-height: 48px;
+  margin: 0 0 24px;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 1.2;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
   .Title {
-    font-size: 24px;
     width: 90%;
     margin-bottom: 16px;
+    font-size: 24px;
   }
 }
 
