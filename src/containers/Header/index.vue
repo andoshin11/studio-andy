@@ -1,12 +1,15 @@
 <template>
   <header class="Header">
-    <nav class="nav"></nav>
-    <nuxt-link exact to="/" class="logo">
+    <nav class="nav"/>
+    <nuxt-link 
+      exact 
+      to="/" 
+      class="logo">
       Studio Andy
     </nuxt-link>
     <div class="actions">
       <div class="search">
-        <button class="searchButton"></button>
+        <button class="searchButton"/>
       </div>
     </div>
   </header>
@@ -15,7 +18,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import Presenter, { IPresenter } from './presenter'
+// import Presenter, { IPresenter } from './presenter'
 
 // Use Case
 

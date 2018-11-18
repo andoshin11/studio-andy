@@ -9,13 +9,13 @@ export const scrollWithDuration = (
   element: any,
   to: number = 0,
   duration: number = 1000
-) => {
+): void => {
   const start = element.scrollTop
   const change = to - start
   const increment = 20
   let currentTime = 0
 
-  const animateScroll = () => {
+  const animateScroll = (): void => {
     currentTime += increment
 
     const val = easeInOutQuad(currentTime, start, change, duration)

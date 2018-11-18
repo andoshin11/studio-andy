@@ -1,6 +1,8 @@
 <template>
   <div class="Date">
-    <div v-if="text.length < 1 " class="empty">
+    <div 
+      v-if="text.length < 1 " 
+      class="empty">
       <Empty />
     </div>
     {{ date }}

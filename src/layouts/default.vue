@@ -9,7 +9,9 @@
     <div class="App__Footer">
       <FooterContainer />
     </div>
-    <div @click="scrollToTop" class="scrollToTop">↑</div>
+    <div 
+      class="scrollToTop" 
+      @click="scrollToTop">↑</div>
   </div>
 </template>
 

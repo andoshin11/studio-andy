@@ -1,6 +1,10 @@
 <template>
   <div class="PostList">
-    <nuxt-link v-for="post in data" :key="post.props.id" :to="postPath(post)" class="post">
+    <nuxt-link 
+      v-for="post in data" 
+      :key="post.props.id" 
+      :to="postPath(post)" 
+      class="post">
       <PostCard :post="post" />
     </nuxt-link>
   </div>

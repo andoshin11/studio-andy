@@ -34,17 +34,17 @@ export default Vue.extend({
   components: {
     PostList
   },
+  data(): IData {
+    return {
+      listType: ListType.Latest
+    }
+  },
   computed: {
     presenter(): IPresenter {
       return Presenter({
         postRepository: new PostRepository(this.$store),
         listType: this.listType
       })
-    }
-  },
-  data(): IData {
-    return {
-      listType: ListType.Latest
     }
   },
   methods: {

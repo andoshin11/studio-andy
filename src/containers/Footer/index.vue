@@ -1,13 +1,13 @@
 <template>
   <div class="Footer">
-    <div class="divider"></div>
+    <div class="divider"/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-import Presenter, { IPresenter } from './presenter'
+// import Presenter, { IPresenter } from './presenter'
 
 // Use Case
 

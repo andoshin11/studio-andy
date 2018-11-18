@@ -1,11 +1,16 @@
 <template>
   <ul class="TagList">
-    <nuxt-link v-for="tag in list" :key="tag" :to="tagPath(tag)">
-    <li class="tag">
-      #{{ tag }}
-    </li>
+    <nuxt-link 
+      v-for="tag in list" 
+      :key="tag" 
+      :to="tagPath(tag)">
+      <li class="tag">
+        #{{ tag }}
+      </li>
     </nuxt-link>
-    <li v-if="list.length < 1" class="empty">
+    <li 
+      v-if="list.length < 1" 
+      class="empty">
       <Empty />
     </li>
   </ul>

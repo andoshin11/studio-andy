@@ -1,6 +1,8 @@
 <template>
   <h1 class="Title">
-    <div v-if="title.length < 1 " class="empty">
+    <div 
+      v-if="title.length < 1 " 
+      class="empty">
       <Empty />
     </div>
     {{ title }}

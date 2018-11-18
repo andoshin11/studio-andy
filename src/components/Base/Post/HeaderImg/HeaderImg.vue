@@ -1,11 +1,16 @@
 <template>
   <div class="HeaderImg">
     <template v-if="headerImg">
-      <img class="img" :src="headerImg.fields.file.url" :alt="headerImg.fields.title">
-      <div class="mask"></div>
+      <img 
+        :src="headerImg.fields.file.url" 
+        :alt="headerImg.fields.title" 
+        class="img">
+      <div class="mask"/>
       <div class="date">Nov 9, 2018</div>
     </template>
-    <div v-else class="empty">
+    <div 
+      v-else 
+      class="empty">
       <Empty/>
     </div>
 

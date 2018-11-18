@@ -1,6 +1,9 @@
 <template>
   <div class="PostCard">
-    <div class="header" ref="header" :style="headerStyle">
+    <div 
+      ref="header" 
+      :style="headerStyle" 
+      class="header">
       <img
         :src="post.props.headerImage.fields.file.url"
         alt=""
@@ -11,7 +14,11 @@
       <div class="title">{{ post.props.title }}</div>
       <div class="summary">{{ post.props.summary }}</div>
       <div class="tagList">
-        <nuxt-link v-for="tag in post.props.tags" class="tag" :key="tag" :to="tagPath(tag)">{{ tag }}</nuxt-link>
+        <nuxt-link 
+          v-for="tag in post.props.tags" 
+          :key="tag" 
+          :to="tagPath(tag)" 
+          class="tag">{{ tag }}</nuxt-link>
       </div>
     </div>
   </div>
@@ -53,6 +60,11 @@ export default Vue.extend({
       }
     }
   },
+  mounted() {
+    if (!this.$refs.header) return
+    const clientWidth = this.$refs.header.clientWidth
+    this.clientWidth = clientWidth
+  },
   methods: {
     tagPath(tag: string): string {
       if (tag) {
@@ -61,11 +73,6 @@ export default Vue.extend({
       return ''
     }
   },
-  mounted() {
-    if (!this.$refs.header) return
-    const clientWidth = this.$refs.header.clientWidth
-    this.clientWidth = clientWidth
-  }
 })
 </script>
 
