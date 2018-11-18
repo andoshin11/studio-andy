@@ -1,0 +1,36 @@
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: node:10.13.0
+  working_directory: /repo
+
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run:
+          name: Install dependencies
+          command: yarn install --pure-lockfile
+      - run:
+          name: Lint
+          command: yarn run lint
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: /repo
+          paths:
+            - ./node_modules
+
+workflows:
+  version: 2
+  test-workflow:
+    jobs:
+      - test
