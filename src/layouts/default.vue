@@ -85,6 +85,7 @@ export default Vue.extend({
 
 .App__Body {
   width: 1180px;
+  padding-top: 160px;
 }
 
 .App__Footer {

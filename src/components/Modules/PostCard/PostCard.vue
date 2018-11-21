@@ -13,13 +13,17 @@
       <div class="date">{{ publishedAt }}</div>
       <div class="title">{{ post.props.title }}</div>
       <div class="summary">{{ post.props.summary }}</div>
-      <div class="tagList">
-        <nuxt-link 
+      <ul class="tagList">
+        <li 
           v-for="tag in post.props.tags" 
           :key="tag" 
-          :to="tagPath(tag)" 
-          class="tag">{{ tag }}</nuxt-link>
-      </div>
+          class="tag" >
+          <nuxt-link 
+            :to="tagPath(tag)">
+            {{ tag }}
+          </nuxt-link>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -99,6 +103,12 @@ export default Vue.extend({
   box-shadow: 0 28.3px 88.94px rgba(67, 54, 102, 0.2);
 }
 
+@media screen and (max-width: 768px) {
+  .PostCard:hover {
+    box-shadow: none;
+  }
+}
+
 .header {
   display: flex;
   justify-content: center;
@@ -140,9 +150,7 @@ export default Vue.extend({
   margin-bottom: 8px;
   color: #777;
   font-size: 12px;
-  font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo,
-    MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial,
-    'メイリオ';
+  font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   text-align: left;
 }
 
@@ -156,10 +164,16 @@ export default Vue.extend({
 
 .summary {
   min-height: 64px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   color: #777;
   font-size: 14px;
   text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+  .summary {
+    margin-bottom: 24px;
+  }
 }
 
 .tagList {
@@ -169,17 +183,33 @@ export default Vue.extend({
 
 .tag {
   display: inline;
-  margin-right: 4px;
+  margin-right: 8px;
   padding: 4px 8px;
-  color: #222;
-  font-size: 14px;
-  border: solid 1px #5b3cc4;
+  font-size: 16px;
+  background: #ef6530;
+  border: solid 1px #ef6530;
   border-radius: 4px;
-  transition: 0.15s;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.tag:hover {
+@media screen and (max-width: 768px) {
+  .tag {
+    font-size: 14px;
+  }
+}
+
+.tag a {
   color: #fff;
-  background: #5b3cc4;
+}
+
+.tag:hover,
+.tag:focus {
+  background: #fff;
+}
+
+.tag:hover a,
+.tag:focus a {
+  color: #ef6530;
 }
 </style>
