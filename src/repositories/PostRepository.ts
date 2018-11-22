@@ -1,10 +1,6 @@
 import { Store } from 'vuex'
 import { RootState } from '@/store'
-import {
-  StoreLatestPosts,
-  StorePosts,
-  StoreCurrentPost
-} from '@/store/modules/Post/types'
+import { StoreLatestPosts, StorePosts, StoreCurrentPost, StoreSearchResults, StoreSearchQuery } from '@/store/modules/Post/types'
 import PostEntity, { IPostProps } from '@/entities/Post'
 
 export default class PostRepository {
@@ -19,10 +15,21 @@ export default class PostRepository {
   }
 
   saveLatestPosts(posts: IPostProps[]) {
-    const ids = posts.map(movie => movie.id)
+    const ids = posts.map(post => post.id)
 
     this.savePosts(posts)
     this._store.commit(new StoreLatestPosts(ids))
+  }
+
+  saveSearchResults(posts: IPostProps[]) {
+    const ids = posts.map(post => post.id)
+
+    this.savePosts(posts)
+    this._store.commit(new StoreSearchResults(ids))
+  }
+
+  saveSearchQuery(query: string) {
+    this._store.commit(new StoreSearchQuery(query))
   }
 
   saveCurrentPost(post: IPostProps) {
@@ -33,6 +40,13 @@ export default class PostRepository {
 
   getLatestPosts(): PostEntity[] {
     const ids = this._store.state.post.latestPosts
+    const propsList = ids.map(id => this._store.state.post.byIds[id])
+    const posts = propsList.map(props => new PostEntity(props))
+    return posts
+  }
+
+  getSearchResults(): PostEntity[] {
+    const ids = this._store.state.post.searchResult
     const propsList = ids.map(id => this._store.state.post.byIds[id])
     const posts = propsList.map(props => new PostEntity(props))
     return posts

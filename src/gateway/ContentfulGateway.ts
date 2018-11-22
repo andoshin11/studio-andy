@@ -1,4 +1,4 @@
-import { Entry, ContentfulClientApi } from 'contentful'
+import { Entry } from 'contentful'
 import { createClient } from '@/infra/contentful/client'
 import { IPostProps } from '@/entities/Post'
 
@@ -37,6 +37,14 @@ export default class ContentfulGateway {
       'fields.tags[in]': tag
     })
 
+    return posts.items.map(this.transtormEntry)
+  }
+
+  async searchPosts(query: string): Promise<IPostProps[]> {
+    const client = createClient()
+    const posts = await client.getEntries<IPostProps>({
+      query
+    })
     return posts.items.map(this.transtormEntry)
   }
 }
