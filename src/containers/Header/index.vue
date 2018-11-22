@@ -9,8 +9,11 @@
         Studio Andy
       </nuxt-link>
     </div>
-    <form class="search">
+    <form 
+      class="search" 
+      @submit.prevent="searchPosts">
       <input 
+        v-model="query"
         type="text" 
         class="searchInput">
       <button 
@@ -28,22 +31,44 @@ import Vue from 'vue'
 // import Presenter, { IPresenter } from './presenter'
 
 // Use Case
+import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
 
 // Repositories
+import PostRepository from '@/repositories/PostRepository'
+
+// Gateway
+import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
+import ErrorService from '@/services/ErrorService'
 
 // components
 import Icon from '@/components/Base/Icon'
 
-interface IData {}
+interface IData {
+  query: string
+}
 
 export default Vue.extend({
   components: {
     Icon
   },
   data(): IData {
-    return {}
+    return {
+      query: ''
+    }
+  },
+  methods: {
+    async searchPosts() {
+      const usecase = new SearchPostsUseCase({
+        contentfulGateway: new ContentfulGateway(),
+        errorService: new ErrorService({ context: 'Searching posts' }),
+        postRepository: new PostRepository(this.$store)
+      })
+
+      await usecase.execute(this.query)
+      this.$router.push({ path: `/search?qury=${this.query}` })
+    }
   }
 })
 </script>
@@ -112,6 +137,8 @@ export default Vue.extend({
   width: 36px;
   height: 36px;
   padding: 0;
+  overflow: hidden;
+  color: transparent;
   background: transparent;
   border: none;
   border-radius: 32px;
@@ -123,6 +150,7 @@ export default Vue.extend({
   box-sizing: border-box;
   width: 90vw;
   padding: 0 24px;
+  color: #666;
   font-size: 16px;
   background: #f0f0f0;
   outline: none;
@@ -152,6 +180,10 @@ export default Vue.extend({
   border-radius: 36px;
   transform: translateY(-50%);
   transition: 0.7s;
+}
+
+.searchButton:focus {
+  -webkit-appearance: none;
 }
 
 .searchInput:focus + .searchButton {
