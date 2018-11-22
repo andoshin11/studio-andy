@@ -24,6 +24,7 @@ export default Vue.extend({
   components: {
     ResultContainer
   },
+  watchQuery: ['query'],
   async fetch({ query, store }) {
     if (!query.query) return
 

@@ -45,6 +45,7 @@ declare module 'vue/types/options' {
   }
 
   interface ComponentOptions<V extends Vue> {
+    watchQuery?: string[]
     layout?: string | ((context: ApplicationContext) => string)
     fetch?: (context: ApplicationContext) => void
     asyncData?: (context: ApplicationContext) => Promise<void>
