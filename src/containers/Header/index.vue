@@ -1,17 +1,24 @@
 <template>
   <header class="Header">
     <nav class="nav"/>
-    <nuxt-link 
-      exact 
-      to="/" 
-      class="logo">
-      Studio Andy
-    </nuxt-link>
-    <div class="actions">
-      <div class="search">
-        <button class="searchButton"/>
-      </div>
+    <div class="inner">
+      <nuxt-link 
+        exact 
+        to="/" 
+        class="logo">
+        Studio Andy
+      </nuxt-link>
     </div>
+    <form class="search">
+      <input 
+        type="text" 
+        class="searchInput">
+      <button 
+        type="submit" 
+        class="searchButton">
+        <Icon name="search"/>
+      </button>
+    </form>
   </header>
 </template>
 
@@ -27,10 +34,14 @@ import Vue from 'vue'
 // Service
 
 // components
+import Icon from '@/components/Base/Icon'
 
 interface IData {}
 
 export default Vue.extend({
+  components: {
+    Icon
+  },
   data(): IData {
     return {}
   }
@@ -39,9 +50,7 @@ export default Vue.extend({
 
 <style scoped>
 .Header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
@@ -54,6 +63,14 @@ export default Vue.extend({
   .Header {
     margin: 0;
   }
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .logo {
@@ -79,8 +96,66 @@ export default Vue.extend({
 }
 */
 
-.actions,
-.nav {
-  display: none;
+.search {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.searchInput {
+  position: relative;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 32px;
+  transition: 0.5s ease-out;
+}
+
+.searchInput:focus {
+  z-index: 8;
+  box-sizing: border-box;
+  width: 90vw;
+  padding: 0 24px;
+  font-size: 16px;
+  background: #f0f0f0;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.searchInput:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  background: red;
+}
+
+.searchButton {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 9;
+  width: 36px;
+  height: 36px;
+  color: #b38639;
+  background: transparent;
+  border: none;
+  border-radius: 36px;
+  transform: translateY(-50%);
+  transition: 0.7s;
+}
+
+.searchInput:focus + .searchButton {
+  color: #fff;
+  background: #ef6530;
 }
 </style>
