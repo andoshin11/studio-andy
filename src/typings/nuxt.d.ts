@@ -14,7 +14,7 @@ export interface ApplicationContext {
   store: Store<RootState>
   env: object
   params?: any
-  query: object
+  query: any
   req: any
   res: any
   redirect: (path: string) => void

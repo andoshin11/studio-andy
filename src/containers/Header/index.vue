@@ -31,16 +31,12 @@ import Vue from 'vue'
 // import Presenter, { IPresenter } from './presenter'
 
 // Use Case
-import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
 
 // Repositories
-import PostRepository from '@/repositories/PostRepository'
 
 // Gateway
-import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
-import ErrorService from '@/services/ErrorService'
 
 // components
 import Icon from '@/components/Base/Icon'
@@ -59,15 +55,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    async searchPosts() {
-      const usecase = new SearchPostsUseCase({
-        contentfulGateway: new ContentfulGateway(),
-        errorService: new ErrorService({ context: 'Searching posts' }),
-        postRepository: new PostRepository(this.$store)
-      })
-
-      await usecase.execute(this.query)
-      this.$router.push({ path: `/search?qury=${this.query}` })
+    searchPosts() {
+      this.$router.push({ path: `/search?query=${this.query}` })
     }
   }
 })
