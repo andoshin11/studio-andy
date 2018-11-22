@@ -22,6 +22,7 @@
         class="searchButton">
         <Icon name="search"/>
       </button>
+      <div class="mask" />
     </form>
   </header>
 </template>
@@ -181,5 +182,21 @@ export default Vue.extend({
 .searchInput:focus + .searchButton {
   color: #fff;
   background: #ef6530;
+}
+
+.mask {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .searchInput:focus + .searchButton + .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
 }
 </style>
