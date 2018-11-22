@@ -1,5 +1,8 @@
 <template>
   <div class="PostList">
+    <div 
+      v-if="!data.length" 
+      class="empty">該当する記事はありません</div>
     <nuxt-link 
       v-for="post in data" 
       :key="post.props.id" 
@@ -62,5 +65,10 @@ export default Vue.extend({
     width: 100%;
     padding: 0;
   }
+}
+
+.empty {
+  font-size: 16px;
+  line-height: 100px;
 }
 </style>
