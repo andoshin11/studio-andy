@@ -11,7 +11,7 @@
     </div>
     <transition name="fade">
       <button 
-        v-show="showScrollToTop"
+        v-show="showScrollToTop && screenPosition > 500"
         class="scrollToTop" 
         @click="scrollToTop">↑</button>
     </transition>

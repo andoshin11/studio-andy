@@ -5,7 +5,7 @@
       :style="headerStyle" 
       class="header">
       <img
-        :src="post.props.headerImage.fields.file.url"
+        :src="headerImage"
         alt=""
         class="img">
     </div>
@@ -62,6 +62,10 @@ export default Vue.extend({
       return {
         height: `${posterHight}px`
       }
+    },
+    headerImage(): string {
+      const { headerImage } = this.post.props
+      return headerImage ? headerImage.fields.file.url : ''
     }
   },
   mounted() {

@@ -13,6 +13,7 @@
       class="search" 
       @submit.prevent="searchPosts">
       <input 
+        ref="input"
         v-model="query"
         type="text" 
         class="searchInput">
@@ -21,6 +22,7 @@
         class="searchButton">
         <Icon name="search"/>
       </button>
+      <div class="mask" />
     </form>
   </header>
 </template>
@@ -31,16 +33,12 @@ import Vue from 'vue'
 // import Presenter, { IPresenter } from './presenter'
 
 // Use Case
-import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
 
 // Repositories
-import PostRepository from '@/repositories/PostRepository'
 
 // Gateway
-import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
-import ErrorService from '@/services/ErrorService'
 
 // components
 import Icon from '@/components/Base/Icon'
@@ -59,15 +57,10 @@ export default Vue.extend({
     }
   },
   methods: {
-    async searchPosts() {
-      const usecase = new SearchPostsUseCase({
-        contentfulGateway: new ContentfulGateway(),
-        errorService: new ErrorService({ context: 'Searching posts' }),
-        postRepository: new PostRepository(this.$store)
-      })
-
-      await usecase.execute(this.query)
-      this.$router.push({ path: `/search?qury=${this.query}` })
+    searchPosts() {
+      this.$refs.input.blur()
+      this.$router.push({ path: `/search?query=${this.query}` })
+      this.query = ''
     }
   }
 })
@@ -139,6 +132,7 @@ export default Vue.extend({
   padding: 0;
   overflow: hidden;
   color: transparent;
+  font-size: 16px;
   background: transparent;
   border: none;
   border-radius: 32px;
@@ -179,7 +173,6 @@ export default Vue.extend({
   border: none;
   border-radius: 36px;
   transform: translateY(-50%);
-  transition: 0.7s;
 }
 
 .searchButton:focus {
@@ -189,5 +182,21 @@ export default Vue.extend({
 .searchInput:focus + .searchButton {
   color: #fff;
   background: #ef6530;
+}
+
+.mask {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .searchInput:focus + .searchButton + .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
 }
 </style>
