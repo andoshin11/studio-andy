@@ -43,7 +43,7 @@
       "git add"
     ],
     "*.ts": [
-      "eslint -c .eslintrc.typescript.js --fix",
+      "eslint -c .eslintrc.ts.js --fix",
       "prettier --write",
       "git add"
     ]
