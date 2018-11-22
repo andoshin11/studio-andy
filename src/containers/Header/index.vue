@@ -11,14 +11,18 @@
     </div>
     <form 
       class="search" 
+      role="search"
       @submit.prevent="searchPosts">
       <input 
         ref="input"
         v-model="query"
+        name="query"
+        aria-label="query"
         type="text" 
         class="searchInput">
       <button 
         type="submit" 
+        aria-label="search"
         class="searchButton">
         <Icon name="search"/>
       </button>
