@@ -4,10 +4,16 @@
       ref="header" 
       :style="headerStyle" 
       class="header">
-      <img
-        :src="headerImage"
-        alt=""
-        class="img">
+      <picture>
+        <source 
+          :srcset="headerWebp" 
+          class="img" 
+          type="image/webp">
+        <img 
+          :src="headerImage" 
+          :alt="post.props.title" 
+          class="img">
+      </picture>
     </div>
     <div class="body">
       <div class="date">{{ publishedAt }}</div>
@@ -66,6 +72,10 @@ export default Vue.extend({
     headerImage(): string {
       const { headerImage } = this.post.props
       return headerImage ? headerImage.fields.file.url : ''
+    },
+    headerWebp(): string {
+      const { headerImageLight } = this.post.props
+      return headerImageLight ? headerImageLight.fields.file.url : ''
     }
   },
   mounted() {
@@ -140,12 +150,12 @@ export default Vue.extend({
   transition: 0.4s ease-out;
 }
 
-.PostCard:hover img {
+.PostCard:hover .img {
   transform: scale(1.2);
 }
 
 @media screen and (max-width: 768px) {
-  .PostCard:hover img {
+  .PostCard:hover .img {
     transform: none;
   }
 }
