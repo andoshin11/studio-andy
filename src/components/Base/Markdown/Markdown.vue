@@ -165,6 +165,10 @@ export default Vue.extend({
   content: '';
 }
 
+.Markdown ol li::before {
+  content: none;
+}
+
 @media screen and (max-width: 768px) {
   .Markdown li::before {
     line-height: 32px;
