@@ -73,6 +73,12 @@ export default Vue.extend({
     HeaderImg,
     Markdown
   },
+  head() {
+    return {
+      title: `${this.presenter.post ? this.presenter.post.props.title : ''} | Studio Andy`,
+      meta: [{ hid: 'description', name: 'description', content: this.presenter.post ? this.presenter.post.props.summary : '' }]
+    }
+  },
   computed: {
     presenter(): IPresenter {
       return Presenter({

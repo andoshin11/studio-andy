@@ -1,14 +1,14 @@
 <template>
   <div class="App">
-    <div class="App__Header">
+    <header class="App__Header">
       <HeaderContainer />
-    </div>
-    <div class="App__Body">
+    </header>
+    <main class="App__Body">
       <nuxt/>
-    </div>
-    <div class="App__Footer">
+    </main>
+    <footer class="App__Footer">
       <FooterContainer />
-    </div>
+    </footer>
     <transition name="fade">
       <button 
         v-show="showScrollToTop && screenPosition > 500"
