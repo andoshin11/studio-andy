@@ -14,7 +14,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  new RegExp('^http://images.ctfassets.net/'),
+  new RegExp('^https://images.ctfassets.net/2p1otbbee5vt/.*.(png|jpg|webp)$'),
   workbox.strategies.cacheFirst({
     cacheName: 'image-cache',
     plugins: [
