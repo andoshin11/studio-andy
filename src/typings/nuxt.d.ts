@@ -14,7 +14,7 @@ export interface ApplicationContext {
   store: Store<RootState>
   env: object
   params?: any
-  query: object
+  query: any
   req: any
   res: any
   redirect: (path: string) => void
@@ -45,6 +45,7 @@ declare module 'vue/types/options' {
   }
 
   interface ComponentOptions<V extends Vue> {
+    watchQuery?: string[]
     layout?: string | ((context: ApplicationContext) => string)
     fetch?: (context: ApplicationContext) => void
     asyncData?: (context: ApplicationContext) => Promise<void>

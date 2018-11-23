@@ -1,17 +1,17 @@
 <template>
   <div class="App">
-    <div class="App__Header">
+    <header class="App__Header">
       <HeaderContainer />
-    </div>
-    <div class="App__Body">
+    </header>
+    <main class="App__Body">
       <nuxt/>
-    </div>
-    <div class="App__Footer">
+    </main>
+    <footer class="App__Footer">
       <FooterContainer />
-    </div>
+    </footer>
     <transition name="fade">
       <button 
-        v-show="screenPosition > 500"
+        v-show="showScrollToTop && screenPosition > 500"
         class="scrollToTop" 
         @click="scrollToTop">↑</button>
     </transition>
@@ -31,7 +31,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      screenPosition: 0
+      screenPosition: 0,
+      showScrollToTop: false
     }
   },
   mounted() {
@@ -44,10 +45,17 @@ export default Vue.extend({
       const targetElement = document.scrollingElement || document.documentElement
       if (targetElement) {
         scrollWithDuration(targetElement)
+        this.showScrollToTop = false
       }
     },
-    handleScroll(val) {
-      this.screenPosition = window.scrollY
+    handleScroll() {
+      const position = window.scrollY
+      if (this.screenPosition >= position) {
+        this.showScrollToTop = true
+      } else {
+        this.showScrollToTop = false
+      }
+      this.screenPosition = position
     }
   }
 })
@@ -77,6 +85,7 @@ export default Vue.extend({
 
 .App__Body {
   width: 1180px;
+  padding-top: 160px;
 }
 
 .App__Footer {
@@ -97,9 +106,10 @@ export default Vue.extend({
   bottom: 24px;
   width: 36px;
   height: 36px;
+  padding: 0;
   color: #fdfdfe;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 30px;
   text-align: center;
   background-color: #ef6530;

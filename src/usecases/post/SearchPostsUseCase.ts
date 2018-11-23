@@ -1,28 +1,29 @@
+import ErrorService from '@/services/ErrorService'
 import ContentfulGateway from '@/gateway/ContentfulGateway'
 import PostRepository from '@/repositories/PostRepository'
-import ErrorService from '@/services/ErrorService'
 
-export interface IFetchPostUseCase {
+export interface ISearchPostsUseCase {
   errorService: ErrorService
   contentfulGateway: ContentfulGateway
   postRepository: PostRepository
 }
 
-export default class FetchPostUseCase implements BaseUseCase {
+export default class SearchPostsUseCase implements BaseUseCase {
   errorService: ErrorService
   contentfulGateway: ContentfulGateway
   postRepository: PostRepository
 
-  constructor({ errorService, contentfulGateway, postRepository }: IFetchPostUseCase) {
+  constructor({ errorService, contentfulGateway, postRepository }: ISearchPostsUseCase) {
     this.errorService = errorService
     this.contentfulGateway = contentfulGateway
     this.postRepository = postRepository
   }
 
-  async execute(id: string) {
+  async execute(query: string) {
     try {
-      const post = await this.contentfulGateway.getPost(id)
-      this.postRepository.saveCurrentPost(post)
+      this.postRepository.saveSearchQuery(query)
+      const results = await this.contentfulGateway.searchPosts(query)
+      this.postRepository.saveSearchResults(results)
     } catch (error) {
       await this.errorService.handle(error)
       throw new Error(error)

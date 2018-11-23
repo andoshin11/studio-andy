@@ -1,17 +1,33 @@
 <template>
   <header class="Header">
     <nav class="nav"/>
-    <nuxt-link 
-      exact 
-      to="/" 
-      class="logo">
-      Studio Andy
-    </nuxt-link>
-    <div class="actions">
-      <div class="search">
-        <button class="searchButton"/>
-      </div>
+    <div class="inner">
+      <nuxt-link 
+        exact 
+        to="/" 
+        class="logo">
+        Studio Andy
+      </nuxt-link>
     </div>
+    <form 
+      class="search" 
+      role="search"
+      @submit.prevent="searchPosts">
+      <input 
+        ref="input"
+        v-model="query"
+        name="query"
+        aria-label="query"
+        type="text" 
+        class="searchInput">
+      <button 
+        type="submit" 
+        aria-label="search"
+        class="searchButton">
+        <Icon name="search"/>
+      </button>
+      <div class="mask" />
+    </form>
   </header>
 </template>
 
@@ -24,24 +40,39 @@ import Vue from 'vue'
 
 // Repositories
 
+// Gateway
+
 // Service
 
 // components
+import Icon from '@/components/Base/Icon'
 
-interface IData {}
+interface IData {
+  query: string
+}
 
 export default Vue.extend({
+  components: {
+    Icon
+  },
   data(): IData {
-    return {}
+    return {
+      query: ''
+    }
+  },
+  methods: {
+    searchPosts() {
+      this.$refs.input.blur()
+      this.$router.push({ path: `/search?query=${this.query}` })
+      this.query = ''
+    }
   }
 })
 </script>
 
 <style scoped>
 .Header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100%;
   height: 100%;
   margin-bottom: 30px;
@@ -54,6 +85,14 @@ export default Vue.extend({
   .Header {
     margin: 0;
   }
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .logo {
@@ -79,8 +118,89 @@ export default Vue.extend({
 }
 */
 
-.actions,
-.nav {
+.search {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.searchInput {
+  position: relative;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  overflow: hidden;
+  color: transparent;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 32px;
+  transition: 0.5s ease-out;
+}
+
+.searchInput:focus {
+  z-index: 8;
+  box-sizing: border-box;
+  width: 90vw;
+  padding: 0 24px;
+  color: #666;
+  font-size: 16px;
+  background: #f0f0f0;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.searchInput:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  background: red;
+}
+
+.searchButton {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 9;
+  width: 36px;
+  height: 36px;
+  color: #b38639;
+  background: transparent;
+  border: none;
+  border-radius: 36px;
+  transform: translateY(-50%);
+}
+
+.searchButton:focus {
+  -webkit-appearance: none;
+}
+
+.searchInput:focus + .searchButton {
+  color: #fff;
+  background: #ef6530;
+}
+
+.mask {
   display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .searchInput:focus + .searchButton + .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
 }
 </style>
