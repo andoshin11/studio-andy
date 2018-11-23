@@ -29,25 +29,6 @@ jobs:
           paths:
             - ./node_modules
 
-  prepare_gcp:
-    docker:
-      - image: google/cloud-sdk:alpine
-    working_directory: /repo
-    steps:
-      - checkout
-      - run:
-          name: Decode credential
-          command: echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
-      - run:
-          name: Activate service account
-          command: |
-            gcloud auth activate-service-account --key-file=./secret.json
-            gcloud --quiet config set project $GOOGLE_PROJECT_ID
-      - persist_to_workspace:
-          root: /repo
-          paths:
-            - ./secret.json
-
   deploy:
     docker:
       - image: andoshin11/gcloud-sdk-node:10.13.0
@@ -60,8 +41,14 @@ jobs:
           name: Build
           command: yarn run build
       - run:
+          name: Decode credential
+          command: echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
+      - run:
           name: Deploy
-          command: GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy
+          command: |
+            gcloud auth activate-service-account --key-file=./secret.json
+            gcloud --quiet config set project $GOOGLE_PROJECT_ID
+            GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy --quiet
       - run:
           name: Clean up
           command: rm ./secret.json
@@ -71,8 +58,10 @@ workflows:
   test-workflow:
     jobs:
       - test
-      - prepare_gcp
       - deploy:
           requires:
             - test
-            - prepare_gcp
+          filters:
+            branches:
+              only:
+                - master
