@@ -24,6 +24,12 @@ export default Vue.extend({
   components: {
     HomeContainer
   },
+  head() {
+    return {
+      title: 'Home | Studio Andy',
+      meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
+    }
+  },
   async fetch({ store }) {
     const usecase = new FetchLatestPostsUseCase({
       postRepository: new PostRepository(store),
