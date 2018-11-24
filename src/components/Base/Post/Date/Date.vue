@@ -40,12 +40,14 @@ export default Vue.extend({
   width: 90%;
   margin-bottom: 8px;
   font-size: 18px;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
   .Date {
     margin-bottom: 8px;
     font-size: 14px;
+    text-align: left;
   }
 }
 
