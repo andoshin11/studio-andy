@@ -1,8 +1,6 @@
 <template>
   <div class="PostCard">
     <div 
-      ref="header" 
-      :style="headerStyle" 
       class="header">
       <picture>
         <source 
@@ -39,20 +37,11 @@ import Vue from 'vue'
 import dayjs from 'dayjs'
 import PostEntity from '@/entities/Post'
 
-interface IData {
-  clientWidth: number
-}
-
 export default Vue.extend({
   props: {
     post: {
       type: Object as () => PostEntity,
       required: true
-    }
-  },
-  data(): IData {
-    return {
-      clientWidth: 0
     }
   },
   computed: {
@@ -63,12 +52,6 @@ export default Vue.extend({
       }
       return ''
     },
-    headerStyle(): any {
-      const posterHight = this.clientWidth / 2
-      return {
-        height: `${posterHight}px`
-      }
-    },
     headerImage(): string {
       const { headerImage } = this.post.props
       return headerImage ? headerImage.fields.file.url : ''
@@ -77,11 +60,6 @@ export default Vue.extend({
       const { headerImageLight } = this.post.props
       return headerImageLight ? headerImageLight.fields.file.url : ''
     }
-  },
-  mounted() {
-    if (!this.$refs.header) return
-    const clientWidth = this.$refs.header.clientWidth
-    this.clientWidth = clientWidth
   },
   methods: {
     tagPath(tag: string): string {
@@ -124,12 +102,15 @@ export default Vue.extend({
 }
 
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100%;
-  max-height: 300px;
   overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  display: block;
+  padding-top: 50%;
 }
 
 .body {
@@ -146,6 +127,9 @@ export default Vue.extend({
 }
 
 .img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   transition: 0.4s ease-out;
 }
