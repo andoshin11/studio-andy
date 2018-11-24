@@ -2,7 +2,7 @@
   <div class="PostList">
     <div 
       v-if="!data.length" 
-      class="empty">該当する記事はありません</div>
+      class="emptyText">該当する記事はありません</div>
     <nuxt-link 
       v-for="post in data" 
       :key="post.props.id" 
@@ -67,7 +67,7 @@ export default Vue.extend({
   }
 }
 
-.empty {
+.emptyText {
   font-size: 16px;
   line-height: 100px;
 }
