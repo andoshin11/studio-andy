@@ -31,7 +31,7 @@ export default Vue.extend({
   methods: {
     postPath(post: PostEntity): string {
       if (post) {
-        return `/posts/${post.props.id}`
+        return `/posts/${post.props.slug}`
       }
       return ''
     }
