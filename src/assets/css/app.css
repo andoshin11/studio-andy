@@ -1,8 +1,6 @@
 body {
-  font-family: 'Merriweather', serif, 'M PLUS 1p', sans-serif,
-    Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, sans-serif, BlinkMacSystemFont,
-    'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ', Meiryo;
   margin: 0;
+  font-family: 'Merriweather', serif, 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   /* background: #e1ddce; */
 }
 
@@ -15,8 +13,8 @@ body {
 
 ul {
   margin: 0;
-  list-style: none;
   padding-left: 0;
+  list-style: none;
 }
 
 a {
