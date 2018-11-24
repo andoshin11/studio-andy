@@ -24,7 +24,7 @@
           class="tag" >
           <nuxt-link 
             :to="tagPath(tag)">
-            {{ tag }}
+            #{{ tag }}
           </nuxt-link>
         </li>
       </ul>
@@ -48,7 +48,7 @@ export default Vue.extend({
     publishedAt(): string {
       if (this.post) {
         const publishedAt = dayjs(this.post.props.publishedAt)
-        return publishedAt.format('M.D.YY')
+        return publishedAt.format('MMM D, YYYY')
       }
       return ''
     },
@@ -182,13 +182,8 @@ export default Vue.extend({
 .tag {
   display: inline;
   margin-right: 8px;
-  padding: 4px 8px;
-  font-size: 16px;
-  background: #ef6530;
-  border: solid 1px #ef6530;
-  border-radius: 4px;
+  font-size: 14px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 @media screen and (max-width: 768px) {
@@ -198,16 +193,11 @@ export default Vue.extend({
 }
 
 .tag a {
-  color: #fff;
-}
-
-.tag:hover,
-.tag:focus {
-  background: #fff;
+  color: #ef6530;
 }
 
 .tag:hover a,
 .tag:focus a {
-  color: #ef6530;
+  text-decoration: underline;
 }
 </style>
