@@ -51,7 +51,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/pwa'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics'],
 
   /*
   ** Extensions
@@ -63,6 +63,13 @@ module.exports = {
   */
   workbox: {
     importScripts: ['main-sw.js']
+  },
+
+  /*
+   * Google Analytics settings
+   */
+  'google-analytics': {
+    id: 'UA-129690358-1'
   },
 
   /*
