@@ -37,6 +37,11 @@
       "prettier --write",
       "git add"
     ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write",
+      "git add"
+    ],
     "*.js": [
       "eslint --fix",
       "prettier --write",
