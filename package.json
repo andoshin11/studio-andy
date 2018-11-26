@@ -59,7 +59,6 @@
     "express": "^4.16.3",
     "marked": "^0.5.1",
     "nuxt": "^2.0.0",
-    "nuxt-user-agent": "andoshin11/nuxt-user-agent#enhancement/ts-implementation",
     "prismjs": "^1.15.0"
   },
   "devDependencies": {

@@ -52,7 +52,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', 'nuxt-user-agent'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry'],
 
   /*
   ** Extensions

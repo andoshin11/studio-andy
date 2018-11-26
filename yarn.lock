@@ -1217,11 +1217,6 @@
     "@sentry/types" "4.3.4"
     tslib "^1.9.3"
 
-"@types/node@^10.12.10":
-  version "10.12.10"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.10.tgz#4fa76e6598b7de3f0cb6ec3abacc4f59e5b3a2ce"
-  integrity sha512-8xZEYckCbUVgK8Eg7lf5Iy4COKJ5uXlnIOnePN0WUwSQggy9tolM+tDJf7wMOnT/JT/W9xDYIaYggt3mRV2O5w==
-
 "@types/node@^10.12.3":
   version "10.12.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.3.tgz#3918b73ceed484e58367be5acb79d1775239e393"
@@ -6293,16 +6288,6 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-user-agent@andoshin11/nuxt-user-agent#enhancement/ts-implementation:
-  version "1.0.2"
-  resolved "https://codeload.github.com/andoshin11/nuxt-user-agent/tar.gz/7f151992469a88639523c326b5217dfb6e766d64"
-  dependencies:
-    "@types/node" "^10.12.10"
-    vue "^2.5.17"
-    vue-router "^3.0.2"
-    vuex "^3.0.1"
-    woothee "^1.7.0"
-
 nuxt@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.2.0.tgz#19547b67f2b561455bcbdcabf87071c4331be48a"
@@ -9910,11 +9895,6 @@ vue-router@^3.0.1:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"
   integrity sha512-vLLoY452L+JBpALMP5UHum9+7nzR9PeIBCghU9ZtJ1eWm6ieUI8Zb/DI3MYxH32bxkjzYV1LRjNv4qr8d+uX/w==
 
-vue-router@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
-  integrity sha512-opKtsxjp9eOcFWdp6xLQPLmRGgfM932Tl56U9chYTnoWqKxQ8M20N7AkdEbM5beUh6wICoFGYugAX9vQjyJLFg==
-
 vue-server-renderer@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.5.17.tgz#c1f24815a4b12a2797c154549b29b44b6be004b5"
@@ -10094,11 +10074,6 @@ widest-line@^2.0.0:
   integrity sha512-Ba5m9/Fa4Xt9eb2ELXt77JxVDV8w7qQrH0zS/TWSJdLyAwQjWoOzpzj5lwVftDz6n/EOu3tNACS84v509qwnJA==
   dependencies:
     string-width "^2.1.1"
-
-woothee@^1.7.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/woothee/-/woothee-1.8.0.tgz#e45b6d3e3c36b40cf7e4ea32173acdd8a22c0b45"
-  integrity sha512-LQpGzVtp4CpruV8vBst1A49vwUyWh3zQJt1xu+lxZTY5guISeaFXPJi2GNjGp06TtW4wCE6TUCVsE5XnPHhd6Q==
 
 wordwrap@~1.0.0:
   version "1.0.0"
