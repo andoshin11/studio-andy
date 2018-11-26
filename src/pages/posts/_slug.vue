@@ -1,6 +1,6 @@
 <template>
   <section class="Post">
-    <PostContainer :id="$route.params.id"/>
+    <PostContainer/>
   </section>
 </template>
 
@@ -41,7 +41,7 @@ export default Vue.extend({
       logService: new LogService({ logger: $sentry }),
       contentfulGateway: new ContentfulGateway()
     })
-    await usecase.execute(params.id)
+    await usecase.execute(params.slug)
   }
 })
 </script>

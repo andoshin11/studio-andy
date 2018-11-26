@@ -19,9 +19,9 @@ export default class FetchPostUseCase implements BaseUseCase {
     this.postRepository = postRepository
   }
 
-  async execute(id: string) {
+  async execute(slug: string) {
     try {
-      const post = await this.contentfulGateway.getPost(id)
+      const post = await this.contentfulGateway.getPost(slug)
       this.postRepository.saveCurrentPost(post)
     } catch (error) {
       // Do nothing when the post doesn't exist.
