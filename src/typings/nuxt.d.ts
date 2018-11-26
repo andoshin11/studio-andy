@@ -2,8 +2,8 @@ import Vue from 'vue'
 import { Store, ActionTree } from 'vuex'
 import { Route } from 'vue-router'
 import * as SentryNode from '@sentry/node'
-import SentryBrowser from '@sentry/browser'
 import { RootState } from '@/store/index'
+import { UA } from 'nuxt-user-agent'
 
 export type Logger = typeof SentryNode
 
@@ -26,6 +26,7 @@ export interface ApplicationContext {
   nuxtState: RootState
   beforeNuxtRender: Function
   $sentry: Logger
+  $ua: UA
 }
 
 declare module 'vuex/types/index' {
