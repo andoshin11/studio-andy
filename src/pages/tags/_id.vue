@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <HomeContainer />
+    <HomeContainer/>
   </section>
 </template>
 
@@ -18,16 +18,16 @@ import PostRepository from '@/repositories/PostRepository'
 import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
-import ErrorService from '@/services/ErrorService'
+import LogService from '@/services/LogService'
 
 export default Vue.extend({
   components: {
     HomeContainer
   },
-  async fetch({ params, store }) {
+  async fetch({ params, store, $sentry }) {
     const usecase = new FetchPostsByTagUseCase({
       postRepository: new PostRepository(store),
-      errorService: new ErrorService({ context: 'Fetching posts by tag' }),
+      logService: new LogService({ logger: $sentry }),
       contentfulGateway: new ContentfulGateway()
     })
     await usecase.execute(params.id)

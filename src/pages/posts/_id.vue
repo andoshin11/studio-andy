@@ -1,6 +1,6 @@
 <template>
   <section class="Post">
-    <PostContainer :id="$route.params.id" />
+    <PostContainer :id="$route.params.id"/>
   </section>
 </template>
 
@@ -18,7 +18,7 @@ import PostRepository from '@/repositories/PostRepository'
 import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
-import ErrorService from '@/services/ErrorService'
+import LogService from '@/services/LogService'
 
 export default Vue.extend({
   components: {
@@ -34,10 +34,11 @@ export default Vue.extend({
       ]
     }
   },
-  async fetch({ params, store }) {
+  async fetch(ctx) {
+    const { params, store, $sentry } = ctx
     const usecase = new FetchPostUseCase({
       postRepository: new PostRepository(store),
-      errorService: new ErrorService({ context: 'Fetching a Post' }),
+      logService: new LogService({ logger: $sentry }),
       contentfulGateway: new ContentfulGateway()
     })
     await usecase.execute(params.id)

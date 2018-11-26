@@ -18,7 +18,7 @@ import PostRepository from '@/repositories/PostRepository'
 import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
-import ErrorService from '@/services/ErrorService'
+import LogService from '@/services/LogService'
 
 export default Vue.extend({
   components: {
@@ -30,10 +30,10 @@ export default Vue.extend({
       meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
     }
   },
-  async fetch({ store }) {
+  async fetch({ store, $sentry }) {
     const usecase = new FetchLatestPostsUseCase({
       postRepository: new PostRepository(store),
-      errorService: new ErrorService({ context: 'Fetching Latest Posts' }),
+      logService: new LogService({ logger: $sentry }),
       contentfulGateway: new ContentfulGateway()
     })
     await usecase.execute()

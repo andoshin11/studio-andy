@@ -17,12 +17,6 @@ import FetchLatestPostsUseCase from '@/usecases/post/FetchLatestPostsUseCase'
 // Repositories
 import PostRepository from '@/repositories/PostRepository'
 
-// Gateway
-import ContentfulGateway from '@/gateway/ContentfulGateway'
-
-// Service
-import ErrorService from '@/services/ErrorService'
-
 // components
 import PostList from '@/components/Modules/PostList'
 
@@ -48,14 +42,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    async fetchLatestPosts() {
-      const usecase = new FetchLatestPostsUseCase({
-        postRepository: new PostRepository(this.$store),
-        errorService: new ErrorService({ context: 'Fetching Latest Posts' }),
-        contentfulGateway: new ContentfulGateway()
-      })
-      await usecase.execute()
-    },
     showLatest() {
       this.listType = ListType.Latest
     }

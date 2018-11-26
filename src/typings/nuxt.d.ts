@@ -3,7 +3,7 @@ import { Store, ActionTree } from 'vuex'
 import { Route } from 'vue-router'
 import * as SentryNode from '@sentry/node'
 import { RootState } from '@/store/index'
-import { UA } from 'nuxt-user-agent'
+import { RequestOptions, ServerResponse } from 'http'
 
 export type Logger = typeof SentryNode
 
@@ -19,14 +19,13 @@ export interface ApplicationContext {
   env: object
   params?: any
   query: any
-  req: any
-  res: any
+  req: RequestOptions
+  res: ServerResponse
   redirect: (path: string) => void
   error: Function
   nuxtState: RootState
   beforeNuxtRender: Function
   $sentry: Logger
-  $ua: UA
 }
 
 declare module 'vuex/types/index' {

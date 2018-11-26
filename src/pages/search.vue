@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <ResultContainer />
+    <ResultContainer/>
   </section>
 </template>
 
@@ -18,19 +18,19 @@ import PostRepository from '@/repositories/PostRepository'
 import ContentfulGateway from '@/gateway/ContentfulGateway'
 
 // Service
-import ErrorService from '@/services/ErrorService'
+import LogService from '@/services/LogService'
 
 export default Vue.extend({
   components: {
     ResultContainer
   },
   watchQuery: ['query'],
-  async fetch({ query, store }) {
+  async fetch({ query, store, $sentry }) {
     if (!query.query) return
 
     const usecase = new SearchPostsUseCase({
       contentfulGateway: new ContentfulGateway(),
-      errorService: new ErrorService({ context: 'Searching posts' }),
+      logService: new LogService({ logger: $sentry }),
       postRepository: new PostRepository(store)
     })
 

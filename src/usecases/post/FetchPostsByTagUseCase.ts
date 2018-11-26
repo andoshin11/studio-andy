@@ -1,24 +1,20 @@
 import ContentfulGateway from '@/gateway/ContentfulGateway'
 import PostRepository from '@/repositories/PostRepository'
-import ErrorService from '@/services/ErrorService'
+import LogService, { LogType } from '@/services/LogService'
 
 export interface IFetchPostsByTagUseCase {
-  errorService: ErrorService
+  logService: LogService
   contentfulGateway: ContentfulGateway
   postRepository: PostRepository
 }
 
 export default class FetchPostsByTagUseCase implements BaseUseCase {
-  errorService: ErrorService
+  logService: LogService
   contentfulGateway: ContentfulGateway
   postRepository: PostRepository
 
-  constructor({
-    errorService,
-    contentfulGateway,
-    postRepository
-  }: IFetchPostsByTagUseCase) {
-    this.errorService = errorService
+  constructor({ logService, contentfulGateway, postRepository }: IFetchPostsByTagUseCase) {
+    this.logService = logService
     this.contentfulGateway = contentfulGateway
     this.postRepository = postRepository
   }
@@ -28,7 +24,7 @@ export default class FetchPostsByTagUseCase implements BaseUseCase {
       const posts = await this.contentfulGateway.getPostsByTag(tag)
       this.postRepository.saveLatestPosts(posts)
     } catch (error) {
-      await this.errorService.handle(error)
+      await this.logService.handle({ type: LogType.Error, error })
       throw new Error(error)
     }
   }
