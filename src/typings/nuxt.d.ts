@@ -25,7 +25,7 @@ export interface ApplicationContext {
   error: Function
   nuxtState: RootState
   beforeNuxtRender: Function
-  $sentry: Logger
+  $sentry?: Logger
 }
 
 declare module 'vuex/types/index' {

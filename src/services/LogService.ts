@@ -1,7 +1,7 @@
 import { Logger } from '@/typings/nuxt'
 
 export interface ILogServiceArgs {
-  logger: Logger
+  logger?: Logger
 }
 
 export enum LogType {
@@ -20,13 +20,15 @@ type LogPayload =
     }
 
 export default class LogService implements BaseService {
-  logger: Logger
+  logger?: Logger
 
   constructor({ logger }: ILogServiceArgs) {
     this.logger = logger
   }
 
   async handle(payload: LogPayload) {
+    if (!this.logger) return
+
     if (payload.type === LogType.Error) {
       this.logger.captureException(payload.error)
     } else if (payload.type === LogType.Message) {
