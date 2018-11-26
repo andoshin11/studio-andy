@@ -22,7 +22,7 @@ export interface ApplicationContext {
   req: RequestOptions
   res: ServerResponse
   redirect: (path: string) => void
-  error: Function
+  error: (params: { statusCode: number; message: string }) => void
   nuxtState: RootState
   beforeNuxtRender: Function
   $sentry?: Logger

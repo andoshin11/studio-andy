@@ -1,6 +1,6 @@
 <template>
   <section class="Post">
-    <PostContainer :id="$route.params.id"/>
+    <PostContainer/>
   </section>
 </template>
 
@@ -20,6 +20,9 @@ import ContentfulGateway from '@/gateway/ContentfulGateway'
 // Service
 import LogService from '@/services/LogService'
 
+// Error
+import { NotFoundError, ErrorType } from '@/common/errors'
+
 export default Vue.extend({
   components: {
     PostContainer
@@ -34,14 +37,21 @@ export default Vue.extend({
       ]
     }
   },
-  async fetch(ctx) {
-    const { params, store, $sentry } = ctx
-    const usecase = new FetchPostUseCase({
-      postRepository: new PostRepository(store),
-      logService: new LogService({ logger: $sentry }),
-      contentfulGateway: new ContentfulGateway()
-    })
-    await usecase.execute(params.id)
+  async fetch({ params, store, $sentry, error }) {
+    try {
+      const usecase = new FetchPostUseCase({
+        postRepository: new PostRepository(store),
+        logService: new LogService({ logger: $sentry }),
+        contentfulGateway: new ContentfulGateway()
+      })
+      await usecase.execute(params.slug)
+    } catch (e) {
+      if (e.type === ErrorType.NOT_FOUND) {
+        error({ statusCode: 404, message: e.message })
+        return
+      }
+      throw e
+    }
   }
 })
 </script>

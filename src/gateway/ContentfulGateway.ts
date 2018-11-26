@@ -1,6 +1,7 @@
 import { Entry } from 'contentful'
 import { createClient } from '@/infra/contentful/client'
 import { IPostProps } from '@/entities/Post'
+import { NotFoundError } from '@/common/errors'
 
 enum ContentType {
   POST = 'post'
@@ -25,10 +26,17 @@ export default class ContentfulGateway {
     return posts.items.map(this.transtormEntry)
   }
 
-  async getPost(id: string): Promise<IPostProps> {
+  async getPost(slug: string): Promise<IPostProps> {
     const client = createClient()
-    const post = await client.getEntry<IPostProps>(id)
-    return this.transtormEntry(post)
+    const result = await client.getEntries<IPostProps>({
+      content_type: 'post',
+      'fields.slug': slug
+    })
+
+    if (!result || !result.items.length) {
+      throw new NotFoundError(`Unavailable slug selected: ${slug}`)
+    }
+    return this.transtormEntry(result.items[0])
   }
 
   async getPostsByTag(tag: string): Promise<IPostProps[]> {
