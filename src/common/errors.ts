@@ -1,4 +1,4 @@
-enum ErrorType {
+export enum ErrorType {
   NOT_FOUND,
   SERVER_ERROR,
   UNAUTHORIZED
@@ -6,10 +6,12 @@ enum ErrorType {
 
 class ErrorBase extends Error {
   msg: string
+  type: ErrorType
   constructor(msg: string, type: ErrorType) {
     super(msg)
     this.name = this.constructor.name
     this.msg = msg
+    this.type = type
 
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, this.constructor)

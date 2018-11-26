@@ -24,12 +24,8 @@ export default class FetchPostUseCase implements BaseUseCase {
       const post = await this.contentfulGateway.getPost(slug)
       this.postRepository.saveCurrentPost(post)
     } catch (error) {
-      // Do nothing when the post doesn't exist.
-      if (error.sys && error.sys.id === 'NotFound') {
-        return
-      }
-      await this.logService.handle({ type: LogType.Error, error })
-      throw new Error(error)
+      await this.logService.handle({ type: LogType.Message, message: error.message })
+      throw error
     }
   }
 }
