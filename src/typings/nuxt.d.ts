@@ -39,7 +39,7 @@ declare module 'vue/types/options' {
     name?: string
     mode?: 'in-out' | 'out-in'
     type?: 'transition' | 'animation'
-    css?: string
+    css?: boolean
     duration?: number
     enterClass?: string
     enterToClass?: string
