@@ -11,7 +11,8 @@ module.exports = {
   */
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    SENTRY_DSN: process.env.SENTRY_DSN
   },
 
   /*
@@ -51,7 +52,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry'],
 
   /*
   ** Extensions
@@ -70,6 +71,13 @@ module.exports = {
    */
   'google-analytics': {
     id: 'UA-129690358-1'
+  },
+
+  /*
+   * Sentry settings
+   */
+  sentry: {
+    dsn: process.env.SENTRY_DSN
   },
 
   /*

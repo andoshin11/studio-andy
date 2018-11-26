@@ -1,20 +1,20 @@
 import ContentfulGateway from '@/gateway/ContentfulGateway'
+import LogService, { LogType } from '@/services/LogService'
 import PostRepository from '@/repositories/PostRepository'
-import ErrorService from '@/services/ErrorService'
 
 export interface IFetchPostUseCase {
-  errorService: ErrorService
+  logService: LogService
   contentfulGateway: ContentfulGateway
   postRepository: PostRepository
 }
 
 export default class FetchPostUseCase implements BaseUseCase {
-  errorService: ErrorService
+  logService: LogService
   contentfulGateway: ContentfulGateway
   postRepository: PostRepository
 
-  constructor({ errorService, contentfulGateway, postRepository }: IFetchPostUseCase) {
-    this.errorService = errorService
+  constructor({ logService, contentfulGateway, postRepository }: IFetchPostUseCase) {
+    this.logService = logService
     this.contentfulGateway = contentfulGateway
     this.postRepository = postRepository
   }
@@ -28,7 +28,7 @@ export default class FetchPostUseCase implements BaseUseCase {
       if (error.sys && error.sys.id === 'NotFound') {
         return
       }
-      await this.errorService.handle(error)
+      await this.logService.handle({ type: LogType.Error, error })
       throw new Error(error)
     }
   }
