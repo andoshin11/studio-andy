@@ -1,6 +1,6 @@
 require('dotenv').config()
 const pkg = require('./package')
-const devConfig = require('./webpack/webpack.config.dev')
+const configFile = require('./webpack.config')
 
 module.exports = {
   mode: 'universal',
@@ -87,11 +87,9 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-      if (true || ctx.isDev) {
-        devConfig(config)
-        return
-      }
+    extend(config) {
+      configFile(config)
+      return
     }
   }
 }
