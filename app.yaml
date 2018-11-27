@@ -17,3 +17,5 @@ env_variables:
   NUXT_PORT: '8080'
 automatic_scaling:
   min_instances: 0
+includes:
+  - secret.yaml
