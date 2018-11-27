@@ -1,10 +1,12 @@
 require('dotenv').config()
 const pkg = require('./package')
+const path = require('path')
 const configFile = require('./webpack.config')
 
 module.exports = {
   mode: 'universal',
   srcDir: 'src/',
+  modulesDir: path.resolve(__dirname, 'node_modules'),
 
   /*
   ** Environmental Variables
@@ -52,7 +54,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/sitemap'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry'],
 
   /*
   ** Extensions

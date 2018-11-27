@@ -57,6 +57,7 @@
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sentry": "^2.0.0",
+    "@nuxtjs/sitemap": "^0.1.1",
     "contentful": "^7.0.5",
     "cross-env": "^5.2.0",
     "dayjs": "^1.7.7",
@@ -67,7 +68,6 @@
     "prismjs": "^1.15.0"
   },
   "devDependencies": {
-    "@nuxtjs/sitemap": "^0.1.1",
     "@types/node": "^10.12.3",
     "babel-eslint": "^8.2.1",
     "babel-runtime": "^6.26.0",
