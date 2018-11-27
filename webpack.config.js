@@ -1,5 +1,4 @@
 const path = require('path')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = config => {
   config.resolve.extensions.push('.ts', '.js', '.vue', '.css', '.html')
@@ -8,7 +7,7 @@ module.exports = config => {
     loader: 'ts-loader',
     options: {
       appendTsSuffixTo: [/\.vue$/],
-      transpileOnly: true
+      transpileOnly: process.env.NODE_ENV === 'development' ? true : false
     }
   }
 
@@ -32,15 +31,18 @@ module.exports = config => {
     }
   }
 
-  config.plugins.push(
-    new ForkTsCheckerWebpackPlugin({
-      workers: 2,
-      vue: true
-    })
-  )
+  if (process.env.NODE_ENV === 'development') {
+    const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+    config.plugins.push(
+      new ForkTsCheckerWebpackPlugin({
+        workers: 2,
+        vue: true
+      })
+    )
+  }
 
   // Add alias
-  config.resolve.alias['~'] = path.resolve(__dirname, '../src')
+  config.resolve.alias['~'] = path.resolve(__dirname, 'src')
 
   return config
 }
