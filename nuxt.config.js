@@ -52,7 +52,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/sitemap'],
 
   /*
   ** Extensions
@@ -78,6 +78,27 @@ module.exports = {
    */
   sentry: {
     dsn: process.env.SENTRY_DSN
+  },
+
+  /*
+   * Sitemap settings
+   */
+  sitemap: {
+    hostname: 'https://blog.andoshin11.me',
+    generate: false,
+    exclude: ['/search'],
+    async routes() {
+      const contentful = require('contentful')
+      const client = contentful.createClient({
+        space: process.env.CTF_SPACE_ID,
+        accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+      })
+
+      const posts = await client.getEntries({
+        content_type: 'post'
+      })
+      return posts.items.map(item => item.fields.slug)
+    }
   },
 
   /*
