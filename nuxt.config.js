@@ -1,10 +1,12 @@
 require('dotenv').config()
 const pkg = require('./package')
+const path = require('path')
 const configFile = require('./webpack.config')
 
 module.exports = {
   mode: 'universal',
   srcDir: 'src/',
+  modulesDir: path.resolve(__dirname, 'node_modules'),
 
   /*
   ** Environmental Variables
