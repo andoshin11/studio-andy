@@ -67,6 +67,7 @@
     "prismjs": "^1.15.0"
   },
   "devDependencies": {
+    "@nuxtjs/sitemap": "^0.1.1",
     "@types/node": "^10.12.3",
     "babel-eslint": "^8.2.1",
     "babel-runtime": "^6.26.0",
