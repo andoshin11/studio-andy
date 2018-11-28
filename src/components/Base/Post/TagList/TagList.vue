@@ -3,16 +3,13 @@
     <li 
       v-for="tag in list" 
       :key="tag" 
-      class="tag" >
-      <nuxt-link 
-        :to="tagPath(tag)">
-        #{{ tag }}
-      </nuxt-link>
+      class="tag">
+      <nuxt-link :to="tagPath(tag)">#{{ tag }}</nuxt-link>
     </li>
     <li 
       v-if="list.length < 1" 
       class="empty">
-      <Empty />
+      <Empty/>
     </li>
   </ul>
 </template>
@@ -50,6 +47,7 @@ export default Vue.extend({
 <style scoped>
 .TagList {
   width: 90%;
+  margin-bottom: 24px;
   text-align: center;
 }
 
@@ -61,7 +59,8 @@ export default Vue.extend({
 
 .tag {
   display: inline;
-  margin-right: 8px;
+  margin-right: 16px;
+  font-weight: bold;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;

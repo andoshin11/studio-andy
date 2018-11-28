@@ -11,7 +11,6 @@
       class="empty">
       <Empty/>
     </div>
-
   </div>
 </template>
 
@@ -45,9 +44,7 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: calc(100vw / 16 * 9);
-  margin-bottom: 16px;
-  border-bottom: solid 1px #ccc;
+  margin-bottom: 24px;
 }
 
 .img {

@@ -3,7 +3,7 @@
     <div 
       v-if="title.length < 1 " 
       class="empty">
-      <Empty />
+      <Empty/>
     </div>
     {{ title }}
   </h1>
@@ -33,11 +33,11 @@ export default Vue.extend({
 
 <style scoped>
 .Title {
-  width: 80%;
+  width: 90%;
   min-height: 48px;
-  margin: 0 0 24px;
+  margin: 0 0 8px;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 32px;
   line-height: 1.2;
   text-align: center;
 }

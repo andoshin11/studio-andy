@@ -3,7 +3,7 @@
     <div 
       v-if="text.length < 1 " 
       class="empty">
-      <Empty />
+      <Empty/>
     </div>
     {{ date }}
   </div>
@@ -38,8 +38,10 @@ export default Vue.extend({
 <style scoped>
 .Date {
   width: 90%;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  color: #aaa;
   font-size: 18px;
+  font-style: italic;
   text-align: center;
 }
 

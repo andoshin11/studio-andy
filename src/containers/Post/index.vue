@@ -1,10 +1,10 @@
 <template>
   <div class="Post">
     <div class="header">
-      <HeaderImg :header-img="presenter.post ? presenter.post.props.headerImage : null"/>
       <PostDate :text="presenter.post ? presenter.post.props.publishedAt : ''"/>
       <PostTitle :title="presenter.post ? presenter.post.props.title : ''"/>
       <TagList :list="presenter.post ? presenter.post.props.tags : []"/>
+      <HeaderImg :header-img="presenter.post ? presenter.post.props.headerImage : null"/>
     </div>
     <div class="body">
       <div class="socialLinks">
