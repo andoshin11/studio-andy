@@ -1,19 +1,22 @@
 <template>
   <div class="App">
-    <header class="App__Header">
-      <HeaderContainer />
+    <header 
+      :class="{ shrink: isHeaderShrink }" 
+      class="App__Header">
+      <HeaderContainer :shrink="isHeaderShrink"/>
     </header>
     <main class="App__Body">
       <nuxt/>
     </main>
     <footer class="App__Footer">
-      <FooterContainer />
+      <FooterContainer/>
     </footer>
     <transition name="fade">
-      <button 
+      <button
         v-show="showScrollToTop && screenPosition > 500"
-        class="scrollToTop" 
-        @click="scrollToTop">↑</button>
+        class="scrollToTop"
+        @click="scrollToTop"
+      >↑</button>
     </transition>
   </div>
 </template>
@@ -33,6 +36,11 @@ export default Vue.extend({
     return {
       screenPosition: 0,
       showScrollToTop: false
+    }
+  },
+  computed: {
+    isHeaderShrink(): boolean {
+      return this.$route.name !== 'index'
     }
   },
   mounted() {
@@ -75,6 +83,11 @@ export default Vue.extend({
   width: 100%;
   height: 130px;
   background: #fff;
+  transition: height 0.5s;
+}
+
+.App__Header.shrink {
+  height: 65px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -86,6 +99,16 @@ export default Vue.extend({
 .App__Body {
   width: 1180px;
   padding-top: 160px;
+}
+
+.App__Header.shrink + .App__Body {
+  padding-top: 105px;
+}
+
+@media screen and (max-width: 1024px) {
+  .App__Header.shrink + .App__Body {
+    padding-top: 100px;
+  }
 }
 
 .App__Footer {

@@ -1,34 +1,34 @@
 <template>
-  <header class="Header">
-    <nav class="nav"/>
+  <div 
+    :class="{ shrink: shrink }" 
+    class="Header">
     <div class="inner">
       <nuxt-link 
         exact 
         to="/" 
-        class="logo">
-        Studio Andy
-      </nuxt-link>
+        class="logo">Studio Andy</nuxt-link>
     </div>
     <form 
       class="search" 
-      role="search"
+      role="search" 
       @submit.prevent="searchPosts">
-      <input 
+      <input
         ref="input"
         v-model="query"
         name="query"
         aria-label="query"
-        type="text" 
-        class="searchInput">
+        type="text"
+        class="searchInput"
+      >
       <button 
         type="submit" 
-        aria-label="search"
+        aria-label="search" 
         class="searchButton">
         <Icon name="search"/>
       </button>
-      <div class="mask" />
+      <div class="mask"/>
     </form>
-  </header>
+  </div>
 </template>
 
 <script lang="ts">
@@ -55,6 +55,12 @@ export default Vue.extend({
   components: {
     Icon
   },
+  props: {
+    shrink: {
+      type: Boolean,
+      default: false
+    }
+  },
   data(): IData {
     return {
       query: ''
@@ -78,7 +84,7 @@ export default Vue.extend({
   margin-bottom: 30px;
   color: #4d4d4d;
   background-color: #fff;
-  border-bottom: solid 1px #ddd;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 768px) {
@@ -88,11 +94,23 @@ export default Vue.extend({
 }
 
 .inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.7s;
+}
+
+.Header.shrink .inner {
+  left: 5%;
+  transform: translate(0%, -50%);
+}
+
+@media screen and (max-width: 768px) {
+  .Header.shrink .inner {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .logo {
