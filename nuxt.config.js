@@ -89,7 +89,7 @@ module.exports = {
       }
     ],
     start_url: '/?launcher=true',
-    display: 'browser'
+    display: 'minimal-ui'
   },
 
   /*
