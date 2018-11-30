@@ -132,7 +132,7 @@ module.exports = {
    */
   feed: [
     {
-      path: '/feed.xml',
+      path: '/atom.xml',
       async create(feed) {
         feed.options = {
           title: 'Studio Andy',
