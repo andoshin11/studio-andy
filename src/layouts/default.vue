@@ -79,11 +79,9 @@ export default Vue.extend({
 }
 
 .App__Header {
-  position: fixed;
   z-index: 1000;
   width: 100%;
   height: 130px;
-  background: #fff;
   transition: height 0.5s;
 }
 
@@ -98,30 +96,12 @@ export default Vue.extend({
 }
 
 .App__Body {
-  width: 1180px;
-  padding-top: 160px;
-}
-
-.App__Header.shrink + .App__Body {
-  padding-top: 105px;
-}
-
-@media screen and (max-width: 1024px) {
-  .App__Header.shrink + .App__Body {
-    padding-top: 100px;
-  }
+  width: 100%;
 }
 
 .App__Footer {
   width: 100%;
   height: 400px;
-}
-
-@media screen and (max-width: 1024px) {
-  .App__Body {
-    width: 100%;
-    padding-top: 60px;
-  }
 }
 
 .scrollToTop {

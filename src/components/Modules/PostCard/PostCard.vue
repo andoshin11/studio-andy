@@ -92,7 +92,7 @@ export default Vue.extend({
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: #fafafa;
+  background-color: #fcfcfc;
   border-radius: 16px 16px 0 0;
 }
 
@@ -107,7 +107,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   padding: 20px 25px;
-  background-color: #fafafa;
+  background-color: #fcfcfc;
 }
 
 @media screen and (max-width: 768px) {
