@@ -75,6 +75,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f4f4f4;
 }
 
 .App__Header {

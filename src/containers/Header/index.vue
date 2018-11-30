@@ -83,7 +83,7 @@ export default Vue.extend({
   height: 100%;
   margin-bottom: 30px;
   color: #4d4d4d;
-  background-color: #fff;
+  background-color: #fcfcfc;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -158,6 +158,7 @@ export default Vue.extend({
   background: transparent;
   border: none;
   border-radius: 32px;
+  cursor: pointer;
   transition: 0.5s ease-out;
 }
 
@@ -180,7 +181,6 @@ export default Vue.extend({
   content: '';
   width: 100vw;
   height: 100vh;
-  background: red;
 }
 
 .searchButton {
@@ -190,7 +190,7 @@ export default Vue.extend({
   z-index: 9;
   width: 36px;
   height: 36px;
-  color: #b38639;
+  color: #ef6530;
   background: transparent;
   border: none;
   border-radius: 36px;
