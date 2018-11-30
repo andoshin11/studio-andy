@@ -54,7 +54,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed'],
 
   /*
   ** Extensions
