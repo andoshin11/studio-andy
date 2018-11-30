@@ -1,7 +1,7 @@
 <template>
   <div class="Home">
     <div class="PostList">
-      <PostList :data="presenter.postList" />
+      <PostList :data="presenter.postList"/>
     </div>
   </div>
 </template>
@@ -59,6 +59,7 @@ export default Vue.extend({
 @media screen and (max-width: 768px) {
   .Home {
     width: 100%;
+    padding-top: 32px;
   }
 }
 

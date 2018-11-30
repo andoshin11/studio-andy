@@ -1,7 +1,6 @@
 <template>
   <div class="PostCard">
-    <div 
-      class="header">
+    <div class="header">
       <picture>
         <source 
           :srcset="headerWebp" 
@@ -16,16 +15,12 @@
     <div class="body">
       <div class="date">{{ publishedAt }}</div>
       <div class="title">{{ post.props.title }}</div>
-      <div class="summary">{{ post.props.summary }}</div>
       <ul class="tagList">
         <li 
           v-for="tag in post.props.tags" 
           :key="tag" 
-          class="tag" >
-          <nuxt-link 
-            :to="tagPath(tag)">
-            #{{ tag }}
-          </nuxt-link>
+          class="tag">
+          <nuxt-link :to="tagPath(tag)">{{ tag }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -78,16 +73,14 @@ export default Vue.extend({
   flex-direction: column;
   overflow: hidden;
   color: #222;
-  border-radius: 8px;
-  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
+  border-radius: 16px;
+  box-shadow: 2px 2px 40px -12px #999;
   transition: 0.3s ease-out;
 }
 
 @media screen and (max-width: 768px) {
   .PostCard {
-    border-bottom: 1px solid #ddd;
-    border-radius: 0;
-    box-shadow: none;
+    margin: 0 20px 40px;
   }
 }
 
@@ -95,16 +88,12 @@ export default Vue.extend({
   box-shadow: 0 28.3px 88.94px rgba(67, 54, 102, 0.2);
 }
 
-@media screen and (max-width: 768px) {
-  .PostCard:hover {
-    box-shadow: none;
-  }
-}
-
 .header {
   position: relative;
   width: 100%;
   overflow: hidden;
+  background-color: #fcfcfc;
+  border-radius: 16px 16px 0 0;
 }
 
 .header::before {
@@ -117,30 +106,28 @@ export default Vue.extend({
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 20px 25px;
+  background-color: #fcfcfc;
 }
 
 @media screen and (max-width: 768px) {
   .body {
-    padding: 20px;
+    padding: 16px;
   }
 }
 
 .img {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
+  transform: translate(-50%, -50%);
   transition: 0.4s ease-out;
 }
 
-.PostCard:hover .img {
-  transform: scale(1.2);
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 769px) {
   .PostCard:hover .img {
-    transform: none;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 
@@ -150,28 +137,27 @@ export default Vue.extend({
   font-size: 12px;
   font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   text-align: left;
+  transition: 0.4s ease-out;
+}
+
+.PostCard:hover .date {
+  color: #ef6530;
+  letter-spacing: 0.5px;
 }
 
 .title {
   min-height: 54px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
+  font-family: Hiragino Kaku Gothic Pro, 'M PLUS 1p', sans-serif, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
+  letter-spacing: 0.5px;
   text-align: left;
+  transition: 0.4s ease-out;
 }
 
-.summary {
-  min-height: 64px;
-  margin-bottom: 24px;
-  color: #777;
-  font-size: 14px;
-  text-align: left;
-}
-
-@media screen and (max-width: 768px) {
-  .summary {
-    margin-bottom: 24px;
-  }
+.PostCard:hover .title {
+  letter-spacing: 0.75px;
 }
 
 .tagList {
@@ -179,9 +165,14 @@ export default Vue.extend({
   text-align: left;
 }
 
+@media screen and (max-width: 768px) {
+  .tagList {
+    margin-bottom: 8px;
+  }
+}
+
 .tag {
   display: inline;
-  margin-right: 8px;
   font-size: 14px;
   cursor: pointer;
 }
@@ -192,12 +183,26 @@ export default Vue.extend({
   }
 }
 
+.tag:not(:last-child):after {
+  content: '/';
+  margin: 0 8px;
+  color: #777;
+  transition: 0.3s ease-out;
+}
+
 .tag a {
-  color: #ef6530;
+  color: #777;
+  transition: 0.4s ease-out;
 }
 
 .tag:hover a,
 .tag:focus a {
   text-decoration: underline;
+}
+
+.PostCard:hover .tag a,
+.PostCard:hover .tag:not(:last-child):after {
+  color: #ef6530;
+  letter-spacing: 0.5px;
 }
 </style>

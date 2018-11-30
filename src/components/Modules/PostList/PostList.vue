@@ -8,7 +8,7 @@
       :key="post.props.id" 
       :to="postPath(post)" 
       class="post">
-      <PostCard :post="post" />
+      <PostCard :post="post"/>
     </nuxt-link>
   </div>
 </template>
@@ -41,7 +41,6 @@ export default Vue.extend({
 
 <style scoped>
 .PostList {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 100%;

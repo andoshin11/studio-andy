@@ -42,7 +42,9 @@ jobs:
           command: yarn run build
       - run:
           name: Decode credential
-          command: echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
+          command: |
+            echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
+            echo $SECRET_YAML | base64 -d > ./secret.yaml
       - run:
           name: Deploy
           command: |

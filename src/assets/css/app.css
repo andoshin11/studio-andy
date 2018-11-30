@@ -25,3 +25,13 @@ ul {
 a {
   text-decoration: none;
 }
+
+.page-enter-active,
+.page-leave-active {
+  transition: 0.4s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}

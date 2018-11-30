@@ -1,5 +1,5 @@
 <template>
-  <section class="Post">
+  <section class="container">
     <PostContainer/>
   </section>
 </template>
@@ -58,7 +58,8 @@ export default Vue.extend({
 
 
 <style scoped>
-.Post {
+.container {
   width: 100%;
+  min-height: 100vh;
 }
 </style>
