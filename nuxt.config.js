@@ -54,7 +54,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed'],
 
   /*
   ** Extensions
@@ -126,6 +126,55 @@ module.exports = {
       return posts.items.map(item => item.fields.slug)
     }
   },
+
+  /*
+   * RSS settings
+   */
+  feed: [
+    {
+      path: '/feed.xml',
+      async create(feed) {
+        feed.options = {
+          title: 'Studio Andy',
+          link: 'https://blog.andoshin11.me/feed.xml',
+          description: "This is Shin Ando's personal feed!"
+        }
+
+        const contentful = require('contentful')
+        const client = contentful.createClient({
+          space: process.env.CTF_SPACE_ID,
+          accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+        })
+
+        const posts = await client.getEntries({
+          content_type: 'post'
+        })
+
+        posts.items.forEach(post => {
+          feed.addItem({
+            title: post.fields.title,
+            id: post.fields.slug,
+            link: `https://blog.andoshin11.me/posts/${post.fields.slug}`,
+            description: post.fields.summary,
+            content: post.fields.content,
+            date: new Date(post.fields.publishedAt),
+            image: post.fields.headerImage.fields.file.url
+          })
+        })
+
+        feed.addCategory('Tech')
+        feed.addCategory('Space')
+
+        feed.addContributor({
+          name: 'Shin Ando',
+          email: 'shinglish11@gmail.com',
+          link: 'https://lichter.io/'
+        })
+      },
+      cacheTime: 1000 * 60 * 60 * 6, // 6 hours
+      type: 'atom1'
+    }
+  ],
 
   /*
   ** Build configuration
