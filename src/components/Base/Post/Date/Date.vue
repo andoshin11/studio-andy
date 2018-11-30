@@ -39,7 +39,7 @@ export default Vue.extend({
 .Date {
   width: 90%;
   margin-bottom: 16px;
-  color: #aaa;
+  color: #222;
   font-size: 18px;
   font-style: italic;
   text-align: center;

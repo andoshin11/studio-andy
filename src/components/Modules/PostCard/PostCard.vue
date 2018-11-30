@@ -133,7 +133,6 @@ export default Vue.extend({
 
 .date {
   margin-bottom: 8px;
-  color: #777;
   font-size: 12px;
   font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   text-align: left;
@@ -186,12 +185,11 @@ export default Vue.extend({
 .tag:not(:last-child):after {
   content: '/';
   margin: 0 8px;
-  color: #777;
   transition: 0.3s ease-out;
 }
 
 .tag a {
-  color: #777;
+  color: #222;
   transition: 0.4s ease-out;
 }
 
