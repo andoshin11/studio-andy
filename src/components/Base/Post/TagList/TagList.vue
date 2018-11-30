@@ -68,12 +68,12 @@ export default Vue.extend({
 .tag:not(:last-child):after {
   content: '/';
   margin: 0 8px;
-  color: #777;
+  color: #222;
   transition: 0.3s ease-out;
 }
 
 .tag a {
-  color: #777;
+  color: #222;
 }
 
 .tag:hover a,
