@@ -195,6 +195,7 @@ export default Vue.extend({
   border: none;
   border-radius: 36px;
   transform: translateY(-50%);
+  opacity: 0.7;
 }
 
 .searchButton:focus {
@@ -204,21 +205,20 @@ export default Vue.extend({
 .searchInput:focus + .searchButton {
   color: #fff;
   background: #ef6530;
+  opacity: 1;
 }
 
 .mask {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .searchInput:focus + .searchButton + .mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 7;
-    display: block;
-    width: 100vw;
-    height: 100vh;
-  }
+.searchInput:focus + .searchButton + .mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  display: block;
+  width: 100vw;
+  height: 100vh;
 }
 </style>
