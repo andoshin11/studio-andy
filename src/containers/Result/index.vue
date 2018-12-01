@@ -52,6 +52,7 @@ export default Vue.extend({
 @media screen and (max-width: 768px) {
   .Result {
     width: 100%;
+    padding-top: 24px;
   }
 }
 
