@@ -84,7 +84,7 @@ export default Vue.extend({
   height: 100%;
   margin-bottom: 30px;
   color: #4d4d4d;
-  background-color: #fcfcfc;
+  background-color: #fefefe;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 

@@ -126,7 +126,6 @@ module.exports = {
    */
   sitemap: {
     hostname: 'https://blog.andoshin11.me',
-    generate: false,
     exclude: ['/search'],
     async routes() {
       const contentful = require('contentful')
@@ -138,7 +137,7 @@ module.exports = {
       const posts = await client.getEntries({
         content_type: 'post'
       })
-      return posts.items.map(item => item.fields.slug)
+      return posts.items.map(item => `posts/${item.fields.slug}`)
     }
   },
 
@@ -171,7 +170,7 @@ module.exports = {
             id: post.fields.slug,
             link: `https://blog.andoshin11.me/posts/${post.fields.slug}`,
             description: post.fields.summary,
-            content: post.fields.content,
+            content: post.fields.summary,
             date: new Date(post.fields.publishedAt),
             image: post.fields.headerImage.fields.file.url
           })
@@ -183,7 +182,7 @@ module.exports = {
         feed.addContributor({
           name: 'Shin Ando',
           email: 'shinglish11@gmail.com',
-          link: 'https://lichter.io/'
+          link: 'https://blog.andoshin11.me/'
         })
       },
       cacheTime: 1000 * 60 * 60 * 6, // 6 hours

@@ -35,12 +35,13 @@ export default Vue.extend({
 
 <style>
 .Markdown {
+  position: relative;
   width: 100%;
 }
 
 /* Element Styles */
 .Markdown p {
-  margin: 50px auto 0;
+  margin: 24px auto;
   font-size: 18px;
   line-height: 33px;
   letter-spacing: 0.65px;
@@ -59,10 +60,11 @@ export default Vue.extend({
 
 .Markdown img {
   width: 100%;
+  box-shadow: 2px 2px 40px -12px #999;
 }
 
 .Markdown a {
-  color: #b38639;
+  color: #ef6530;
   text-decoration: underline;
   transition: 0.3s;
 }
@@ -102,7 +104,8 @@ export default Vue.extend({
 }
 
 .Markdown h2 {
-  font-size: 20px;
+  margin: 40px 0;
+  font-size: 24px;
 }
 
 @media screen and (max-width: 768px) {
@@ -112,7 +115,13 @@ export default Vue.extend({
 }
 
 .Markdown h2::after {
-  content: ':';
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-bottom: solid 2px #ef6530;
+  content: '';
 }
 
 .Markdown div.embedly-card {
