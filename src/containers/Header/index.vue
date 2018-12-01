@@ -165,13 +165,19 @@ export default Vue.extend({
 .searchInput:focus {
   z-index: 8;
   box-sizing: border-box;
-  width: 90vw;
+  width: 300px;
   padding: 0 24px;
   color: #666;
   font-size: 16px;
   background: #f0f0f0;
   outline: none;
   -webkit-appearance: none;
+}
+
+@media screen and (max-width: 768px) {
+  .searchInput:focus {
+    width: 90vw;
+  }
 }
 
 .searchInput:focus::after {
