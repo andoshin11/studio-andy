@@ -82,6 +82,7 @@ export default Vue.extend({
     Markdown
   },
   head() {
+    // FIXME: Type implicit this :sob:
     const presenter = this.presenter as IPresenter
     return {
       title: `${presenter.post ? presenter.post.props.title : ''} | Studio Andy`,
@@ -102,7 +103,7 @@ export default Vue.extend({
 .Post {
   padding-top: 40px;
   padding-bottom: 100px;
-  background: #fcfcfc;
+  background: #fdfdfd;
 }
 
 @media screen and (max-width: 768px) {
