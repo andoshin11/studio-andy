@@ -1,7 +1,11 @@
 <template>
   <div class="Result">
+    <div class="summary">
+      <span class="query">{{ presenter.query }}</span>
+      の検索結果 {{ presenter.postList.length }}件
+    </div>
     <div class="PostList">
-      <PostList :data="presenter.postList" />
+      <PostList :data="presenter.postList"/>
     </div>
   </div>
 </template>
@@ -40,6 +44,8 @@ export default Vue.extend({
 .Result {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
   padding-bottom: 200px;
 }
 
@@ -47,6 +53,25 @@ export default Vue.extend({
   .Result {
     width: 100%;
   }
+}
+
+.summary {
+  margin-bottom: 24px;
+  padding: 0 24px;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+  background: #fcfcfc;
+  border: solid 1px #eee;
+  border-radius: 20px;
+  box-shadow: 2px 2px 40px -12px #999;
+}
+
+.query {
+  margin-right: 0.2rem;
+  color: #ef6530;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .PostList {
