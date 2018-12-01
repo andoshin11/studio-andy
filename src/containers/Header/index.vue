@@ -68,8 +68,8 @@ export default Vue.extend({
   },
   methods: {
     searchPosts() {
-      if (!this.query) return
-      this.$refs.input.blur()
+      if (!this.query || !this.$refs.input) return
+      ;(this.$refs.input as HTMLElement).blur()
       this.$router.push({ path: `/search?query=${this.query}` })
       this.query = ''
     }

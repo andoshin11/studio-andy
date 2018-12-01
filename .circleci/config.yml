@@ -2,7 +2,7 @@ version: 2
 
 defaults: &defaults
   docker:
-    - image: node:10.13.0
+    - image: andoshin11/gcloud-sdk-node:10.13.0
   working_directory: /repo
 
 jobs:
@@ -20,6 +20,9 @@ jobs:
       - run:
           name: Lint
           command: yarn run lint
+      - run:
+          name: Build
+          command: yarn run build
       - save_cache:
           paths:
             - node_modules
@@ -28,18 +31,14 @@ jobs:
           root: /repo
           paths:
             - ./node_modules
+            - ./.nuxt
 
   deploy:
-    docker:
-      - image: andoshin11/gcloud-sdk-node:10.13.0
-    working_directory: /repo
+    <<: *defaults
     steps:
       - checkout
       - attach_workspace:
           at: /repo
-      - run:
-          name: Build
-          command: yarn run build
       - run:
           name: Decode credential
           command: |

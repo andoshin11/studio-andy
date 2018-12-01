@@ -22,7 +22,7 @@ class ErrorBase extends Error {
 }
 
 export class NotFoundError extends ErrorBase {
-  constructor(msg) {
+  constructor(msg: string) {
     super(msg, ErrorType.NOT_FOUND)
   }
 }
