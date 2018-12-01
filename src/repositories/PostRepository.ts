@@ -66,4 +66,8 @@ export default class PostRepository {
 
     return new PostEntity(currentPost)
   }
+
+  getSearchQuery(): string | null {
+    return this._store.state.post.searchQuery
+  }
 }
