@@ -199,10 +199,6 @@ export default Vue.extend({
   }
 }
 
-.Markdown pre {
-  margin-top: 16px;
-}
-
 .Markdown hr {
   margin: 48px 0;
 }
@@ -211,5 +207,57 @@ export default Vue.extend({
   .Markdown hr {
     margin: 32px 0;
   }
+}
+
+.Markdown pre {
+  margin-top: 16px;
+  text-shadow: none;
+  background: #282c34;
+  border-radius: 8px;
+}
+
+.Markdown pre.language-shell {
+  text-shadow: none;
+  background: #282c34;
+  border-radius: 8px;
+}
+
+.Markdown code[class*='language-'] {
+  color: #fff;
+  text-shadow: none;
+}
+
+.Markdown :not(pre) > code[class*='language-'] {
+  padding: 4px 8px;
+  color: #fff;
+  font-size: 90%;
+  text-shadow: none;
+  background: #282c34;
+  border-radius: 8px;
+}
+
+.Markdown .token.punctuation {
+  color: #fff;
+}
+
+.Markdown .token.string {
+  color: #a0f100;
+}
+
+.Markdown .token.boolean {
+  color: #c70370;
+}
+
+.Markdown .token.keyword {
+  color: #0ba7ea;
+}
+
+.Markdown .token.operator {
+  color: #e2810e;
+  background: none;
+}
+
+.Markdown .token.comment {
+  color: #22b10b;
 }
 </style>
