@@ -4,18 +4,22 @@ handlers:
   - url: /_nuxt
     static_dir: .nuxt/dist/client
     secure: always
-  - url: /(.*\.(gif|png|jpg|ico|txt|js))$
+  - url: /(.*\.(gif|png|jpg|ico|txt|js|svg))$
     static_files: src/static/\1
-    upload: src/static/.*\.(gif|png|jpg|ico|txt|js)$
+    upload: src/static/.*\.(gif|png|jpg|ico|txt|js|svg)$
     secure: always
   - url: /.*
     script: auto
     secure: always
 instance_class: F2
+default_expiration: '1d'
 env_variables:
   NUXT_HOST: '0.0.0.0'
   NUXT_PORT: '8080'
 automatic_scaling:
-  min_instances: 0
+  min_idle_instances: automatic
+  max_idle_instances: 1
+  min_pending_latency: 3000ms
+  max_pending_latency: automatic
 includes:
   - secret.yaml
