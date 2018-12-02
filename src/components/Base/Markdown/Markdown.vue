@@ -41,7 +41,7 @@ export default Vue.extend({
 
 /* Element Styles */
 .Markdown p {
-  margin: 24px auto;
+  margin: 36px auto;
   font-size: 18px;
   line-height: 33px;
   letter-spacing: 0.65px;
@@ -60,11 +60,12 @@ export default Vue.extend({
 
 .Markdown img {
   width: 100%;
+  margin: 24px auto;
   box-shadow: 2px 2px 40px -12px #999;
 }
 
 .Markdown a {
-  color: #ef6530;
+  color: #1a95b3;
   text-decoration: underline;
   transition: 0.3s;
 }
@@ -104,7 +105,7 @@ export default Vue.extend({
 }
 
 .Markdown h2 {
-  margin: 40px 0;
+  margin: 50px 0 0;
   font-size: 24px;
 }
 
@@ -114,11 +115,25 @@ export default Vue.extend({
   }
 }
 
-.Markdown h2::after {
+/* .Markdown h2::after {
   position: absolute;
   left: 0;
   display: block;
   width: 100%;
+  height: 4px;
+  border-bottom: solid 2px #3d3c42;
+  content: '';
+} */
+
+.Markdown h3 {
+  font-size: 20px;
+}
+
+.Markdown h3::after {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 40px;
   height: 4px;
   border-bottom: solid 2px #ef6530;
   content: '';
@@ -165,11 +180,11 @@ export default Vue.extend({
   position: absolute;
   width: 8px;
   height: 8px;
-  margin-top: 13px;
+  margin-top: 16px;
   margin-left: -20px;
-  color: #ef6530;
+  color: #1a95b3;
   line-height: 40px;
-  background: #ef6530;
+  background: #1a95b3;
   border-radius: 50%;
   content: '';
 }
