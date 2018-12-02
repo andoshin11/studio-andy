@@ -81,19 +81,17 @@ export default Vue.extend({
     HeaderImg,
     Markdown
   },
-  head() {
-    // FIXME: Type implicit this :sob:
-    const presenter = this.presenter as IPresenter
-    return {
-      title: `${presenter.post ? presenter.post.props.title : ''} | Studio Andy`,
-      meta: [{ hid: 'description', name: 'description', content: presenter.post ? presenter.post.props.summary : '' }]
-    }
-  },
   computed: {
     presenter(): IPresenter {
       return Presenter({
         postRepository: new PostRepository(this.$store)
       })
+    }
+  },
+  head() {
+    return {
+      title: `${this.presenter.post ? this.presenter.post.props.title : ''} | Studio Andy`,
+      meta: [{ hid: 'description', name: 'description', content: this.presenter.post ? this.presenter.post.props.summary : '' }]
     }
   }
 })

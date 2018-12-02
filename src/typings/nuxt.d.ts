@@ -50,11 +50,11 @@ declare module 'vue/types/options' {
   }
 
   interface ComponentOptions<V extends Vue> {
+    head?: any
     watchQuery?: string[]
     layout?: string | ((context: ApplicationContext) => string)
     fetch?: (context: ApplicationContext) => void
     asyncData?: (context: ApplicationContext) => Promise<void>
-    head?: object | (() => object)
     transition?: string | Transition | ((from: any, to: any) => string)
     scrollToTop?: boolean
     validate?: (context: ApplicationContext) => boolean
