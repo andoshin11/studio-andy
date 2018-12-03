@@ -10,6 +10,7 @@ export interface IPostProps {
   publishedAt: string
   title: string
   tags: string[]
+  isPublished: boolean
 }
 
 export default class PostEntity {
@@ -64,7 +65,8 @@ export const PostFactory = (): PostEntity => {
     publishedAt: '2018-11-09T12:30+09:00',
     title: 'VueFes 2018にスタッフとして参加してきました。',
     headerImage: AssetFactory(),
-    headerImageLight: AssetFactory()
+    headerImageLight: AssetFactory(),
+    isPublished: true
   }
 
   return new PostEntity(dummyProps)

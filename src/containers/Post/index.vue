@@ -1,5 +1,9 @@
 <template>
   <div class="Post">
+    <div
+      v-if="!presenter.post.props.isPublished"
+      class="preview"
+    >未公開の記事をPreview機能で閲覧中です。この記事はURLを知っているユーザーにしか表示されません。</div>
     <div class="inner">
       <div class="header">
         <HeaderImg :header-img="presenter.post ? presenter.post.props.headerImage : null"/>
@@ -109,6 +113,24 @@ export default Vue.extend({
     width: 100%;
     padding-top: 0;
     overflow: hidden;
+  }
+}
+
+.preview {
+  margin-top: -40px;
+  padding: 40px 0;
+  color: #fefefe;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  background: #ef6530;
+}
+
+@media screen and (max-width: 768px) {
+  .preview {
+    margin-top: 0;
+    padding: 24px 16px;
+    font-size: 16px;
   }
 }
 
