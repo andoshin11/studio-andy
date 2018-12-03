@@ -146,9 +146,10 @@ export default Vue.extend({
   transition: 0.4s ease-out;
 }
 
-.PostCard:hover .date {
-  color: #ef6530;
-  letter-spacing: 0.5px;
+@media screen and (min-width: 769px) {
+  .PostCard:hover .date {
+    letter-spacing: 0.5px;
+  }
 }
 
 .title {
@@ -162,8 +163,10 @@ export default Vue.extend({
   transition: 0.4s ease-out;
 }
 
-.PostCard:hover .title {
-  letter-spacing: 0.75px;
+@media screen and (min-width: 769px) {
+  .PostCard:hover .title {
+    letter-spacing: 0.75px;
+  }
 }
 
 .tagList {
@@ -205,9 +208,11 @@ export default Vue.extend({
   text-decoration: underline;
 }
 
-.PostCard:hover .tag a,
-.PostCard:hover .tag:not(:last-child):after {
-  color: #ef6530;
-  letter-spacing: 0.5px;
+@media screen and (min-width: 769px) {
+  .PostCard:hover .tag a,
+  .PostCard:hover .tag:not(:last-child):after {
+    color: #ef6530;
+    letter-spacing: 0.5px;
+  }
 }
 </style>
