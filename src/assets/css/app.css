@@ -28,7 +28,7 @@ a {
 
 .page-enter-active,
 .page-leave-active {
-  transition: 0.4s;
+  transition: 0.2s;
 }
 
 .page-enter,
