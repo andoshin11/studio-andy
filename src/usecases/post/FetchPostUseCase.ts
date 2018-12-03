@@ -21,7 +21,11 @@ export default class FetchPostUseCase implements BaseUseCase {
 
   async execute(slug: string) {
     try {
-      const post = await this.contentfulGateway.getPost(slug)
+      // Check if the post already exists
+      const data = this.postRepository.getPost(slug)
+
+      const post = data ? data.props : await this.contentfulGateway.getPost(slug)
+
       this.postRepository.saveCurrentPost(post)
     } catch (error) {
       await this.logService.handle({ type: LogType.Message, message: error.message })

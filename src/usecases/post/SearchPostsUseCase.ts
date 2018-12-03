@@ -21,9 +21,14 @@ export default class SearchPostsUseCase implements BaseUseCase {
 
   async execute(query: string) {
     try {
-      this.postRepository.saveSearchQuery(query)
-      const results = await this.contentfulGateway.searchPosts(query)
-      this.postRepository.saveSearchResults(results)
+      // Check if the query already exists
+      const cache = this.postRepository.getSearchQuery()
+
+      if (query !== cache) {
+        this.postRepository.saveSearchQuery(query)
+        const results = await this.contentfulGateway.searchPosts(query)
+        this.postRepository.saveSearchResults(results)
+      }
     } catch (error) {
       await this.logService.handle({ type: LogType.Error, error })
       throw new Error(error)
