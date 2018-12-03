@@ -153,7 +153,7 @@ export default Vue.extend({
 }
 
 .title {
-  min-height: 54px;
+  min-height: 72px;
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 24px;
