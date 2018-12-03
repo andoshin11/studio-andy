@@ -1,5 +1,7 @@
 <template>
-  <div class="PostCard">
+  <div 
+    class="PostCard" 
+    @mouseenter="prerender">
     <div class="header">
       <picture>
         <source 
@@ -31,6 +33,7 @@
 import Vue from 'vue'
 import dayjs from 'dayjs'
 import PostEntity from '@/entities/Post'
+import { prerender } from '@/util/util'
 
 export default Vue.extend({
   props: {
@@ -62,6 +65,10 @@ export default Vue.extend({
         return `/tags/${tag}`
       }
       return ''
+    },
+    prerender() {
+      const href = `/posts/${this.post.props.slug}`
+      prerender(href)
     }
   }
 })
