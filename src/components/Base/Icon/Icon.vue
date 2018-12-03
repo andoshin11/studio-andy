@@ -15,7 +15,7 @@ export default Vue.extend({
   },
   computed: {
     iconPath(): string {
-      return `/svg/${this.name}.svg#root`
+      return `/${this.name}.svg#root`
     }
   }
 })

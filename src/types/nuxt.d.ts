@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Store, ActionTree } from 'vuex'
+import { Store, ActionTree, ActionContext } from 'vuex'
 import { Route } from 'vue-router'
 import * as SentryNode from '@sentry/node'
 import { RootState } from '@/store/index'
@@ -30,7 +30,7 @@ export interface ApplicationContext {
 
 declare module 'vuex/types/index' {
   interface ActionTree<S, R> {
-    nuxtServerInit?: (context, nuxtContext: ApplicationContext) => void
+    nuxtServerInit: (context: ActionContext<S, R>, nuxtContext: ApplicationContext) => void
   }
 }
 
@@ -50,11 +50,11 @@ declare module 'vue/types/options' {
   }
 
   interface ComponentOptions<V extends Vue> {
+    head?: any
     watchQuery?: string[]
     layout?: string | ((context: ApplicationContext) => string)
-    fetch?: (context: ApplicationContext) => void
+    fetch?: (context: ApplicationContext) => Promise<void>
     asyncData?: (context: ApplicationContext) => Promise<void>
-    head?: object | (() => object)
     transition?: string | Transition | ((from: any, to: any) => string)
     scrollToTop?: boolean
     validate?: (context: ApplicationContext) => boolean

@@ -81,19 +81,17 @@ export default Vue.extend({
     HeaderImg,
     Markdown
   },
-  head() {
-    // FIXME: Type implicit this :sob:
-    const presenter = this.presenter as IPresenter
-    return {
-      title: `${presenter.post ? presenter.post.props.title : ''} | Studio Andy`,
-      meta: [{ hid: 'description', name: 'description', content: presenter.post ? presenter.post.props.summary : '' }]
-    }
-  },
   computed: {
     presenter(): IPresenter {
       return Presenter({
         postRepository: new PostRepository(this.$store)
       })
+    }
+  },
+  head() {
+    return {
+      title: `${this.presenter.post ? this.presenter.post.props.title : ''} | Studio Andy`,
+      meta: [{ hid: 'description', name: 'description', content: this.presenter.post ? this.presenter.post.props.summary : '' }]
     }
   }
 })
@@ -103,7 +101,7 @@ export default Vue.extend({
 .Post {
   padding-top: 40px;
   padding-bottom: 100px;
-  background: #fdfdfd;
+  background: #fefefe;
 }
 
 @media screen and (max-width: 768px) {
@@ -142,7 +140,7 @@ export default Vue.extend({
 
 .socialLinks {
   position: sticky;
-  top: 170px;
+  top: 60px;
   z-index: 100;
   width: 100%;
   height: 0;
@@ -161,9 +159,10 @@ export default Vue.extend({
   width: 40px;
   height: 40px;
   margin-bottom: 15px;
-  background: trans;
-  border: 1px solid #d9d9d9;
+  background: transparent;
+  border: none;
   border-radius: 50%;
+  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
   cursor: pointer;
   transition: 0.3s ease-out;
   -webkit-appearance: none;
@@ -173,8 +172,7 @@ export default Vue.extend({
 
 .socialButton:hover,
 .socialButton:focus {
-  background: #5b3cc4;
-  border: 1px solid #5b3cc4;
+  background: #ef6530;
   fill: #fff;
 }
 

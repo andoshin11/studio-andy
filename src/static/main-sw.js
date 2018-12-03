@@ -14,6 +14,21 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
+  new RegExp('^https://blog.andoshin11.me/(svg/.*.svg|.*.ico)'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'site-parts-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 30 // for 1 month
+      })
+    ]
+  })
+)
+
+workbox.routing.registerRoute(
   new RegExp('^https://images.ctfassets.net/2p1otbbee5vt/.*.(png|jpg|webp)$'),
   workbox.strategies.cacheFirst({
     cacheName: 'image-cache',

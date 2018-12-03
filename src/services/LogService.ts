@@ -1,4 +1,4 @@
-import { Logger } from '@/typings/nuxt'
+import { Logger } from '@/types/nuxt'
 
 export interface ILogServiceArgs {
   logger?: Logger
