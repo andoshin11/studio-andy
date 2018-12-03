@@ -77,13 +77,14 @@ export default Vue.extend({
 .Markdown h1 {
   position: relative;
   margin-top: 50px;
-  padding-left: 8px;
+  padding-left: 12px;
   font-size: 24px;
 }
 
 @media screen and (max-width: 768px) {
   .Markdown h1 {
     margin-left: 0;
+    padding-left: 4px;
     color: #4d4d4d;
     border-bottom: solid 2px #4d4d4d;
   }
@@ -94,7 +95,7 @@ export default Vue.extend({
   left: 0;
   display: block;
   height: 34px;
-  border-left: solid 4px #5b3cc4;
+  border-left: solid 4px #4d4d4d;
   content: '';
 }
 
@@ -109,22 +110,6 @@ export default Vue.extend({
   font-size: 24px;
 }
 
-@media screen and (max-width: 768px) {
-  .Markdown h2 {
-    margin-left: 5%;
-  }
-}
-
-/* .Markdown h2::after {
-  position: absolute;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 4px;
-  border-bottom: solid 2px #3d3c42;
-  content: '';
-} */
-
 .Markdown h3 {
   font-size: 20px;
 }
@@ -133,7 +118,7 @@ export default Vue.extend({
   position: absolute;
   left: 0;
   display: block;
-  width: 40px;
+  width: 30px;
   height: 4px;
   border-bottom: solid 2px #ef6530;
   content: '';
@@ -228,6 +213,7 @@ export default Vue.extend({
 }
 
 .Markdown :not(pre) > code[class*='language-'] {
+  margin-right: 4px;
   padding: 4px 8px;
   color: #fff;
   font-size: 90%;
@@ -236,12 +222,22 @@ export default Vue.extend({
   border-radius: 8px;
 }
 
+@media screen and (max-width: 768px) {
+  .Markdown :not(pre) > code[class*='language-'] {
+    font-size: 85%;
+  }
+}
+
 .Markdown .token.punctuation {
   color: #fff;
 }
 
 .Markdown .token.string {
-  color: #a0f100;
+  color: #98c379;
+}
+
+.Markdown .token.attr-name {
+  color: #98c379;
 }
 
 .Markdown .token.boolean {
@@ -249,7 +245,15 @@ export default Vue.extend({
 }
 
 .Markdown .token.keyword {
-  color: #0ba7ea;
+  color: #66b9f4;
+}
+
+.Markdown .token.selector {
+  color: #e4c625;
+}
+
+.Markdown .token.property {
+  color: #42abd6;
 }
 
 .Markdown .token.operator {
@@ -258,6 +262,14 @@ export default Vue.extend({
 }
 
 .Markdown .token.comment {
-  color: #22b10b;
+  color: #a1a8b5;
+}
+
+.Markdown .token.function {
+  color: #dd4a68;
+}
+
+.Markdown .token.tag {
+  color: #dd4a68;
 }
 </style>

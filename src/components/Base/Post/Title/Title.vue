@@ -35,7 +35,7 @@ export default Vue.extend({
 .Title {
   width: 90%;
   min-height: 48px;
-  margin: 0 0 8px;
+  margin: 0 0 24px;
   font-weight: bold;
   font-size: 32px;
   line-height: 1.2;

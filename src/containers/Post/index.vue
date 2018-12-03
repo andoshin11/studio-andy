@@ -151,7 +151,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
 
 .body {
