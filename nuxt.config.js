@@ -135,7 +135,8 @@ module.exports = {
       })
 
       const posts = await client.getEntries({
-        content_type: 'post'
+        content_type: 'post',
+        'fields.isPublished': true
       })
       return posts.items.map(item => `posts/${item.fields.slug}`)
     }
@@ -161,7 +162,8 @@ module.exports = {
         })
 
         const posts = await client.getEntries({
-          content_type: 'post'
+          content_type: 'post',
+          'fields.isPublished': true
         })
 
         posts.items.forEach(post => {

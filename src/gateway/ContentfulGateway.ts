@@ -21,7 +21,8 @@ export default class ContentfulGateway {
   async getPosts(): Promise<IPostProps[]> {
     const client = createClient()
     const posts = await client.getEntries<IPostProps>({
-      content_type: 'post',
+      content_type: ContentType.POST,
+      'fields.isPublished': true,
       order: '-fields.publishedAt'
     })
     return posts.items.map(this.transtormEntry)
@@ -44,6 +45,7 @@ export default class ContentfulGateway {
     const posts = await createClient().getEntries<IPostProps>({
       content_type: ContentType.POST,
       'fields.tags[in]': tag,
+      'fields.isPublished': true,
       order: '-fields.publishedAt'
     })
 
@@ -55,6 +57,6 @@ export default class ContentfulGateway {
     const posts = await client.getEntries<IPostProps>({
       query
     })
-    return posts.items.map(this.transtormEntry)
+    return posts.items.filter(post => post.fields.isPublished).map(this.transtormEntry)
   }
 }
