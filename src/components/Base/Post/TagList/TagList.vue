@@ -65,6 +65,12 @@ export default Vue.extend({
   transition: 0.3s;
 }
 
+@media screen and (max-width: 768px) {
+  .tag {
+    font-weight: normal;
+  }
+}
+
 .tag:not(:last-child):after {
   content: '/';
   margin: 0 8px;

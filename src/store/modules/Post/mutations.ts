@@ -8,7 +8,7 @@ export const mutations: MutationTree<IPostState> = {
     posts.forEach(post => {
       state.byIds = {
         ...state.byIds,
-        [post.id]: post
+        [post.slug]: post
       }
     })
   },

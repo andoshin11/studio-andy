@@ -15,17 +15,17 @@ export default class PostRepository {
   }
 
   saveLatestPosts(posts: IPostProps[]) {
-    const ids = posts.map(post => post.id)
+    const slugs = posts.map(post => post.slug)
 
     this.savePosts(posts)
-    this._store.commit(new StoreLatestPosts(ids))
+    this._store.commit(new StoreLatestPosts(slugs))
   }
 
   saveSearchResults(posts: IPostProps[]) {
-    const ids = posts.map(post => post.id)
+    const slugs = posts.map(post => post.slug)
 
     this.savePosts(posts)
-    this._store.commit(new StoreSearchResults(ids))
+    this._store.commit(new StoreSearchResults(slugs))
   }
 
   saveSearchQuery(query: string) {
@@ -33,35 +33,35 @@ export default class PostRepository {
   }
 
   saveCurrentPost(post: IPostProps) {
-    const id = post.id
+    const slug = post.slug
     this.savePosts([post])
-    this._store.commit(new StoreCurrentPost(id))
+    this._store.commit(new StoreCurrentPost(slug))
   }
 
   getLatestPosts(): PostEntity[] {
-    const ids = this._store.state.post.latestPosts
-    const propsList = ids.map(id => this._store.state.post.byIds[id])
+    const slugs = this._store.state.post.latestPosts
+    const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
     const posts = propsList.map(props => new PostEntity(props))
     return posts
   }
 
   getSearchResults(): PostEntity[] {
-    const ids = this._store.state.post.searchResult
-    const propsList = ids.map(id => this._store.state.post.byIds[id])
+    const slugs = this._store.state.post.searchResult
+    const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
     const posts = propsList.map(props => new PostEntity(props))
     return posts
   }
 
-  getPost(id: string): PostEntity | null {
-    const post = this._store.state.post.byIds[id]
+  getPost(slug: string): PostEntity | null {
+    const post = this._store.state.post.byIds[slug]
     return post ? new PostEntity(post) : null
   }
 
   getCurrentPost(): PostEntity | null {
-    const id = this._store.state.post.currentPost
-    if (!id) return null
+    const slug = this._store.state.post.currentPost
+    if (!slug) return null
 
-    const currentPost = this._store.state.post.byIds[id]
+    const currentPost = this._store.state.post.byIds[slug]
     if (!currentPost) return null
 
     return new PostEntity(currentPost)

@@ -2,7 +2,7 @@ import { IPostProps } from '@/entities/Post'
 
 export interface IPostState {
   byIds: {
-    [id: string]: IPostProps
+    [slug: string]: IPostProps
   }
   latestPosts: string[]
   searchResult: string[]

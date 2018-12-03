@@ -1,5 +1,7 @@
 <template>
-  <div class="PostCard">
+  <div 
+    class="PostCard" 
+    @mouseenter="prerender">
     <div class="header">
       <picture>
         <source 
@@ -31,6 +33,7 @@
 import Vue from 'vue'
 import dayjs from 'dayjs'
 import PostEntity from '@/entities/Post'
+import { prerender } from '@/util/util'
 
 export default Vue.extend({
   props: {
@@ -62,6 +65,10 @@ export default Vue.extend({
         return `/tags/${tag}`
       }
       return ''
+    },
+    prerender() {
+      const href = `/posts/${this.post.props.slug}`
+      prerender(href)
     }
   }
 })
@@ -139,13 +146,14 @@ export default Vue.extend({
   transition: 0.4s ease-out;
 }
 
-.PostCard:hover .date {
-  color: #ef6530;
-  letter-spacing: 0.5px;
+@media screen and (min-width: 769px) {
+  .PostCard:hover .date {
+    letter-spacing: 0.5px;
+  }
 }
 
 .title {
-  min-height: 54px;
+  min-height: 72px;
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 24px;
@@ -155,8 +163,10 @@ export default Vue.extend({
   transition: 0.4s ease-out;
 }
 
-.PostCard:hover .title {
-  letter-spacing: 0.75px;
+@media screen and (min-width: 769px) {
+  .PostCard:hover .title {
+    letter-spacing: 0.75px;
+  }
 }
 
 .tagList {
@@ -198,9 +208,11 @@ export default Vue.extend({
   text-decoration: underline;
 }
 
-.PostCard:hover .tag a,
-.PostCard:hover .tag:not(:last-child):after {
-  color: #ef6530;
-  letter-spacing: 0.5px;
+@media screen and (min-width: 769px) {
+  .PostCard:hover .tag a,
+  .PostCard:hover .tag:not(:last-child):after {
+    color: #ef6530;
+    letter-spacing: 0.5px;
+  }
 }
 </style>
