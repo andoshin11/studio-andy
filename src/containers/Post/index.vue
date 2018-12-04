@@ -93,9 +93,17 @@ export default Vue.extend({
     }
   },
   head() {
+    const post = this.presenter.post
     return {
       title: `${this.presenter.post ? this.presenter.post.props.title : ''} | Studio Andy`,
-      meta: [{ hid: 'description', name: 'description', content: this.presenter.post ? this.presenter.post.props.summary : '' }]
+      meta: [
+        { hid: 'description', name: 'description', content: post ? post.props.summary : '' },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:description', property: 'og:description', content: post ? post.props.summary : '' },
+        { hid: 'og:title', property: 'og:title', content: post ? post.props.title : '' },
+        { hid: 'og:image', property: 'og:image', content: post ? `https:${post.props.headerImage.fields.file.url}` : '' },
+        { hid: 'og:url', property: 'og:url', content: `https://blog.andoshin11.me/posts/${post ? post.props.slug : ''}` }
+      ]
     }
   }
 })
