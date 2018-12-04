@@ -4,14 +4,10 @@ handlers:
   - url: /_nuxt
     static_dir: .nuxt/dist/client
     secure: always
-  - url: /(.*\.(gif|jpg|ico|txt|js|svg))$
+  - url: /(.*\.(gif|png|jpg|ico|txt|js|svg))$
     static_files: src/static/\1
-    upload: src/static/.*\.(gif|jpg|ico|txt|js|svg)$
+    upload: src/static/.*\.(gif|png|jpg|ico|txt|js|svg)$
     secure: always
-    #   - url: /(.*\.(gif|png|jpg|ico|txt|js|svg))$
-    # static_files: src/static/\1
-    # upload: src/static/.*\.(gif|png|jpg|ico|txt|js|svg)$
-    # secure: always
   - url: /.*
     script: auto
     secure: always
