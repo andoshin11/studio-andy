@@ -21,8 +21,23 @@ module.exports = {
   ** Headers of the page
   */
   head: {
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#'
+    },
     title: pkg.name,
-    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: pkg.description }],
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: pkg.description },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:title', property: 'og:title', content: "Shin Ando's Blog | Studio Andy" },
+      { hid: 'og:description', property: 'og:description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." },
+      { hid: 'og:url', property: 'og:url', content: 'https://blog.andoshin11.me' },
+      { hid: 'og:image', property: 'og:image', content: 'https://images.ctfassets.net/2p1otbbee5vt/4o40onnD56oesm84iAGYqk/f6cefe823d21015dbf55dfd71d41f2b5/header.jpg' },
+      { property: 'og:site_name', content: 'Studio Andy' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@andoshin11' }
+    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', size: '57x57', href: '/apple-icon-57x57.png' },
