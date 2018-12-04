@@ -33,22 +33,21 @@ module.exports = {
       { hid: 'og:title', property: 'og:title', content: "Shin Ando's Blog | Studio Andy" },
       { hid: 'og:description', property: 'og:description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." },
       { hid: 'og:url', property: 'og:url', content: 'https://blog.andoshin11.me' },
-      { hid: 'og:image', property: 'og:image', content: 'https://images.ctfassets.net/2p1otbbee5vt/4o40onnD56oesm84iAGYqk/f6cefe823d21015dbf55dfd71d41f2b5/header.jpg' },
+      { hid: 'og:image', property: 'og:image', content: 'https://blog.andoshin11.me/share.jpg' },
       { property: 'og:site_name', content: 'Studio Andy' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@andoshin11' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', size: '57x57', href: '/apple-icon-57x57.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'apple-touch-icon', size: '60x60', href: '/apple-icon-60x60.png' },
-      { rel: 'apple-touch-icon', size: '72x72', href: '/apple-icon-72x72.png' },
       { rel: 'apple-touch-icon', size: '76x76', href: '/apple-icon-76x76.png' },
-      { rel: 'apple-touch-icon', size: '114x114', href: '/apple-icon-114x114.png' },
       { rel: 'apple-touch-icon', size: '120x120', href: '/apple-icon-120x120.png' },
-      { rel: 'apple-touch-icon', size: '144x144', href: '/apple-icon-144x144.png' },
       { rel: 'apple-touch-icon', size: '152x152', href: '/apple-icon-152x152.png' },
       { rel: 'apple-touch-icon', size: '180x180', href: '/apple-icon-180x180.png' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#da532c' },
       {
         re: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Merriweather'
@@ -92,27 +91,49 @@ module.exports = {
     importScripts: ['main-sw.js']
   },
 
+  icon: false,
+
   manifest: {
     short_name: 'Studio Andy',
     name: 'Studio Andy',
     icons: [
       {
-        src: 'launcher-icon-1x.png',
-        type: 'image/png',
-        sizes: '48x48'
+        src: 'icon-72x72.png',
+        sizes: '72x72',
+        type: 'image/png'
       },
       {
-        src: 'launcher-icon-2x.png',
-        type: 'image/png',
-        sizes: '96x96'
+        src: 'icon-96x96.png',
+        sizes: '96x96',
+        type: 'image/png'
       },
       {
-        src: 'launcher-icon-4x.png',
-        type: 'image/png',
-        sizes: '192x192'
+        src: 'icon-128x128.png',
+        sizes: '128x128',
+        type: 'image/png'
       },
       {
-        src: 'launcher-icon-512x512.png',
+        src: 'icon-144x144.png',
+        sizes: '144x144',
+        type: 'image/png'
+      },
+      {
+        src: 'icon-152x152.png',
+        sizes: '152x152',
+        type: 'image/png'
+      },
+      {
+        src: 'icon-192x192.png',
+        sizes: '192x192',
+        type: 'image/png'
+      },
+      {
+        src: 'icon-384x384.png',
+        sizes: '384x384',
+        type: 'image/png'
+      },
+      {
+        src: 'icon-512x512.png',
         sizes: '512x512',
         type: 'image/png'
       }
