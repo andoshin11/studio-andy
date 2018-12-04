@@ -139,7 +139,7 @@ module.exports = {
       }
     ],
     background_color: '#ef6530',
-    start_url: '/?launcher=true',
+    start_url: '/',
     display: 'minimal-ui'
   },
 

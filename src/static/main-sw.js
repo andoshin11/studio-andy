@@ -1,4 +1,19 @@
 workbox.routing.registerRoute(
+  new RegExp('^https://blog.andoshin11.me/$'),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'page-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
+      })
+    ]
+  })
+)
+
+workbox.routing.registerRoute(
   new RegExp('^https://cdn.contentful.com/spaces/2p1otbbee5vt/environments/master/'),
   workbox.strategies.staleWhileRevalidate({
     cacheName: 'entry-cache',
