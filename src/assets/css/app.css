@@ -32,6 +32,13 @@ a {
   transition: 0.2s;
 }
 
+@media screen and (max-width: 768px) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: 0s;
+  }
+}
+
 .page-enter,
 .page-leave-to {
   opacity: 0;
