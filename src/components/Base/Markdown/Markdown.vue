@@ -27,8 +27,15 @@ export default Vue.extend({
     }
   },
   mounted() {
+    // Highlight Code
     const targetList = document.querySelectorAll('code')
     Array.from(targetList).forEach(target => Prism.highlightElement(target))
+
+    // Embedded Contents
+    const embedTargetList = document.querySelectorAll('.embedly-card')
+    Array.from(embedTargetList).forEach(target => {
+      embedly('card', target)
+    })
   }
 })
 </script>
