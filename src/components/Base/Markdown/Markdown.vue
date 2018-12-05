@@ -150,7 +150,7 @@ export default Vue.extend({
 
 .Markdown li {
   padding-left: 24px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 2;
 }
 
@@ -236,8 +236,9 @@ export default Vue.extend({
   color: #98c379;
 }
 
+.Markdown .token.string,
 .Markdown .token.attr-name {
-  color: #98c379;
+  color: #92d761;
 }
 
 .Markdown .token.boolean {
@@ -248,7 +249,8 @@ export default Vue.extend({
   color: #66b9f4;
 }
 
-.Markdown .token.selector {
+.Markdown .token.selector,
+.Markdown .token.number {
   color: #e4c625;
 }
 
@@ -266,10 +268,11 @@ export default Vue.extend({
 }
 
 .Markdown .token.function {
-  color: #dd4a68;
+  color: #e2810e;
 }
 
-.Markdown .token.tag {
-  color: #dd4a68;
+.Markdown .token.tag,
+.Markdown .token.constant {
+  color: #de254b;
 }
 </style>
