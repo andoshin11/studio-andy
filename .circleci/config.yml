@@ -1,13 +1,10 @@
 version: 2
 
-defaults: &defaults
-  docker:
-    - image: andoshin11/gcloud-sdk-node:10.13.0
-  working_directory: /repo
-
 jobs:
   test:
-    <<: *defaults
+    docker:
+      - image: node:10.13.0
+    working_directory: /repo
     steps:
       - checkout
       - restore_cache:
@@ -35,7 +32,9 @@ jobs:
             - ./src/static/sw.js
 
   deploy:
-    <<: *defaults
+    docker:
+      - image: google/cloud-sdk:alpine
+    working_directory: /repo
     steps:
       - checkout
       - attach_workspace:
