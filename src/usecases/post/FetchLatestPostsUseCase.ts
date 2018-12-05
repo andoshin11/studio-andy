@@ -21,6 +21,10 @@ export default class FetchLatestPostsUseCase implements BaseUseCase {
 
   async execute() {
     try {
+      // Check if the post already exists
+      const data = this.postRepository.getLatestPosts()
+      if (data.length > 1) return
+
       const posts = await this.contentfulGateway.getPosts()
       this.postRepository.saveLatestPosts(posts)
     } catch (error) {
