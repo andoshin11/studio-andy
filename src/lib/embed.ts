@@ -57,7 +57,7 @@ export default class Embed {
       return params.join('&')
     }
 
-    const requestUrl = 'http://api-cdn.embed.ly/1/card-details?' + createParams(options)
+    const requestUrl = 'https://api-cdn.embed.ly/1/card-details?' + createParams(options)
     return await fetch(requestUrl).then(res => res.json())
   }
 }
