@@ -27,16 +27,6 @@ export default Vue.extend({
   components: {
     PostContainer
   },
-  head() {
-    return {
-      script: [
-        {
-          src: '//cdn.embedly.com/widgets/platform.js',
-          async: true
-        }
-      ]
-    }
-  },
   async fetch({ params, store, $sentry, error }) {
     try {
       const usecase = new FetchPostUseCase({
