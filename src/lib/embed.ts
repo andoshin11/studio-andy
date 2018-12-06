@@ -17,7 +17,13 @@ interface EmbededContent {
   }[]
   keywords: string[]
   language: string
-  media: any
+  media: {
+    duration: number
+    height: number
+    width: number
+    type?: 'video'
+    html: string
+  }
   original_url: string
   provider_display: string
   provider_name: string
