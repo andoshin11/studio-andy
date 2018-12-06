@@ -8,6 +8,7 @@
 import Vue from 'vue'
 import marked from 'marked'
 import Prism from 'prismjs'
+import Embed from '@/lib/embed'
 
 interface IData {}
 
@@ -26,16 +27,61 @@ export default Vue.extend({
       return marked(this.text)
     }
   },
-  mounted() {
+  async mounted() {
     // Highlight Code
     const targetList = document.querySelectorAll('code')
     Array.from(targetList).forEach(target => Prism.highlightElement(target))
 
-    // Embedded Contents
-    const embedTargetList = document.querySelectorAll('.embedly-card')
-    Array.from(embedTargetList).forEach(target => {
-      embedly('card', target)
-    })
+    await this.transformEmbedded()
+  },
+  methods: {
+    async getApiKey(): Promise<string> {
+      const source = await fetch('//cdn.embedly.com/widgets/platform.js', {}).then(res => res.text())
+      const key = source.match(/\.EMB_API_KEY="([^"]*)"/)
+      if (!key) throw new Error('Embedly key not found.')
+
+      return key[1]
+    },
+    async transformEmbedded() {
+      const apiKey = await this.getApiKey()
+      const targetList = Array.from(document.querySelectorAll('.embedly-card')).filter(el => el.hasAttribute('href'))
+      const urls = targetList.map(el => el.getAttribute('href') as string)
+
+      const contents = await new Embed(apiKey).getContents(urls)
+
+      targetList.forEach(el => {
+        const content = contents.find(c => c.original_url === el.getAttribute('href'))
+        if (!content) return
+        el.setAttribute('target', '_blank')
+        const isWide = content.images[0].width > content.images[0].height
+        el.innerHTML = `
+          <div class="card">
+            <div class="card__header">
+              <img src="${content.favicon_url}" class="card__favicon">
+              <a class="card__provider" target="_blank" href="${content.provider_url}">${content.provider_name}</a>
+            </div>
+            ${
+              content.media.type === 'video'
+                ? `
+                <div class="card__body">
+                  ${content.media.html}
+                </div>
+              `
+                : `
+                <div class="card__body ${isWide ? 'is-wide' : null}">
+                  <img class="card__thumbnail" src="https://i-cdn.embed.ly/1/display/resize?key=${apiKey}&url=${encodeURI(content.images[0].url)}&width=${isWide ? content.images[0].width : 180}">
+                  <div class="card__content">
+                    <div class="card__title">${content.title}</div>
+                    <div class="card__description">${content.description}</div>
+                    <a class="card__nav" target="_blank" href="${content.provider_url}">${content.provider_display}でこれを読む ></a>
+                  </div>
+                </div>
+              `
+            }
+          </div>
+        `
+      })
+    }
   }
 })
 </script>
@@ -44,6 +90,109 @@ export default Vue.extend({
 .Markdown {
   position: relative;
   width: 100%;
+}
+
+/* Card Styles */
+.Markdown .embedly-card {
+  text-decoration: none;
+}
+
+.Markdown .card {
+  box-sizing: border-box;
+  padding: 16px;
+  overflow: hidden;
+  color: #222;
+  border-radius: 8px;
+  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
+  transition: 0.3s ease-out;
+}
+
+.Markdown .card:hover {
+  box-shadow: 0 28.3px 88.94px rgba(67, 54, 102, 0.2);
+}
+
+.Markdown .card__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.Markdown .card__favicon {
+  width: 16px;
+  height: 16px;
+  margin: 0 4px 0 0;
+}
+
+.Markdown .card__provider {
+  color: #222;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.Markdown .card__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 16px;
+}
+
+.Markdown .card__body.is-wide {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .Markdown .card__body {
+    flex-direction: column;
+    margin-bottom: 16px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Markdown .card__body iframe {
+    width: auto;
+    height: auto;
+  }
+}
+
+.Markdown .card__thumbnail {
+  display: block;
+  width: 180px;
+  margin: 0 24px 0 0;
+  box-shadow: none;
+}
+
+.Markdown .card__body.is-wide .card__thumbnail {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .Markdown .card__thumbnail {
+    margin-bottom: 16px;
+  }
+}
+
+.Markdown .card__title {
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.Markdown .card__description {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.Markdown .card__nav {
+  font-size: 12px;
+  line-height: 20px;
+  text-decoration: none;
 }
 
 /* Element Styles */
@@ -129,19 +278,6 @@ export default Vue.extend({
   height: 4px;
   border-bottom: solid 2px #ef6530;
   content: '';
-}
-
-.Markdown div.embedly-card {
-  box-sizing: border-box;
-  padding: 8px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
-  transition: 0.3s ease-out;
-}
-
-.Markdown div.embedly-card:hover {
-  box-shadow: 0 28.3px 88.94px rgba(67, 54, 102, 0.2);
 }
 
 .Markdown ul {
