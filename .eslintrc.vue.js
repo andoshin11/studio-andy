@@ -8,7 +8,8 @@ const overrideConfig = {
     parser: 'typescript-eslint-parser'
   },
   rules: {
-    ...baseConfig.rules
+    ...baseConfig.rules,
+    indent: 0
   }
 }
 

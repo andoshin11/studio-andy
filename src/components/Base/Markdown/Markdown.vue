@@ -63,20 +63,20 @@ export default Vue.extend({
             ${
               content.media.type === 'video'
                 ? `
-            <div class="card__body">
-              ${content.media.html}
-            </div>
-            `
+                <div class="card__body">
+                  ${content.media.html}
+                </div>
+              `
                 : `
-            <div class="card__body ${isWide ? 'is-wide' : null}">
-              <img class="card__thumbnail" src="https://i-cdn.embed.ly/1/display/resize?key=${apiKey}&url=${encodeURI(content.images[0].url)}&width=${isWide ? content.images[0].width : 180}">
-              <div class="card__content">
-                <div class="card__title">${content.title}</div>
-                <div class="card__description">${content.description}</div>
-                <a class="card__nav" target="_blank" href="${content.provider_url}">${content.provider_display}でこれを読む ></a>
-              </div>
-            </div>
-            `
+                <div class="card__body ${isWide ? 'is-wide' : null}">
+                  <img class="card__thumbnail" src="https://i-cdn.embed.ly/1/display/resize?key=${apiKey}&url=${encodeURI(content.images[0].url)}&width=${isWide ? content.images[0].width : 180}">
+                  <div class="card__content">
+                    <div class="card__title">${content.title}</div>
+                    <div class="card__description">${content.description}</div>
+                    <a class="card__nav" target="_blank" href="${content.provider_url}">${content.provider_display}でこれを読む ></a>
+                  </div>
+                </div>
+              `
             }
           </div>
         `
