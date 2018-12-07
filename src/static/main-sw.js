@@ -29,7 +29,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  new RegExp('^https://blog.andoshin11.me/(svg/.*.svg|.*.ico)'),
+  new RegExp('^https://blog.andoshin11.me/(svg/.*.svg|.*.ico|.*.png)'),
   workbox.strategies.cacheFirst({
     cacheName: 'site-parts-cache',
     plugins: [
@@ -44,7 +44,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  new RegExp('^https://images.ctfassets.net/2p1otbbee5vt/.*.(png|jpg|webp)$'),
+  new RegExp('^https://images.ctfassets.net/2p1otbbee5vt/.*.(png|jpg|webp|gif)$'),
   workbox.strategies.cacheFirst({
     cacheName: 'image-cache',
     plugins: [
@@ -74,6 +74,21 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
+  new RegExp('^https://i-cdn.embed.ly/'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'embedly-asset-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
+      })
+    ]
+  })
+)
+
+workbox.routing.registerRoute(
   new RegExp('^https://api-cdn.embed.ly/'),
   workbox.strategies.staleWhileRevalidate({
     cacheName: 'embedly-api-cache',
@@ -89,7 +104,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  new RegExp('^http://cdn.embedly.com/'),
+  new RegExp('^https://cdn.embedly.com/widgets/platform.js'),
   workbox.strategies.staleWhileRevalidate({
     cacheName: 'embedly-cache',
     plugins: [
@@ -105,7 +120,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   new RegExp('^http://i-cdn.embed.ly/'),
-  workbox.strategies.staleWhileRevalidate({
+  workbox.strategies.cacheFirst({
     cacheName: 'embedly-img-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
@@ -137,6 +152,21 @@ workbox.routing.registerRoute(
   new RegExp('^https://fonts.googleapis.com/'),
   workbox.strategies.cacheFirst({
     cacheName: 'google-fonts-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 30 // for 1 month
+      })
+    ]
+  })
+)
+
+workbox.routing.registerRoute(
+  new RegExp('^https://www.youtube.com/'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'youtube-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
         statuses: [0, 200]
