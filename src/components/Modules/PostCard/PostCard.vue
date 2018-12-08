@@ -15,7 +15,7 @@
       </picture>
     </div>
     <div class="body">
-      <div class="date">{{ publishedAt }}</div>
+      <span class="date">{{ publishedAt }}</span>
       <div class="title">{{ post.props.title }}</div>
       <ul class="tagList">
         <li 
@@ -76,8 +76,6 @@ export default Vue.extend({
 
 <style scoped>
 .PostCard {
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   color: #222;
   border-radius: 16px;
@@ -110,9 +108,8 @@ export default Vue.extend({
 }
 
 .body {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
   padding: 20px 25px;
   background-color: #fefefe;
 }
@@ -122,6 +119,12 @@ export default Vue.extend({
     padding: 16px;
   }
 }
+
+/* .body::before {
+  content: '';
+  display: block;
+  padding-top: 33%;
+} */
 
 .img {
   position: absolute;
@@ -139,6 +142,10 @@ export default Vue.extend({
 }
 
 .date {
+  /* position: absolute;
+  top: 20px;
+  left: 25px; */
+  display: inline-block;
   margin-bottom: 8px;
   font-size: 12px;
   font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
@@ -153,6 +160,7 @@ export default Vue.extend({
 }
 
 .title {
+  width: 100%;
   min-height: 72px;
   margin-bottom: 8px;
   font-weight: bold;
@@ -181,7 +189,7 @@ export default Vue.extend({
 }
 
 .tag {
-  display: inline;
+  display: inline-block;
   font-size: 14px;
   cursor: pointer;
 }

@@ -1,10 +1,17 @@
 <template>
   <div class="HeaderImg">
-    <template v-if="headerImg">
-      <img 
-        :src="headerImg.fields.file.url" 
-        :alt="headerImg.fields.title" 
-        class="img">
+    <template v-if="post">
+      <picture>
+        <source 
+          :srcset="post.props.headerImageLight.fields.file.url" 
+          class="img" 
+          type="image/webp">
+        <img
+          :src="post.props.headerImage.fields.file.url"
+          :alt="post.props.headerImage.fields.file.title"
+          class="img"
+        >
+      </picture>
     </template>
     <div 
       v-else 
@@ -18,6 +25,7 @@
 import Vue from 'vue'
 import { Asset } from 'contentful'
 import Empty from '@/components/Base/Empty'
+import PostEntity from '@/entities/Post'
 
 interface IData {}
 
@@ -26,8 +34,8 @@ export default Vue.extend({
     Empty
   },
   props: {
-    headerImg: {
-      type: Object as () => Asset,
+    post: {
+      type: Object as () => PostEntity,
       default: null
     }
   },

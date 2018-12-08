@@ -53,7 +53,8 @@ export default Vue.extend({
         const content = contents.find(c => c.original_url === el.getAttribute('href'))
         if (!content) return
         el.setAttribute('target', '_blank')
-        const isWide = content.images[0].width > content.images[0].height
+        const defaultImage = content.images[0] || {}
+        const isWide = defaultImage && defaultImage.width > defaultImage.height
         el.innerHTML = `
           <div class="card">
             <div class="card__header">
@@ -69,7 +70,7 @@ export default Vue.extend({
               `
                 : `
                 <div class="card__body ${isWide ? 'is-wide' : null}">
-                  <img class="card__thumbnail" src="https://i-cdn.embed.ly/1/display/resize?key=${apiKey}&url=${encodeURI(content.images[0].url)}&width=${isWide ? content.images[0].width : 180}">
+                  <img class="card__thumbnail" src="https://i-cdn.embed.ly/1/display/resize?key=${apiKey}&url=${encodeURI(defaultImage.url)}&width=${isWide ? defaultImage.width : 180}">
                   <div class="card__content">
                     <div class="card__title">${content.title}</div>
                     <div class="card__description">${content.description}</div>

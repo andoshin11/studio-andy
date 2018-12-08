@@ -6,7 +6,7 @@
     >未公開の記事をPreview機能で閲覧中です。この記事はURLを知っているユーザーにしか表示されません。</div>
     <div class="inner">
       <div class="header">
-        <HeaderImg :header-img="presenter.post ? presenter.post.props.headerImage : null"/>
+        <HeaderImg :post="presenter.post"/>
         <PostDate :text="presenter.post ? presenter.post.props.publishedAt : ''"/>
         <PostTitle :title="presenter.post ? presenter.post.props.title : ''"/>
         <TagList :list="presenter.post ? presenter.post.props.tags : []"/>
