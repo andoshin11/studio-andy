@@ -204,6 +204,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 100px;
 }
 
 .socialLinks {
