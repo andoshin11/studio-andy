@@ -204,6 +204,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 100px;
 }
 
 .socialLinks {
@@ -233,9 +234,8 @@ export default Vue.extend({
   height: 40px;
   margin-bottom: 15px;
   background: transparent;
-  border: none;
+  border: solid 1px #ddd;
   border-radius: 50%;
-  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
   cursor: pointer;
   transition: 0.3s ease-out;
   -webkit-appearance: none;
@@ -255,8 +255,7 @@ export default Vue.extend({
 
 .socialButton:hover,
 .socialButton:focus {
-  background: #ef6530;
-  fill: #fff;
+  box-shadow: 0 8.09px 24.26px rgba(67, 54, 102, 0.08);
 }
 
 .content {
