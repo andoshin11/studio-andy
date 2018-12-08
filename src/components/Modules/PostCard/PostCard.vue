@@ -19,10 +19,12 @@
       <div class="title">{{ post.props.title }}</div>
       <ul class="tagList">
         <li 
-          v-for="tag in post.props.tags" 
-          :key="tag" 
+          v-for="(tag, i) in post.props.tags" 
+          :key="i" 
           class="tag">
-          <nuxt-link :to="tagPath(tag)">{{ tag }}</nuxt-link>
+          <nuxt-link 
+            :to="tagPath(tag)" 
+            tag="button">{{ tag }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -111,6 +113,7 @@ export default Vue.extend({
   box-sizing: border-box;
   width: 100%;
   padding: 20px 25px;
+  text-align: left;
   background-color: #fefefe;
 }
 
@@ -119,12 +122,6 @@ export default Vue.extend({
     padding: 16px;
   }
 }
-
-/* .body::before {
-  content: '';
-  display: block;
-  padding-top: 33%;
-} */
 
 .img {
   position: absolute;
@@ -142,14 +139,10 @@ export default Vue.extend({
 }
 
 .date {
-  /* position: absolute;
-  top: 20px;
-  left: 25px; */
   display: inline-block;
   margin-bottom: 8px;
   font-size: 12px;
   font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
-  text-align: left;
   transition: 0.4s ease-out;
 }
 
@@ -167,7 +160,6 @@ export default Vue.extend({
   font-size: 24px;
   font-family: Hiragino Kaku Gothic Pro, 'M PLUS 1p', sans-serif, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   letter-spacing: 0.5px;
-  text-align: left;
   transition: 0.4s ease-out;
 }
 
@@ -178,6 +170,7 @@ export default Vue.extend({
 }
 
 .tagList {
+  width: 100%;
   margin-bottom: 16px;
   text-align: left;
 }
@@ -189,37 +182,34 @@ export default Vue.extend({
 }
 
 .tag {
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 768px) {
-  .tag {
-    font-size: 14px;
-  }
+  display: inline;
 }
 
 .tag:not(:last-child):after {
   content: '/';
-  margin: 0 8px;
+  margin: 0 4px;
   transition: 0.3s ease-out;
 }
 
-.tag a {
-  color: #222;
+.tag button {
+  display: inline-block;
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: 0.4s ease-out;
+  -webkit-appearance: none;
 }
 
-.tag:hover a,
-.tag:focus a {
+.tag:hover button,
+.tag:focus button {
+  color: #ef6530;
   text-decoration: underline;
 }
 
-@media screen and (min-width: 769px) {
-  .PostCard:hover .tag a,
-  .PostCard:hover .tag:not(:last-child):after {
-    color: #ef6530;
+@media screen and (max-width: 768px) {
+  .tag:hover button,
+  .tag:focus button {
     letter-spacing: 0.5px;
   }
 }
