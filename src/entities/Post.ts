@@ -11,17 +11,28 @@ export interface IPostProps {
   title: string
   tags: string[]
   isPublished: boolean
+  relatedPosts: string[]
 }
 
 export default class PostEntity {
   private _props: IPostProps
 
   constructor(props: IPostProps) {
-    this._props = props
+    this._props = {
+      relatedPosts: [],
+      ...props
+    }
   }
 
   get props(): IPostProps {
     return this._props
+  }
+
+  updateRelatedPosts(relatedPosts: string[]) {
+    this._props = {
+      ...this._props,
+      relatedPosts
+    }
   }
 }
 
@@ -66,7 +77,8 @@ export const PostFactory = (): PostEntity => {
     title: 'VueFes 2018にスタッフとして参加してきました。',
     headerImage: AssetFactory(),
     headerImageLight: AssetFactory(),
-    isPublished: true
+    isPublished: true,
+    relatedPosts: []
   }
 
   return new PostEntity(dummyProps)

@@ -54,7 +54,7 @@ declare module 'vue/types/options' {
     watchQuery?: string[]
     layout?: string | ((context: ApplicationContext) => string)
     fetch?: (context: ApplicationContext) => Promise<void>
-    asyncData?: (context: ApplicationContext) => Promise<void>
+    asyncData?: (context: ApplicationContext) => Promise<any>
     transition?: string | Transition | ((from: any, to: any) => string)
     scrollToTop?: boolean
     validate?: (context: ApplicationContext) => boolean

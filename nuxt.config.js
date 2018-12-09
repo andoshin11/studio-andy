@@ -72,7 +72,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }],
 
   /*
   ** Nuxt.js modules
