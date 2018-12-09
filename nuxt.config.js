@@ -235,7 +235,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, { isDev }) {
+    extend(config, { isDev, isClient }) {
       configFile(config)
 
       if (!isDev) {
