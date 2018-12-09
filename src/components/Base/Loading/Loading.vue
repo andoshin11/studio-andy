@@ -51,7 +51,7 @@ export default Vue.extend({
   animation-delay: 1s;
 }
 .Loading.light .Loading__Dot {
-  background-color: #ddd;
+  background-color: #aaa;
 }
 .Loading.dark .Loading__Dot {
   background-color: #fff;
