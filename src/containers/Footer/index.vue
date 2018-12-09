@@ -33,7 +33,7 @@
     </div>
     <div 
       class="copyright" 
-      @click="test">Copyright © 2018 Shin Ando</div>
+      @click="test2">Copyright © 2018 Shin Ando</div>
   </div>
 </template>
 
@@ -52,8 +52,8 @@ import Vue from 'vue'
 
 export default Vue.extend({
   methods: {
-    test() {
-      throw new Error('This is a expected error. Shin is still testing')
+    test2() {
+      throw new Error('This is an expected error. Shin is still testing some feature.lol')
     }
   }
 })
