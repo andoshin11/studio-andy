@@ -1,12 +1,12 @@
 <template>
   <section class="container">
-    <HomeContainer/>
+    <TagsContainer/>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HomeContainer from '@/containers/Home/index.vue'
+import TagsContainer from '@/containers/Tags/index.vue'
 
 // Use Case
 import FetchPostsByTagUseCase from '@/usecases/post/FetchPostsByTagUseCase'
@@ -22,7 +22,7 @@ import LogService from '@/services/LogService'
 
 export default Vue.extend({
   components: {
-    HomeContainer
+    TagsContainer
   },
   async fetch({ params, store, $sentry }) {
     const usecase = new FetchPostsByTagUseCase({
@@ -34,7 +34,6 @@ export default Vue.extend({
   }
 })
 </script>
-
 
 <style scoped>
 .container {
