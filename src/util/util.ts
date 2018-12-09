@@ -20,3 +20,7 @@ export const prerender = (href: string): void => {
 export const unique = <T>(data: T[]): T[] => {
   return data.filter((item, index, _data) => _data.indexOf(item) === index)
 }
+
+export const filterOutNull = <T>(array: (T | null)[]): T[] => {
+  return array.filter((item): item is T => item !== null)
+}

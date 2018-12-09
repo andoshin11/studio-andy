@@ -18,7 +18,10 @@ export default class PostEntity {
   private _props: IPostProps
 
   constructor(props: IPostProps) {
-    this._props = props
+    this._props = {
+      relatedPosts: [],
+      ...props
+    }
   }
 
   get props(): IPostProps {

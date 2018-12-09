@@ -1,15 +1,17 @@
 <template>
   <section class="container">
-    <PostContainer/>
+    <PostContainer @fetchRelatedPosts="fetchRelatedPosts"/>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import PostContainer from '@/containers/Post/index.vue'
+import PostEntity from '@/entities/Post'
 
 // Use Case
 import FetchPostUseCase from '@/usecases/post/FetchPostUseCase'
+import FetchRelatedPostsUseCase from '@/usecases/post/FetchRelatedPostsUseCase'
 
 // Repositories
 import PostRepository from '@/repositories/PostRepository'
@@ -26,6 +28,24 @@ import { NotFoundError, ErrorType } from '@/common/errors'
 export default Vue.extend({
   components: {
     PostContainer
+  },
+  methods: {
+    async fetchRelatedPosts(post: PostEntity) {
+      const usecase = new FetchRelatedPostsUseCase({
+        logService: new LogService({
+          logger: (this as any).logger //FIXME
+        }),
+        postRepository: new PostRepository(this.$store),
+        contentfulGateway: new ContentfulGateway()
+      })
+
+      await usecase.execute(post)
+    }
+  },
+  async asyncData({ $sentry }) {
+    return {
+      logger: $sentry
+    }
   },
   async fetch({ params, store, $sentry, error }) {
     try {
