@@ -250,6 +250,7 @@ module.exports = {
             // Sentry options are required
             include: ['.nuxt/dist/client'],
             ignore: ['node_modules', '.nuxt/dist/client/img', '.nuxt/dist/client/icons'],
+            configFile: '.sentryclirc',
             config: {
               environment: process.env.ENVIRONMENT || 'development'
             }
