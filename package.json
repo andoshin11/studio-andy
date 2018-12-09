@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/server/index.js --watch server",
-    "build": "nuxt build",
+    "build": "cross-env NODE_ENV=production nuxt build",
     "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=8080 node src/server/index.js",
     "generate": "nuxt generate",
     "deploy": "yarn build && gcloud app deploy",
@@ -59,6 +59,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sentry": "^2.0.0",
     "@nuxtjs/sitemap": "^0.1.1",
+    "@sentry/webpack-plugin": "^1.6.2",
     "contentful": "^7.0.5",
     "cross-env": "^5.2.0",
     "dayjs": "^1.7.7",
