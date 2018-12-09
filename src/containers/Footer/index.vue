@@ -31,7 +31,9 @@
         </svg>
       </a>
     </div>
-    <div class="copyright">Copyright © 2018 Shin Ando</div>
+    <div 
+      class="copyright" 
+      @click="test2">Copyright © 2018 Shin Ando</div>
   </div>
 </template>
 
@@ -48,11 +50,11 @@ import Vue from 'vue'
 
 // components
 
-interface IData {}
-
 export default Vue.extend({
-  data(): IData {
-    return {}
+  methods: {
+    test2() {
+      throw new Error('This is an expected error. Shin is still testing some feature.lol')
+    }
   }
 })
 </script>

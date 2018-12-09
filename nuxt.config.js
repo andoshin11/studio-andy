@@ -235,8 +235,29 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config) {
+    extend(config, { isDev, isClient }) {
       configFile(config)
+
+      if (!isDev) {
+        if (isClient) {
+          config.devtool = '#source-map'
+        }
+
+        const SentryPlugin = require('@sentry/webpack-plugin')
+
+        config.plugins.push(
+          new SentryPlugin({
+            // Sentry options are required
+            include: ['.nuxt/dist/client'],
+            ignore: ['node_modules', '.nuxt/dist/client/img', '.nuxt/dist/client/icons'],
+            configFile: '.sentryclirc',
+            config: {
+              environment: process.env.ENVIRONMENT || 'development'
+            }
+          })
+        )
+      }
+
       return
     }
   }
