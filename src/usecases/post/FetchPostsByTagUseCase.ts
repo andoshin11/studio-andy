@@ -21,8 +21,14 @@ export default class FetchPostsByTagUseCase implements BaseUseCase {
 
   async execute(tag: string) {
     try {
-      const posts = await this.contentfulGateway.getPostsByTag(tag)
-      this.postRepository.saveLatestPosts(posts)
+      // Check if the result already exists
+      const cache = this.postRepository.getCurrentTag()
+
+      if (tag !== cache) {
+        this.postRepository.saveCurrentTag(tag)
+        const results = await this.contentfulGateway.getPostsByTag(tag)
+        this.postRepository.saveTagResult(results)
+      }
     } catch (error) {
       await this.logService.handle({ type: LogType.Error, error })
       throw new Error(error)
