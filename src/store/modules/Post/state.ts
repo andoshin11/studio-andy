@@ -6,7 +6,9 @@ export interface IPostState {
   }
   latestPosts: string[]
   searchResult: string[]
+  tagResult: string[]
   searchQuery: string | null
+  currentTag: string | null
   currentPost: string | null
 }
 
@@ -14,6 +16,8 @@ export const initialState = (): IPostState => ({
   byIds: {},
   latestPosts: [],
   searchResult: [],
+  tagResult: [],
   searchQuery: null,
+  currentTag: null,
   currentPost: null
 })

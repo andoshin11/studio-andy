@@ -1,6 +1,6 @@
 import { Store } from 'vuex'
 import { RootState } from '@/store'
-import { StoreLatestPosts, StorePosts, StoreCurrentPost, StoreSearchResults, StoreSearchQuery } from '@/store/modules/Post/types'
+import { StoreLatestPosts, StorePosts, StoreCurrentPost, StoreSearchResults, StoreSearchQuery, StoreTagResult, StoreCurrentTag } from '@/store/modules/Post/types'
 import PostEntity, { IPostProps } from '@/entities/Post'
 
 export default class PostRepository {
@@ -28,8 +28,23 @@ export default class PostRepository {
     this._store.commit(new StoreSearchResults(slugs))
   }
 
+  saveTagResult(posts: IPostProps[]) {
+    const slugs = posts.map(post => post.slug)
+
+    this.savePosts(posts)
+    this._store.commit(new StoreTagResult(slugs))
+  }
+
   saveSearchQuery(query: string) {
     this._store.commit(new StoreSearchQuery(query))
+  }
+
+  saveCurrentTag(tag: string) {
+    this._store.commit(new StoreCurrentTag(tag))
+  }
+
+  getCurrentTag(): string | null {
+    return this._store.state.post.currentTag
   }
 
   saveCurrentPost(post: IPostProps) {
@@ -47,6 +62,13 @@ export default class PostRepository {
 
   getSearchResults(): PostEntity[] {
     const slugs = this._store.state.post.searchResult
+    const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
+    const posts = propsList.map(props => new PostEntity(props))
+    return posts
+  }
+
+  getTagResult(): PostEntity[] {
+    const slugs = this._store.state.post.tagResult
     const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
     const posts = propsList.map(props => new PostEntity(props))
     return posts
