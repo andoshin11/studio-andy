@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import TagsContainer from '@/containers/Tags/index.vue'
+const TagsContainer = () => import('@/containers/Tags/index.vue')
 
 // Use Case
 import FetchPostsByTagUseCase from '@/usecases/post/FetchPostsByTagUseCase'

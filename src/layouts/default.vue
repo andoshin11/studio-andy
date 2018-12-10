@@ -23,8 +23,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import HeaderContainer from '@/containers/Header/index.vue'
-import FooterContainer from '@/containers/Footer/index.vue'
+const HeaderContainer = () => import('@/containers/Header/index.vue')
+const FooterContainer = () => import('@/containers/Footer/index.vue')
 import { scrollWithDuration } from '@/lib/scroller'
 
 export default Vue.extend({

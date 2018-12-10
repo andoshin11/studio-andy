@@ -1,5 +1,7 @@
 <template>
-  <div class="Date">
+  <div 
+    class="Date" 
+    @click="test3">
     <div 
       v-if="text.length < 1 " 
       class="empty">
@@ -30,6 +32,11 @@ export default Vue.extend({
         return dayjs(this.text).format('MMM D, YYYY')
       }
       return ''
+    }
+  },
+  methods: {
+    test3() {
+      throw new Error('This is an expected error. Shin is still testing some feature.')
     }
   }
 })
