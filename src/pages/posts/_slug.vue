@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostContainer from '@/containers/Post/index.vue'
+const PostContainer = () => import('@/containers/Post/index.vue')
 import PostEntity from '@/entities/Post'
 
 // Use Case

@@ -18,7 +18,7 @@ import FetchLatestPostsUseCase from '@/usecases/post/FetchLatestPostsUseCase'
 import PostRepository from '@/repositories/PostRepository'
 
 // components
-import PostList from '@/components/Modules/PostList'
+const PostList = () => import('@/components/Modules/PostList')
 
 interface IData {
   listType: ListType

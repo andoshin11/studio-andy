@@ -61,12 +61,12 @@ import ErrorService from '@/services/ErrorService'
 // Containers
 
 // omponents
-import PostTitle from '@/components/Base/Post/Title'
-import PostDate from '@/components/Base/Post/Date'
-import TagList from '@/components/Base/Post/TagList'
-import HeaderImg from '@/components/Base/Post/HeaderImg'
-import Markdown from '@/components/Base/Markdown'
-import SocialButtons from '@/components/Modules/SocialButtons'
+const PostTitle = () => import('@/components/Base/Post/Title')
+const PostDate = () => import('@/components/Base/Post/Date')
+const TagList = () => import('@/components/Base/Post/TagList')
+const HeaderImg = () => import('@/components/Base/Post/HeaderImg')
+const Markdown = () => import('@/components/Base/Markdown')
+const SocialButtons = () => import('@/components/Modules/SocialButtons')
 const Loading = () => import('@/components/Base/Loading')
 const PostList = () => import('@/components/Modules/PostList')
 

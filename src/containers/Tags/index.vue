@@ -19,7 +19,7 @@ import Presenter, { IPresenter } from './presenter'
 import PostRepository from '@/repositories/PostRepository'
 
 // components
-import PostList from '@/components/Modules/PostList'
+const PostList = () => import('@/components/Modules/PostList')
 
 interface IData {}
 

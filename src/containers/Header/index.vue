@@ -45,7 +45,7 @@ import Vue from 'vue'
 // Service
 
 // components
-import Icon from '@/components/Base/Icon'
+const Icon = () => import('@/components/Base/Icon')
 
 interface IData {
   query: string
