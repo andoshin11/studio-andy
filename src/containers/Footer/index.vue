@@ -1,10 +1,13 @@
 <template>
   <div class="Footer">
     <div class="socialLinks">
-      <a 
-        class="socialLink" 
-        href="https://twitter.com/" 
-        target="_blank">
+      <a
+        class="socialLink"
+        href="https://twitter.com/"
+        target="_blank"
+        aria-label="Twitter Link"
+        rel="noopener"
+      >
         <svg 
           height="16" 
           width="20" 
@@ -14,10 +17,13 @@
           />
         </svg>
       </a>
-      <a 
-        class="socialLink" 
-        href="https://github.com/andoshin11" 
-        target="_blank">
+      <a
+        class="socialLink"
+        href="https://github.com/andoshin11"
+        target="_blank"
+        aria-label="GitHub Link"
+        rel="noopener"
+      >
         <svg
           aria-hidden="true"
           data-prefix="fab"
@@ -80,7 +86,7 @@ export default Vue.extend({})
 }
 
 .copyright {
-  color: #888;
+  color: #444;
   font-size: 14px;
   text-align: center;
 }

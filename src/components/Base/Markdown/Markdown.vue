@@ -281,6 +281,16 @@ export default Vue.extend({
   content: '';
 }
 
+.Markdown .table-wrapper {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.Markdown thead {
+  color: #fefefe;
+  background: #ef6530;
+}
+
 .Markdown ul {
   list-style: none;
 }
