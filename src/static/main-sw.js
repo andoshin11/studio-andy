@@ -61,7 +61,22 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp('^https://i.gyazo.com/'),
   workbox.strategies.cacheFirst({
-    cacheName: 'gyazo-gif-cache',
+    cacheName: 'gyazo-mobile-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
+      })
+    ]
+  })
+)
+
+workbox.routing.registerRoute(
+  new RegExp('^https://gyazo.com/'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'gyazo-pc-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
         statuses: [0, 200]
