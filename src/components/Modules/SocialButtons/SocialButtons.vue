@@ -91,9 +91,15 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.SocialButtons {
+  width: 0;
+  margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   .SocialButtons {
     display: flex;
+    width: auto;
     margin-bottom: 24px;
     padding-left: 24px;
   }
