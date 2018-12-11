@@ -13,7 +13,7 @@ export interface IPresenter {
 
 export default ({ postRepository }: IPresenterParams): IPresenter => {
   const post = postRepository.getCurrentPost()
-  const relatedPosts = post ? filterOutNull(post.props.relatedPosts.map(slug => postRepository.getPost(slug))) : []
+  const relatedPosts = post ? filterOutNull(post.props.relatedPosts.map(slug => postRepository.getPost(slug))).splice(0, 2) : []
   return {
     post,
     relatedPosts
