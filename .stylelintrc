@@ -4,6 +4,6 @@
     "stylelint-config-rational-order"
   ],
   rules: {
-    "no-duplicate-selectors": true
+    "no-duplicate-selectors": false
   }
 }

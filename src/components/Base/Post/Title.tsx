@@ -4,7 +4,7 @@ import { bp } from '@/util/helpers'
 import Empty from '@/components/Base/Empty'
 
 export default tsx.component({
-  name: 'SampleHeader',
+  name: 'Title',
   props: {
     title: {
       type: String,
@@ -14,7 +14,7 @@ export default tsx.component({
   render() {
     return (
       <h1 class={style.title}>
-        {this.title.length > 1 ? (
+        {this.title.length < 1 ? (
           <div class={style.empty}>
             <Empty />
           </div>
