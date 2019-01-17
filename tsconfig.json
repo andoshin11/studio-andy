@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "target": "es5",
+    "target": "es6",
     "strict": true,
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noImplicitThis": true,
+    "jsx": "preserve",
     "allowJs": true,
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
@@ -14,5 +15,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "test/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "test/**/*.ts"]
 }
