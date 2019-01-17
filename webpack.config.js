@@ -5,6 +5,7 @@ const path = require('path')
  * @param {import('webpack').Configuration} config
  */
 module.exports = config => {
+  // require('fs').writeFileSync('sample.js', JSON.stringify(config))
   config.resolve.extensions.push('.ts', '.js', '.vue', '.tsx', '.css', '.html')
 
   const tsLoader = {
@@ -42,12 +43,6 @@ module.exports = config => {
                 regenerator: true
               }
             ]
-            // [
-            //   "emotion",
-            //   {
-            //     autoLabel: true
-            //   }
-            // ]
           ]
         }
       },
