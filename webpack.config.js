@@ -1,5 +1,9 @@
+// @ts-check
 const path = require('path')
 
+/**
+ * @param {import('webpack').Configuration} config
+ */
 module.exports = config => {
   config.resolve.extensions.push('.ts', '.js', '.vue', '.css', '.html')
 
@@ -24,8 +28,8 @@ module.exports = config => {
   // Add TypeScript loader for vue files
   for (let rule of config.module.rules) {
     if (rule.loader === 'vue-loader') {
-      rule.options.loaders = {
-        ...rule.options.loaders,
+      rule.options['loaders'] = {
+        ...rule.options['loaders'],
         ts: tsLoader
       }
     }

@@ -1,9 +1,12 @@
+// @ts-check
 require('dotenv').config()
-const pkg = require('./package')
 const path = require('path')
 const configFile = require('./webpack.config')
 
-module.exports = {
+/**
+ * @type {import('./src/types/nuxt').NuxtConfig}
+ */
+const nuxtConfig = {
   mode: 'universal',
   srcDir: 'src/',
   modulesDir: path.resolve(__dirname, 'node_modules'),
@@ -24,11 +27,11 @@ module.exports = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    title: pkg.name,
+    title: 'studio-andy',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description },
+      { hid: 'description', name: 'description', content: 'My personal blog' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:title', property: 'og:title', content: "Shin Ando's Blog | Studio Andy" },
       { hid: 'og:description', property: 'og:description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." },
@@ -49,11 +52,11 @@ module.exports = {
       { rel: 'apple-touch-icon', size: '180x180', href: '/apple-icon-180x180.png' },
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#da532c' },
       {
-        re: 'stylesheet',
+        rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Merriweather'
       },
       {
-        re: 'stylesheet',
+        rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=M+PLUS+1p'
       }
     ]
@@ -262,3 +265,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = nuxtConfig
