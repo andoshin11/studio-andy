@@ -7,5 +7,5 @@ export const oneOf = (keys: string[]): PropOptions['validator'] => {
 }
 
 export const bp = {
-  sm: '@media (max-width: 768px)'
+  sm: '@media screen and (max-width: 768px)'
 }
