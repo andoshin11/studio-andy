@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/server/index.js --watch server",
     "build": "cross-env NODE_ENV=production nuxt build",
+    "watch:css": "tcm src -w",
     "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=8080 node src/server/index.js",
     "generate": "nuxt generate",
     "deploy": "yarn build && gcloud app deploy",
@@ -60,6 +61,8 @@
     "@nuxtjs/sentry": "^2.0.0",
     "@nuxtjs/sitemap": "^0.1.1",
     "@sentry/webpack-plugin": "^1.6.2",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "classnames": "^2.2.6",
     "contentful": "^7.0.5",
     "cross-env": "^5.2.0",
     "dayjs": "^1.7.7",
@@ -74,6 +77,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
+    "@types/classnames": "^2.2.7",
     "@types/marked": "^0.4.2",
     "@types/node": "^10.12.3",
     "@types/prismjs": "^1.9.0",
@@ -100,6 +104,7 @@
     "stylelint-config-rational-order": "^0.0.2",
     "stylelint-config-recommended": "^2.1.0",
     "ts-loader": "^5.3.0",
+    "typed-css-modules": "^0.3.7",
     "typescript": "^3.1.6",
     "typescript-eslint-parser": "^21.0.1",
     "vue-tsx-support": "^2.2.2"

@@ -235,6 +235,17 @@ const nuxtConfig = {
   ** Build configuration
   */
   build: {
+    loaders: {
+      vueStyle: {
+        manualInject: true
+      },
+      css: {
+        modules: true,
+        importLoaders: 1,
+        localIdentName: '[local]_[hash:base64:5]'
+      }
+    },
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
