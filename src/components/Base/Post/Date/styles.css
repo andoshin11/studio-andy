@@ -1,0 +1,24 @@
+.Date {
+  width: 90%;
+  margin-bottom: 24px;
+  color: #222;
+  font-size: 18px;
+  font-style: italic;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .Date {
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+.empty {
+  width: 64px;
+  height: 27px;
+}
+@media screen and (max-width: 768px) {
+  .empty {
+    height: 21px;
+  }
+}
