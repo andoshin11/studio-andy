@@ -1,15 +1,15 @@
 <template>
-  <div class="Error">
+  <div :class="$style.Error">
     <template v-if="error.statusCode == 404">
-      <div class="message">お探しのページは存在しません。</div>
+      <div :class="$style.message">お探しのページは存在しません。</div>
     </template>
     <template v-else>
-      <div class="message">エラーが発生しました。</div>
+      <div :class="$style.message">エラーが発生しました。</div>
     </template>
     <nuxt-link 
+      :class="$style.link" 
       exact 
-      to="/" 
-      class="link">トップページへ</nuxt-link>
+      to="/">トップページへ</nuxt-link>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style module>
 .Error {
   display: flex;
   flex-direction: column;
