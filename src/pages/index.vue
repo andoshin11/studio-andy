@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section :class="$style.container">
     <HomeContainer/>
   </section>
 </template>
@@ -42,7 +42,7 @@ export default Vue.extend({
 </script>
 
 
-<style scoped>
+<style module>
 .container {
   display: flex;
   justify-content: center;

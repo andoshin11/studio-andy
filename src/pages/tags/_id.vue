@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section :class="$style.container">
     <TagsContainer/>
   </section>
 </template>
@@ -35,7 +35,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style module>
 .container {
   width: 1180px;
   margin: 0 auto;

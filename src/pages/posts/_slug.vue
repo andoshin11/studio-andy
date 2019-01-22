@@ -1,12 +1,12 @@
 <template>
-  <section class="container">
+  <section :class="$style.container">
     <PostContainer @fetchRelatedPosts="fetchRelatedPosts"/>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-const PostContainer = () => import('@/containers/Post/index.vue')
+const PostContainer = () => import('@/containers/Post')
 import PostEntity from '@/entities/Post'
 
 // Use Case
@@ -67,7 +67,7 @@ export default Vue.extend({
 </script>
 
 
-<style scoped>
+<style module>
 .container {
   width: 100%;
   min-height: 100vh;
