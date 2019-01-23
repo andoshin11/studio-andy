@@ -1,14 +1,14 @@
-.Markdown {
+:global(.Markdown) {
   position: relative;
   width: 100%;
 }
 
 /* Card Styles */
-.Markdown .embedly-card {
+:global(.Markdown .embedly-card) {
   text-decoration: none;
 }
 
-.Markdown .card {
+:global(.Markdown .card) {
   box-sizing: border-box;
   padding: 16px;
   overflow: hidden;
@@ -18,30 +18,30 @@
   transition: 0.3s ease-out;
 }
 
-.Markdown .card:hover {
+:global(.Markdown .card:hover) {
   box-shadow: 0 28.3px 88.94px rgba(67, 54, 102, 0.2);
 }
 
-.Markdown .card__header {
+:global(.Markdown .card__header) {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
 }
 
-.Markdown .card__favicon {
+:global(.Markdown .card__favicon) {
   width: 16px;
   height: 16px;
   margin: 0 4px 0 0;
 }
 
-.Markdown .card__provider {
+:global(.Markdown .card__provider) {
   color: #222;
   font-weight: bold;
   font-size: 14px;
   text-decoration: none;
 }
 
-.Markdown .card__body {
+:global(.Markdown .card__body) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,13 +49,13 @@
   padding: 0 16px;
 }
 
-.Markdown .card__body.is-wide {
+:global(.Markdown .card__body.is-wide) {
   flex-direction: column;
   align-items: stretch;
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown .card__body {
+  :global(.Markdown .card__body) {
     flex-direction: column;
     margin-bottom: 16px;
     padding: 0;
@@ -63,51 +63,51 @@
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown .card__body iframe {
+  :global(.Markdown .card__body iframe) {
     width: auto;
     height: auto;
   }
 }
 
-.Markdown .card__thumbnail {
+:global(.Markdown .card__thumbnail) {
   display: block;
   width: 180px;
   margin: 0 24px 0 0;
   box-shadow: none;
 }
 
-.Markdown .card__body.is-wide .card__thumbnail {
+:global(.Markdown .card__body.is-wide .card__thumbnail) {
   width: 100%;
   margin-bottom: 16px;
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown .card__thumbnail {
+  :global(.Markdown .card__thumbnail) {
     margin-bottom: 16px;
   }
 }
 
-.Markdown .card__title {
+:global(.Markdown .card__title) {
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 18px;
   line-height: 24px;
 }
 
-.Markdown .card__description {
+:global(.Markdown .card__description) {
   margin-bottom: 8px;
   font-size: 12px;
   line-height: 20px;
 }
 
-.Markdown .card__nav {
+:global(.Markdown .card__nav) {
   font-size: 12px;
   line-height: 20px;
   text-decoration: none;
 }
 
 /* Element Styles */
-.Markdown p {
+:global(.Markdown p) {
   margin: 36px auto;
   font-size: 18px;
   line-height: 33px;
@@ -115,33 +115,33 @@
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown p {
+  :global(.Markdown p) {
     font-size: 16px;
     line-height: 30px;
   }
 }
 
-.Markdown p:first-child {
+:global(.Markdown p:first-child) {
   margin-top: 0;
 }
 
-.Markdown img {
+:global(.Markdown img) {
   width: 100%;
   margin: 24px auto;
   box-shadow: 2px 2px 40px -12px #999;
 }
 
-.Markdown a {
+:global(.Markdown a) {
   color: #1a95b3;
   text-decoration: underline;
   transition: 0.3s;
 }
 
-.Markdown a:hover {
+:global(.Markdown a:hover) {
   opacity: 0.6;
 }
 
-.Markdown h1 {
+:global(.Markdown h1) {
   position: relative;
   margin-top: 50px;
   padding-left: 12px;
@@ -149,7 +149,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown h1 {
+  :global(.Markdown h1) {
     margin-left: 0;
     padding-left: 4px;
     color: #4d4d4d;
@@ -157,7 +157,7 @@
   }
 }
 
-.Markdown h1::before {
+:global(.Markdown h1::before) {
   position: absolute;
   left: 0;
   display: block;
@@ -167,21 +167,21 @@
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown h1::before {
+  :global(.Markdown h1::before) {
     content: none;
   }
 }
 
-.Markdown h2 {
+:global(.Markdown h2) {
   margin: 50px 0 0;
   font-size: 24px;
 }
 
-.Markdown h3 {
+:global(.Markdown h3) {
   font-size: 20px;
 }
 
-.Markdown h3::after {
+:global(.Markdown h3::after) {
   position: absolute;
   left: 0;
   display: block;
@@ -191,41 +191,41 @@
   content: '';
 }
 
-.Markdown .table-wrapper {
+:global(.Markdown .table-wrapper) {
   overflow: auto;
   white-space: nowrap;
 }
 
-.Markdown thead {
+:global(.Markdown thead) {
   color: #fefefe;
   background: #ef6530;
 }
 
-.Markdown ul {
+:global(.Markdown ul) {
   list-style: none;
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown ul {
+  :global(.Markdown ul) {
     margin-top: 16px;
     margin-left: 5%;
   }
 }
 
-.Markdown li {
+:global(.Markdown li) {
   padding-left: 24px;
   font-size: 18px;
   line-height: 2;
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown li {
+  :global(.Markdown li) {
     padding-left: 12px;
     font-size: 16px;
   }
 }
 
-.Markdown li::before {
+:global(.Markdown li::before) {
   position: absolute;
   width: 8px;
   height: 8px;
@@ -238,45 +238,45 @@
   content: '';
 }
 
-.Markdown ol li::before {
+:global(.Markdown ol li::before) {
   content: none;
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown li::before {
+  :global(.Markdown li::before) {
     line-height: 32px;
   }
 }
 
-.Markdown hr {
+:global(.Markdown hr) {
   margin: 48px 0;
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown hr {
+  :global(.Markdown hr) {
     margin: 32px 0;
   }
 }
 
-.Markdown pre {
+:global(.Markdown pre) {
   margin-top: 16px;
   text-shadow: none;
   background: #282c34;
   border-radius: 8px;
 }
 
-.Markdown pre.language-shell {
+:global(.Markdown pre.language-shell) {
   text-shadow: none;
   background: #282c34;
   border-radius: 8px;
 }
 
-.Markdown code[class*='language-'] {
+:global(.Markdown code[class*='language-']) {
   color: #fff;
   text-shadow: none;
 }
 
-.Markdown :not(pre) > code[class*='language-'] {
+:global(.Markdown :not(pre) > code[class*='language-']) {
   margin-right: 4px;
   padding: 4px 8px;
   color: #fff;
@@ -287,55 +287,52 @@
 }
 
 @media screen and (max-width: 768px) {
-  .Markdown :not(pre) > code[class*='language-'] {
+  :global(.Markdown :not(pre) > code[class*='language-']) {
     font-size: 85%;
   }
 }
 
-.Markdown .token.punctuation {
+:global(.Markdown .token.punctuation) {
   color: #fff;
 }
 
-.Markdown .token.string {
+:global(.Markdown .token.string) {
   color: #98c379;
 }
 
-.Markdown .token.string,
-.Markdown .token.attr-name {
+:global(.Markdown .token.string, .Markdown .token.attr-name) {
   color: #92d761;
 }
 
-.Markdown .token.boolean {
+:global(.Markdown .token.boolean) {
   color: #c70370;
 }
 
-.Markdown .token.keyword {
+:global(.Markdown .token.keyword) {
   color: #66b9f4;
 }
 
-.Markdown .token.selector,
-.Markdown .token.number {
+:global(.Markdown .token.selector, .Markdown .token.number) {
   color: #e4c625;
 }
 
-.Markdown .token.property {
+:global(.Markdown .token.property) {
   color: #42abd6;
 }
 
-.Markdown .token.operator {
+:global(.Markdown .token.operator) {
   color: #e2810e;
   background: none;
 }
 
-.Markdown .token.comment {
+:global(.Markdown .token.comment) {
   color: #a1a8b5;
 }
 
-.Markdown .token.function {
+:global(.Markdown .token.function) {
   color: #e2810e;
 }
 
-.Markdown .token.tag,
-.Markdown .token.constant {
+:global(.Markdown .token.tag, .Markdown .token.constant) {
   color: #de254b;
 }
