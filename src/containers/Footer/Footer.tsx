@@ -3,6 +3,11 @@ import styles from './styles.css'
 
 export default tsx.component({
   name: 'Footer',
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
+    }
+  },
   render() {
     return (
       <div class={styles.Footer}>

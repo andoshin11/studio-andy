@@ -17,6 +17,11 @@ export default tsx.component({
       validator: oneOf(['light', 'dark'])
     }
   },
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
+    }
+  },
   render() {
     return (
       <div class={cx((styles as any)[this.size], (styles as any)[this.type], styles.Loading)}>

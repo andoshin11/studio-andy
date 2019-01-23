@@ -12,6 +12,11 @@ export default tsx.component({
       default: ''
     }
   },
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
+    }
+  },
   computed: {
     date(): string {
       if (this.text.length > 1) {

@@ -9,6 +9,11 @@ export default tsx.component({
       required: true as true
     }
   },
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
+    }
+  },
   computed: {
     iconPath(): string {
       return `/${this.name}.svg#root`

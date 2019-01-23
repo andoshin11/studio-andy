@@ -16,6 +16,11 @@ export default tsx.component({
       listType: ListType.Latest
     }
   },
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
+    }
+  },
   computed: {
     presenter(): IPresenter {
       return Presenter({

@@ -7,6 +7,11 @@ import PostList from '@/components/Modules/PostList'
 
 export default tsx.component({
   name: 'Result',
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
+    }
+  },
   computed: {
     presenter(): IPresenter {
       return Presenter({
