@@ -1,8 +1,7 @@
 import * as tsx from 'vue-tsx-support'
-import { css } from 'emotion'
-import { bp } from '@/util/helpers'
 import PostEntity from '@/entities/Post'
 import PostCard from '@/components/Modules/PostCard'
+import styles from './styles.css'
 
 export default tsx.component({
   name: 'PostList',
@@ -10,6 +9,11 @@ export default tsx.component({
     data: {
       type: Array as () => PostEntity[],
       required: true as true
+    }
+  },
+  beforeCreate() {
+    if ((styles as any).__inject__) {
+      ;(styles as any).__inject__(this.$ssrContext)
     }
   },
   methods: {
@@ -20,15 +24,11 @@ export default tsx.component({
       return ''
     }
   },
-  mounted() {
-    console.log('post list mounted')
-    console.log(this.data)
-  },
   render() {
     return (
       <div class={styles.PostList}>
         {this.data.map(post => (
-          <nuxt-link key={post.props.slug} to={this.postPath(post)} class="post">
+          <nuxt-link key={post.props.slug} to={this.postPath(post)} class={styles.post}>
             <PostCard post={post} />
           </nuxt-link>
         ))}
@@ -36,30 +36,3 @@ export default tsx.component({
     )
   }
 })
-
-const styles = {
-  PostList: css`
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    ${bp.sm} {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    .post {
-      box-sizing: border-box;
-      width: 50%;
-      padding: 15px;
-    }
-
-    ${bp.sm} {
-      .post {
-        display: block;
-        width: 100%;
-        padding: 0;
-      }
-    }
-  `
-}
