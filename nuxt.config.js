@@ -245,7 +245,6 @@ const nuxtConfig = {
         localIdentName: '[local]_[hash:base64:5]'
       }
     },
-    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
