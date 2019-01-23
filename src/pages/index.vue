@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const HomeContainer = () => import('@/containers/Home/index.vue')
+const HomeContainer = () => import('@/containers/Home')
 
 // Use Case
 import FetchLatestPostsUseCase from '@/usecases/post/FetchLatestPostsUseCase'
