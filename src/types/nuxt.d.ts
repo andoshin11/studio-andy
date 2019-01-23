@@ -89,6 +89,7 @@ export interface NuxtConfig {
     ssr: boolean
     templates: Object[]
     watch: string[]
+    loaders: any
   }>
   css: string[]
   env: { [key: string]: any }
