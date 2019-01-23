@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const ResultContainer = () => import('@/containers/Result/index.vue')
+const ResultContainer = () => import('@/containers/Result')
 
 // Use Case
 import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
