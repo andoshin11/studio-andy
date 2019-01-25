@@ -70,6 +70,7 @@
     "marked": "^0.5.1",
     "nuxt": "^2.0.0",
     "prismjs": "^1.15.0",
+    "vue": "^2.5.22",
     "vue-lazyload": "^1.2.6",
     "vue-server-renderer": "2.5.22",
     "vue-template-compiler": "^2.5.22"

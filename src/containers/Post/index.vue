@@ -88,7 +88,7 @@ export default Vue.extend({
       })
     },
     pagePath(): string {
-      const base = 'http://blog.andoshin11.me'
+      const base = 'https://blog.andoshin11.me'
       return base + this.$route.fullPath
     },
     isClient(): boolean {
