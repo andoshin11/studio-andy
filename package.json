@@ -24,6 +24,7 @@
     "lintfix:css": "yarn run lint:css --fix",
     "precommit": "npm run lint",
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook:build": "build-storybook -s ./src/static,./src/assets -o storybook-static",
     "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen"
   },
   "husky": {
