@@ -232,6 +232,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    useForkTsChecker: true,
     /*
     ** You can extend webpack config here
     */

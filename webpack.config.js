@@ -31,16 +31,6 @@ module.exports = config => {
     }
   }
 
-  if (process.env.NODE_ENV === 'development') {
-    const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-    config.plugins.push(
-      new ForkTsCheckerWebpackPlugin({
-        workers: 2,
-        vue: true
-      })
-    )
-  }
-
   // Add alias
   config.resolve.alias['~'] = path.resolve(__dirname, 'src')
 
