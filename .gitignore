@@ -86,6 +86,3 @@ sw.js
 # Others
 .DS_Store
 secret.yaml
-
-# Storybook generate
-storybook-static/*
