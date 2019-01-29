@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue'
-const Empty = () => import('./Empty.vue')
+// import { storiesOf } from '@storybook/vue'
+// const Empty = () => import('./Empty.vue')
 
-storiesOf('components/Base/Empty', module)
-  .add('Square', () => ({
-    components: { Empty },
-    template: '<div style="height:400px;width:400px"><Empty /></div>'
-  }))
-  .add('Rectangle', () => ({
-    components: { Empty },
-    template: '<div style="height:200px;width:600px"><Empty /></div>'
-  }))
+// storiesOf('components/Base/Empty', module)
+//   .add('Square', () => ({
+//     components: { Empty },
+//     template: '<div style="height:400px;width:400px"><Empty /></div>'
+//   }))
+//   .add('Rectangle', () => ({
+//     components: { Empty },
+//     template: '<div style="height:200px;width:600px"><Empty /></div>'
+//   }))
