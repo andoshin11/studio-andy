@@ -101,9 +101,10 @@ export default Vue.extend({
     }
   },
   head() {
-    const post = this.presenter.post
+    const presenter: IPresenter = (this as any).presenter
+    const post = presenter.post
     return {
-      title: `${this.presenter.post ? this.presenter.post.props.title : ''} | Studio Andy`,
+      title: `${presenter.post ? presenter.post.props.title : ''} | Studio Andy`,
       meta: [
         { hid: 'description', name: 'description', content: post ? post.props.summary : '' },
         { hid: 'og:type', property: 'og:type', content: 'article' },
