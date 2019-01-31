@@ -12,8 +12,7 @@
     "lib": ["esnext", "dom"],
     "paths": {
       "@/*": ["src/*"]
-    },
-    "types": ["@nuxt/vue-app"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "test/**/*.ts"]
 }

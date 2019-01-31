@@ -1,6 +1,7 @@
 require('dotenv').config()
 const pkg = require('./package')
 const path = require('path')
+const configFile = require('./webpack.config')
 
 module.exports = {
   mode: 'universal',
@@ -231,11 +232,12 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    useForkTsChecker: true,
     /*
     ** You can extend webpack config here
     */
     extend(config, { isDev, isClient }) {
+      configFile(config)
+
       if (!isDev) {
         if (isClient) {
           config.devtool = '#source-map'

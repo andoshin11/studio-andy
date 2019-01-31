@@ -34,7 +34,7 @@ export default Vue.extend({
       postRepository: new PostRepository(store)
     })
 
-    await usecase.execute(Array.isArray(query.query) ? query.query[0] : query.query)
+    await usecase.execute(query.query)
   }
 })
 </script>
