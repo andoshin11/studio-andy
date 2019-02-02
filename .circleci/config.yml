@@ -30,9 +30,9 @@ jobs:
       - persist_to_workspace:
           root: /repo
           paths:
-            - ./packages/app/node_modules
-            - ./packages/app/.nuxt
-            - ./packages/app/src/static/sw.js
+            - ./packages/studio-andy-app/node_modules
+            - ./packages/studio-andy-app/.nuxt
+            - ./packages/studio-andy-app/src/static/sw.js
 
   deploy:
     docker:
@@ -46,13 +46,13 @@ jobs:
           name: Decode credential
           command: |
             echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
-            echo $SECRET_YAML | base64 -d > ./packages/app/secret.yaml
+            echo $SECRET_YAML | base64 -d > ./packages/studio-andy-app/secret.yaml
       - run:
           name: Deploy
           command: |
             gcloud auth activate-service-account --key-file=./secret.json
             gcloud --quiet config set project $GOOGLE_PROJECT_ID
-            cd packages/app
+            cd packages/studio-andy-app
             GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy --quiet
       - run:
           name: Clean up
