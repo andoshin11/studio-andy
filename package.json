@@ -1,5 +1,6 @@
 {
   "private": true,
+  "license": "MIT",
   "scripts": {
     "bootstrap": "lerna run bootstrap",
     "test": "lerna run test",

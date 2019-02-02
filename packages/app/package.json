@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.0.0",
   "description": "My personal blog",
+  "license": "MIT",
   "author": "andoshin11",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/server/index.js --watch server",
