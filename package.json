@@ -1,5 +1,10 @@
 {
   "private": true,
+  "scripts": {
+    "bootstrap": "lerna run bootstrap",
+    "test": "lerna run test",
+    "lint": "lerna run lint"
+  },
   "devDependencies": {
     "eslint-config-prettier": "^4.0.0",
     "eslint-config-typescript": "^1.1.0",

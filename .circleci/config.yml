@@ -20,13 +20,13 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run:
           name: Bootstrap packages
-          command: lerna run bootstrap
+          command: yarn run bootstrap
       - run:
           name: Lint
-          command: lerna run lint
+          command: yarn run lint
       - run:
           name: Build
-          command: lerna run build
+          command: yarn run build
       - persist_to_workspace:
           root: /repo
           paths:
