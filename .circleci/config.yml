@@ -46,7 +46,7 @@ jobs:
           name: Decode credential
           command: |
             echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
-            echo $SECRET_YAML | base64 -d > ./secret.yaml
+            echo $SECRET_YAML | base64 -d > ./packages/app/secret.yaml
       - run:
           name: Deploy
           command: |
