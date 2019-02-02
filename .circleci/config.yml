@@ -14,22 +14,25 @@ jobs:
       - run:
           name: Install dependencies
           command: yarn install --pure-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: Bootstrap packages
+          command: yarn run bootstrap
       - run:
           name: Lint
           command: yarn run lint
       - run:
           name: Build
           command: yarn run build
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
       - persist_to_workspace:
           root: /repo
           paths:
-            - ./node_modules
-            - ./.nuxt
-            - ./src/static/sw.js
+            - ./packages/app/node_modules
+            - ./packages/app/.nuxt
+            - ./packages/app/src/static/sw.js
 
   deploy:
     docker:
@@ -43,12 +46,13 @@ jobs:
           name: Decode credential
           command: |
             echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
-            echo $SECRET_YAML | base64 -d > ./secret.yaml
+            echo $SECRET_YAML | base64 -d > ./packages/app/secret.yaml
       - run:
           name: Deploy
           command: |
             gcloud auth activate-service-account --key-file=./secret.json
             gcloud --quiet config set project $GOOGLE_PROJECT_ID
+            cd packages/app
             GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy --quiet
       - run:
           name: Clean up
