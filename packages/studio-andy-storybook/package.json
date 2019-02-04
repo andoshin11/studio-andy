@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "andoshin11",
   "scripts": {
-    "screenshot": "zisui --serverCmd 'start-storybook -p 9001 -c .storybook -s ../studio-andy-app/src/assets' --serverTimeout=30000 http://localhost:9001",
+    "screenshot": "zisui --serverCmd 'start-storybook -p 9001 --ci -c .storybook -s ../studio-andy-app/src/assets' --serverTimeout=30000 http://localhost:9001",
     "storybook": "start-storybook -p 9001 -c .storybook -s ../studio-andy-app/src/assets",
     "snapshot": "jest --config=jest.config.snapshot.js",
     "snapshot:update": "yarn run snapshot --updateSnapshot",
