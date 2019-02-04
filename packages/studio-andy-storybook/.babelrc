@@ -1,3 +1,8 @@
 {
-  "presets": ["@vue/babel-preset-app"]
+  "env": {
+    "test": {
+      "presets": ["@babel/preset-env", "babel-preset-vue"],
+      "plugins": ["@babel/plugin-transform-typescript", "require-context-hook"]
+    }
+  }
 }
