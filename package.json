@@ -5,7 +5,9 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "lint": "lerna run lint",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "screenshot": "cd packages/studio-andy-storybook; npm run screenshot",
+    "reg-suit": "cd packages/studio-andy-storybook; npm run reg-suit"
   },
   "devDependencies": {
     "eslint-config-prettier": "^4.0.0",

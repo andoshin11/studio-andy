@@ -86,3 +86,4 @@ sw.js
 # Others
 .DS_Store
 secret.yaml
+.reg
