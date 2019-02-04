@@ -4,7 +4,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "eslint-config-prettier": "^4.0.0",

@@ -7,9 +7,12 @@
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook -s ../studio-andy-app/src/assets",
     "snapshot": "jest --config=jest.config.snapshot.js",
-    "snapshot:update": "yarn run snapshot --updateSnapshot"
+    "snapshot:update": "yarn run snapshot --updateSnapshot",
+    "test": "npm-run-all test:*",
+    "test:snapshot": "yarn run snapshot"
   },
   "dependencies": {
+    "npm-run-all": "^4.1.5",
     "studio-andy-app": "^0.0.0",
     "vue": "^2.5.22"
   },
