@@ -19,3 +19,9 @@ exports[`Storyshots components/Base/Empty Square 1`] = `
   />
 </div>
 `;
+
+exports[`Storyshots sample default 1`] = `
+<div>
+  sample text
+</div>
+`;
