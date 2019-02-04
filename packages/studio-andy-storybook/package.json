@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "andoshin11",
   "scripts": {
+    "screenshot": "zisui --serverCmd 'start-storybook -p 9001 -c .storybook -s ../studio-andy-app/src/assets' --serverTimeout=30000 http://localhost:9001",
     "storybook": "start-storybook -p 9001 -c .storybook -s ../studio-andy-app/src/assets",
     "snapshot": "jest --config=jest.config.snapshot.js",
     "snapshot:update": "yarn run snapshot --updateSnapshot",
@@ -35,6 +36,7 @@
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.1",
     "vue-loader": "^15.6.2",
-    "vue-template-compiler": "^2.5.22"
+    "vue-template-compiler": "^2.5.22",
+    "zisui": "^1.2.2"
   }
 }
