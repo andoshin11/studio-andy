@@ -122,7 +122,6 @@ workflows:
             - prepare_gcp
       - deploy:
           requires:
-            - test
           filters:
             branches:
               only:
