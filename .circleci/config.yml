@@ -82,7 +82,7 @@ jobs:
 
   regression:
     docker:
-      - image: circleci/node:10.13-browsers
+      - image: andoshin11/node-xcb:10.13.0
     working_directory: /repo
     steps:
       - checkout
