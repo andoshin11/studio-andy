@@ -116,10 +116,7 @@ workflows:
   version: 2
   standard-workflow:
     jobs:
-      - prepare_gcp
-      - regression:
-          requires:
-            - prepare_gcp
+      - regression
       - deploy:
           requires:
           filters:
