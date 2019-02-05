@@ -7,7 +7,8 @@ module.exports = (baseConfig, env, config) => {
       {
         loader: 'ts-loader',
         options: {
-          appendTsSuffixTo: ['\\.vue$']
+          appendTsSuffixTo: ['\\.vue$'],
+          transpileOnly: true
         }
       }
     ],
