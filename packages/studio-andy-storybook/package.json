@@ -34,6 +34,7 @@
     "jest": "^24.0.0",
     "jest-serializer-vue": "^2.0.2",
     "jest-vue-preprocessor": "^1.4.0",
+    "puppeteer": "1.10.0",
     "reg-keygen-git-hash-plugin": "^0.7.16",
     "reg-notify-github-plugin": "^0.7.19",
     "reg-publish-gcs-plugin": "^0.7.16",
