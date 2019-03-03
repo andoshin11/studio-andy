@@ -1,12 +1,12 @@
 <template>
-  <section class="container">
+  <section :class="$style.container">
     <HomeContainer/>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-const HomeContainer = () => import('@/containers/Home/index.vue')
+const HomeContainer = () => import('@/containers/Home')
 
 // Use Case
 import FetchLatestPostsUseCase from '@/usecases/post/FetchLatestPostsUseCase'
@@ -42,7 +42,7 @@ export default Vue.extend({
 </script>
 
 
-<style scoped>
+<style module>
 .container {
   display: flex;
   justify-content: center;

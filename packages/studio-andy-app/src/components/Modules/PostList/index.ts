@@ -1,3 +1,3 @@
-import PostList from './PostList.vue'
+import PostList from './PostList'
 
 export default PostList

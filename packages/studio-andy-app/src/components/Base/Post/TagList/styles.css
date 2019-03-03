@@ -1,0 +1,38 @@
+.TagList {
+  width: 90%;
+  margin-bottom: 8px;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .TagList {
+    text-align: left;
+  }
+}
+.tag {
+  display: inline;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+@media screen and (max-width: 768px) {
+  .tag {
+    font-weight: normal;
+  }
+}
+.tag:not(:last-child):after {
+  content: '/';
+  margin: 0 8px;
+  color: #222;
+  transition: 0.3s ease-out;
+}
+.tag a {
+  color: #222;
+}
+.tag:hover a,
+.tag:focus a {
+  text-decoration: underline;
+}
+.empty {
+  width: 240px;
+  height: 24px;
+}

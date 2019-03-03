@@ -48,11 +48,11 @@ module.exports = {
       { rel: 'apple-touch-icon', size: '180x180', href: '/apple-icon-180x180.png' },
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#da532c' },
       {
-        re: 'stylesheet',
+        rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Merriweather'
       },
       {
-        re: 'stylesheet',
+        rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=M+PLUS+1p'
       }
     ]
@@ -237,6 +237,30 @@ module.exports = {
   */
   build: {
     useForkTsChecker: true,
+    loaders: {
+      vueStyle: {
+        manualInject: true
+      },
+      css: {
+        modules: true,
+        importLoaders: 1,
+        localIdentName: '[local]_[hash:base64:5]'
+      }
+    },
+    babel: {
+      presets: [['@babel/env', { modules: 'commonjs' }]],
+      plugins: [
+        'babel-plugin-vue-jsx-modifier',
+        'babel-plugin-transform-vue-jsx',
+        '@babel/plugin-syntax-dynamic-import',
+        [
+          '@babel/plugin-transform-runtime',
+          {
+            regenerator: true
+          }
+        ]
+      ]
+    },
     /*
     ** You can extend webpack config here
     */

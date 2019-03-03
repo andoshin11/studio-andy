@@ -1,3 +1,3 @@
-import TagList from './TagList.vue'
+import TagList from './TagList'
 
 export default TagList
