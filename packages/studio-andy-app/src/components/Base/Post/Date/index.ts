@@ -1,3 +1,3 @@
-import Date from './Date.vue'
+import Date from './Date'
 
 export default Date

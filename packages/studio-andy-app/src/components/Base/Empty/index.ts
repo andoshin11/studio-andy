@@ -1,3 +1,3 @@
-import Empty from './Empty.vue'
+import Empty from './Empty'
 
 export default Empty

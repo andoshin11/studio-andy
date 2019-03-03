@@ -1,3 +1,3 @@
-import PostCard from './PostCard.vue'
+import PostCard from './PostCard'
 
 export default PostCard
