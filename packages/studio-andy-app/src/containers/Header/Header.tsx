@@ -26,8 +26,8 @@ export default tsx.component({
     }
   },
   methods: {
-    searchPosts() {
-      console.log('searching')
+    searchPosts(e: Event) {
+      e.preventDefault()
       if (!this.query || !this.$refs.input) return
       ;(this.$refs.input as HTMLElement).blur()
       this.$router.push({ path: `/search?query=${this.query}` })
@@ -42,8 +42,7 @@ export default tsx.component({
             Studio Andy
           </nuxt-link>
         </div>
-        <form class={styles.search} role="search">
-          {/* <form class={styles.search} role="search" onSubmit={tsx.modifiers.prevent(this.searchPosts)}> */}
+        <form class={styles.search} role="search" onSubmit={e => this.searchPosts(e)}>
           <input ref="input" value={this.query} onInput={e => (this.query = (e.target as any).value)} name="query" aria-label="query" type="text" class={styles.searchInput} />
           <button type="submit" aria-label="search" class={styles.searchButton}>
             <Icon name="search" />

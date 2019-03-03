@@ -1,20 +1,18 @@
 <template>
-  <div class="App">
-    <header 
-      :class="{ shrink: isHeaderShrink }" 
-      class="App__Header">
+  <div :class="$style.App">
+    <header :class="[$style.App__Header, { shrink: isHeaderShrink }]">
       <HeaderContainer :shrink="isHeaderShrink"/>
     </header>
-    <main class="App__Body">
+    <main :class="$style.App__Body">
       <nuxt/>
     </main>
-    <footer class="App__Footer">
+    <footer :class="$style.App__Footer">
       <FooterContainer/>
     </footer>
     <transition name="fade">
       <button
         v-show="showScrollToTop && screenPosition > 500"
-        class="scrollToTop"
+        :class="$style.scrollToTop"
         @click="scrollToTop"
       >↑</button>
     </transition>
@@ -23,8 +21,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const HeaderContainer = () => import('@/containers/Header/index.vue')
-const FooterContainer = () => import('@/containers/Footer/index.vue')
+const HeaderContainer = () => import('@/containers/Header')
+const FooterContainer = () => import('@/containers/Footer')
 import { scrollWithDuration } from '@/lib/scroller'
 
 export default Vue.extend({
@@ -69,7 +67,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style module>
 .App {
   position: relative;
   display: flex;

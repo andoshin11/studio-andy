@@ -1,12 +1,12 @@
 <template>
-  <section class="container">
+  <section :class="$style.container">
     <ResultContainer/>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-const ResultContainer = () => import('@/containers/Result/index.vue')
+const ResultContainer = () => import('@/containers/Result')
 
 // Use Case
 import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
@@ -40,7 +40,7 @@ export default Vue.extend({
 </script>
 
 
-<style scoped>
+<style module>
 .container {
   width: 1180px;
   margin: 0 auto;

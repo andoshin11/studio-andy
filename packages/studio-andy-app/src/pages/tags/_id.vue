@@ -1,12 +1,12 @@
 <template>
-  <section class="container">
+  <section :class="$style.container">
     <TagsContainer/>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-const TagsContainer = () => import('@/containers/Tags/index.vue')
+const TagsContainer = () => import('@/containers/Tags')
 
 // Use Case
 import FetchPostsByTagUseCase from '@/usecases/post/FetchPostsByTagUseCase'
@@ -35,7 +35,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style module>
 .container {
   width: 1180px;
   margin: 0 auto;
