@@ -73,6 +73,11 @@ module.exports = {
   */
   plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }],
 
+  /**
+   * Server Middleware
+   */
+  serverMiddleware: ['~/middleware/cache'],
+
   /*
   ** Nuxt.js modules
   */
