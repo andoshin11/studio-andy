@@ -19,23 +19,17 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run:
-          name: Bootstrap packages
-          command: yarn run bootstrap
-      - run:
           name: Lint
           command: yarn run lint
-      - run:
-          name: Test
-          command: yarn run test
       - run:
           name: Build
           command: yarn run build
       - persist_to_workspace:
           root: /repo
           paths:
-            - ./packages/studio-andy-app/node_modules
-            - ./packages/studio-andy-app/.nuxt
-            - ./packages/studio-andy-app/src/static/sw.js
+            - ./node_modules
+            - ./.nuxt
+            - ./src/static/sw.js
 
   deploy:
     docker:
@@ -49,13 +43,12 @@ jobs:
           name: Decode credential
           command: |
             echo $GCLOUD_SERVICE_KEY | base64 -d > ./secret.json
-            echo $SECRET_YAML | base64 -d > ./packages/studio-andy-app/secret.yaml
+            echo $SECRET_YAML | base64 -d > ./secret.yaml
       - run:
           name: Deploy
           command: |
             gcloud auth activate-service-account --key-file=./secret.json
             gcloud --quiet config set project $GOOGLE_PROJECT_ID
-            cd packages/studio-andy-app
             GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy --quiet
       - run:
           name: Clean up
