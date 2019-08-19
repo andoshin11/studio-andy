@@ -158,7 +158,10 @@ module.exports = {
    * Sentry settings
    */
   sentry: {
-    dsn: process.env.SENTRY_DSN
+    dsn: process.env.SENTRY_DSN,
+    webpackConfig: {
+      urlPrefix: '~/_nuxt/'
+    }
   },
 
   /*
