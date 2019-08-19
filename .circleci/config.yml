@@ -49,7 +49,6 @@ jobs:
           command: |
             gcloud auth activate-service-account --key-file=./secret.json
             gcloud --quiet config set project $GOOGLE_PROJECT_ID
-            cd packages/studio-andy-app
             GOOGLE_APPLICATION_CREDENTIALS=./secret.json gcloud app deploy --quiet
       - run:
           name: Clean up
