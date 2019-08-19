@@ -8,11 +8,16 @@ export default tsx.component({
       ;(styles as any).__inject__(this.$ssrContext)
     }
   },
+  methods: {
+    debugError() {
+      throw new Error('this is a test error')
+    }
+  },
   render(h) {
     return (
       <div class={styles.Footer}>
         <div class={styles.socialLinks}>
-          <a class={styles.socialLink} href="https://twitter.com/" target="_blank" aria-label="Twitter Link" rel="noopener">
+          <a class={styles.socialLink} href="https://twitter.com/andoshin11" target="_blank" aria-label="Twitter Link" rel="noopener">
             <svg height="16" width="20" viewBox="0 0 20 16">
               <path d="M9.4 4.3V5l-.7-.1C6.2 4.5 4 3.4 2.1 1.6L1.2.7l-.3.6c-.5 1.6-.2 3.2.9 4.2.6.6.4.7-.5.3-.4-.1-.7-.1-.7-.1-.1.1.2 1.4.5 1.9.4.7 1.1 1.4 1.9 1.8l.7.3h-.8c-.8 0-.8 0-.7.3.3.9 1.4 1.9 2.6 2.3l.9.3-.8.5c-1.1.7-2.4 1-3.7 1-.6 0-1.1.1-1.1.1 0 .1 1.7.9 2.7 1.2 3 .9 6.5.5 9.2-1 1.9-1.1 3.8-3.3 4.7-5.5.5-1.1 1-3.2 1-4.2 0-.7 0-.7.8-1.5.5-.5.9-.9 1-1.1.1-.3.1-.3-.6 0-1.2.4-1.4.4-.8-.3.4-.5 1-1.3 1-1.5 0 0-.2 0-.4.2-.3.1-.8.4-1.2.5l-.8.2-.7-.5c-.4-.3-.9-.5-1.2-.6-.7-.2-1.8-.2-2.4.1-2 .6-3.1 2.3-3 4.1z" />
             </svg>
@@ -23,7 +28,7 @@ export default tsx.component({
             </svg>
           </a>
         </div>
-        <div class={styles.copyright}>Copyright © 2018 Shin Ando</div>
+        <div class={styles.copyright} onClick={this.debugError}>Copyright © 2018 Shin Ando</div>
       </div>
     )
   }
