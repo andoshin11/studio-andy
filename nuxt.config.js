@@ -81,7 +81,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed', '@nuxtjs/google-adsense'],
 
   /*
   ** Extensions
@@ -152,6 +152,13 @@ module.exports = {
    */
   'google-analytics': {
     id: 'UA-129690358-1'
+  },
+
+  /*
+   * Google AdSense settings
+   */
+  'google-adsense': {
+    id: 'ca-pub-6290151984791211'
   },
 
   /*
