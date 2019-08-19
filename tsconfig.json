@@ -1,12 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": "./packages",
-    "target": "es2015",
-    "moduleResolution": "node",
     "sourceMap": true,
-    "stripInternal": true,
+    "target": "es5",
     "strict": true,
     "module": "esnext",
-    "lib": ["esnext", "dom"]
-  }
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "noImplicitThis": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "baseUrl": ".",
+    "lib": ["esnext", "dom"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["@nuxt/vue-app"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "test/**/*.ts"]
 }
