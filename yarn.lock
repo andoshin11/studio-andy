@@ -1412,6 +1412,13 @@
     "@nuxtjs/meta" "^2.6.0"
     "@nuxtjs/workbox" "^2.6.0"
 
+"@nuxtjs/router@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/router/-/router-1.5.0.tgz#bed68f841b7a3457908c9ed36148172d75aa976f"
+  integrity sha512-LiWvlikpUaBqj8QVBzvo50pnK+8Wj6U9OkS/osYDD7dj0Et5L50pkO+VxVZq4r4boHfki/II98MKXoiTDH/+GQ==
+  dependencies:
+    consola "^2.10.1"
+
 "@nuxtjs/sentry@^2.0.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/sentry/-/sentry-2.1.0.tgz#9156bff790010d669c88d94ef14e4a0e2f79cfe6"
@@ -3232,6 +3239,11 @@ consola@^2.0.0-1, consola@^2.3.0:
     figures "^2.0.0"
     std-env "^2.2.1"
     string-width "^2.1.1"
+
+consola@^2.10.1:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.11.0.tgz#9bb35d850d8cecde894ce2eb4d792fa6b90d9013"
+  integrity sha512-2bcAqHastlPSCvZ+ur8bgHInGAWvUnysWz3h3xRX+/XZoCY7avolJJnVXOPGoVoyCcg1b231XixonoArmgxaoA==
 
 consola@^2.3.2:
   version "2.3.2"
