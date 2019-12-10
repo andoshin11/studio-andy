@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production nuxt build",
     "watch:css": "tcm src -w",
     "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=8080 node src/server/index.js",
+    "test:type": "tsc --noEmit",
     "generate": "nuxt generate",
     "deploy": "yarn build && gcloud app deploy",
     "browse": "gcloud app browse",
@@ -24,8 +25,7 @@
     "lint:css": "stylelint '**/*.vue'",
     "lintfix:css": "yarn run lint:css --fix",
     "precommit": "npm run lint",
-    "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen",
-    "test:type": "tsc --noEmit"
+    "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen"
   },
   "husky": {
     "hooks": {
