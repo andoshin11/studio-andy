@@ -6,6 +6,7 @@
     <main :class="$style.App__Body">
       <nuxt/>
     </main>
+    <BreadCrumbs/>
     <footer :class="$style.App__Footer">
       <FooterContainer/>
     </footer>
@@ -23,12 +24,14 @@
 import Vue from 'vue'
 const HeaderContainer = () => import('@/containers/Header')
 const FooterContainer = () => import('@/containers/Footer')
+const BreadCrumbs = () => import('@/components/Modules/BreadCrumbs')
 import { scrollWithDuration } from '@/lib/scroller'
 
 export default Vue.extend({
   components: {
     HeaderContainer,
-    FooterContainer
+    FooterContainer,
+    BreadCrumbs
   },
   data() {
     return {
