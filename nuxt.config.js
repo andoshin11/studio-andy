@@ -81,7 +81,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed', '@nuxtjs/google-adsense'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed', '@nuxtjs/google-adsense', ['@nuxtjs/router', { fileName: 'router.ts' }]],
 
   /*
   ** Extensions
