@@ -1,0 +1,37 @@
+.listItem {
+  position: relative;
+  display: inline-block;
+  color: #222;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.listItem:not(:last-child):after {
+  content: '/';
+  margin: 0 4px;
+  transition: 0.3s ease-out;
+}
+
+.listItem * {
+  display: inline-block;
+  color: #222;
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+  -webkit-appearance: none;
+}
+
+.listItem:hover *,
+.listItem:focus * {
+  color: #ef6530;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .listItem:hover span,
+  .listItem:focus span {
+    letter-spacing: 0.5px;
+  }
+}
