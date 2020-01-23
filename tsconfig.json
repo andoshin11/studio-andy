@@ -16,5 +16,5 @@
     },
     "types": ["@nuxt/vue-app"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "test/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

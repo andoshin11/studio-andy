@@ -24,6 +24,9 @@ jobs:
       - run:
           name: Build
           command: yarn run build
+      - run:
+          name: Test
+          command: yarn run test:size
       - persist_to_workspace:
           root: /repo
           paths:
