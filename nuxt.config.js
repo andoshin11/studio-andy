@@ -280,19 +280,19 @@ module.exports = {
           config.devtool = '#source-map'
         }
 
-        const SentryPlugin = require('@sentry/webpack-plugin')
+        // const SentryPlugin = require('@sentry/webpack-plugin')
 
-        config.plugins.push(
-          new SentryPlugin({
-            // Sentry options are required
-            include: ['.nuxt/dist/client'],
-            ignore: ['node_modules', '.nuxt/dist/client/img', '.nuxt/dist/client/icons'],
-            configFile: '.sentryclirc',
-            config: {
-              environment: process.env.ENVIRONMENT || 'development'
-            }
-          })
-        )
+        // config.plugins.push(
+        //   new SentryPlugin({
+        //     // Sentry options are required
+        //     include: ['.nuxt/dist/client'],
+        //     ignore: ['node_modules', '.nuxt/dist/client/img', '.nuxt/dist/client/icons'],
+        //     configFile: '.sentryclirc',
+        //     config: {
+        //       environment: process.env.ENVIRONMENT || 'development'
+        //     }
+        //   })
+        // )
       }
 
       return

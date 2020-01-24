@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  nuxt:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        CTF_SPACE_ID: 2p1otbbee5vt
+        # CONTENTFUL_SPACE_ID: ${CONTENTFUL_SPACE_ID}
+        CTF_CDA_ACCESS_TOKEN: 585c1d358387aba0fe71b5d84e7b865918057c716f1ca3abaeeaca1b60b9bfbb
+        # CONTENTFUL_DELIVERY_TOKEN: ${CONTENTFUL_DELIVERY_TOKEN}
+        SENTRY_DSN: https://09597edaf1434bff8ab0d1419f47243e@sentry.io/1330069
+        # SENTRY_DSN: ${SENTRY_DSN}
+        SENTRY_AUTH_TOKEN: 43d1e8ac281a4b4ea598acfb8503358ed60378c055f648f8bdd55165ab57c3d7
+        # SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
+        RELEASE_VERSION: local
+    ports:
+      - 3000:8080

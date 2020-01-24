@@ -1,0 +1,13 @@
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+
+# Contentful
+.contentful.json
+
+# Others
+.DS_Store
+.git/
+.nuxt
