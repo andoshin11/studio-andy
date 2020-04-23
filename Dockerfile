@@ -1,6 +1,6 @@
 FROM node:12.13.0-alpine
 
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV SENTRY_ORG=studio-andy
 
 WORKDIR /app
