@@ -23,7 +23,7 @@ module.exports = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    title: pkg.name,
+    title: 'Studio Andy',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -54,6 +54,9 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=M+PLUS+1p'
+      },
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/reflect-metadata/0.1.13/Reflect.min.js'
       }
     ]
   },
