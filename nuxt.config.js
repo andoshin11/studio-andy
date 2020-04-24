@@ -166,8 +166,21 @@ module.exports = {
    */
   sentry: {
     dsn: process.env.SENTRY_DSN,
+    publishRelease: process.env.NODE_ENV === 'production',
+    disableClientRelease: false,
+    disableServerSide: false,
     webpackConfig: {
+      release: process.env.RELEASE_VERSION,
       urlPrefix: '~/_nuxt/'
+    },
+    config: {
+      environment: process.env.NODE_ENV
+    },
+    serverConfig: {
+      release: process.env.RELEASE_VERSION
+    },
+    clientConfig: {
+      release: process.env.RELEASE_VERSION
     }
   },
 

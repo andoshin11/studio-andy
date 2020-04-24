@@ -10,7 +10,7 @@ DOCKER_BUILD_ARGS += \
 	--build-arg CTF_CDA_ACCESS_TOKEN=$(CTF_CDA_ACCESS_TOKEN) \
 	--build-arg SENTRY_DSN=$(SENTRY_DSN) \
 	--build-arg SENTRY_AUTH_TOKEN=$(SENTRY_AUTH_TOKEN) \
-	--build-arg RELEASE_VERSION=local
+	--build-arg RELEASE_VERSION=$(shell echo `git rev-parse --verify HEAD`)
 
 .PHONY: release-build
 release-build:
