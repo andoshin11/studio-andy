@@ -1,0 +1,48 @@
+steps:
+  # build image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/nuxt:$SHORT_SHA'
+      - '--build-arg'
+      - 'SENTRY_DSN=${_SENTRY_DSN}'
+      - '--build-arg'
+      - 'SENTRY_AUTH_TOKEN=${_SENTRY_AUTH_TOKEN}'
+      - '--build-arg'
+      - 'RELEASE_VERSION=${COMMIT_SHA}'
+      - '--build-arg'
+      - 'CTF_SPACE_ID=${_CTF_SPACE_ID}'
+      - '--build-arg'
+      - 'CTF_CDA_ACCESS_TOKEN=${_CTF_CDA_ACCESS_TOKEN}'
+      - '.'
+  # push image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/nuxt:$SHORT_SHA'
+  # change tag
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'tag'
+      - 'gcr.io/$PROJECT_ID/nuxt:$SHORT_SHA'
+      - 'gcr.io/$PROJECT_ID/nuxt:latest'
+  # push latest image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/nuxt:latest'
+  # deploy Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'beta'
+      - 'run'
+      - 'deploy'
+      - 'studio-andy'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/nuxt:$SHORT_SHA'
+      - '--region'
+      - 'asia-northeast1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'

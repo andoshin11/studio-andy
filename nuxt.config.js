@@ -166,8 +166,21 @@ module.exports = {
    */
   sentry: {
     dsn: process.env.SENTRY_DSN,
+    publishRelease: process.env.NODE_ENV === 'production',
+    disableClientRelease: false,
+    disableServerSide: false,
     webpackConfig: {
+      release: process.env.RELEASE_VERSION,
       urlPrefix: '~/_nuxt/'
+    },
+    config: {
+      environment: process.env.NODE_ENV
+    },
+    serverConfig: {
+      release: process.env.RELEASE_VERSION
+    },
+    clientConfig: {
+      release: process.env.RELEASE_VERSION
     }
   },
 
@@ -280,19 +293,19 @@ module.exports = {
           config.devtool = '#source-map'
         }
 
-        const SentryPlugin = require('@sentry/webpack-plugin')
+        // const SentryPlugin = require('@sentry/webpack-plugin')
 
-        config.plugins.push(
-          new SentryPlugin({
-            // Sentry options are required
-            include: ['.nuxt/dist/client'],
-            ignore: ['node_modules', '.nuxt/dist/client/img', '.nuxt/dist/client/icons'],
-            configFile: '.sentryclirc',
-            config: {
-              environment: process.env.ENVIRONMENT || 'development'
-            }
-          })
-        )
+        // config.plugins.push(
+        //   new SentryPlugin({
+        //     // Sentry options are required
+        //     include: ['.nuxt/dist/client'],
+        //     ignore: ['node_modules', '.nuxt/dist/client/img', '.nuxt/dist/client/icons'],
+        //     configFile: '.sentryclirc',
+        //     config: {
+        //       environment: process.env.ENVIRONMENT || 'development'
+        //     }
+        //   })
+        // )
       }
 
       return

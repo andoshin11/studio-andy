@@ -87,7 +87,6 @@
     "babel-plugin-vue-jsx-modifier": "^1.0.0",
     "babel-runtime": "^6.26.0",
     "bundlewatch": "^0.2.5",
-    "classnames": "^2.2.6",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-typescript": "^1.1.0",
