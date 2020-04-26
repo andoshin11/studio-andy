@@ -1,4 +1,3 @@
-import { ActionTree, ActionContext } from 'vuex'
 import * as SentryNode from '@sentry/node'
 import { Context } from '@nuxt/vue-app'
 
@@ -10,7 +9,11 @@ declare module 'vuex/types/index' {
   }
 }
 
-declare module '@nuxt/vue-app/types/index' {
+declare module 'vue/types/vue' {
+  interface Vue {}
+}
+
+declare module '@nuxt/types/index' {
   interface Context {
     $sentry?: Logger
   }

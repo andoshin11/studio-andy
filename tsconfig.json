@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noImplicitThis": true,
+    "skipLibCheck": true,
     "jsx": "preserve",
     "allowJs": true,
     "baseUrl": ".",
@@ -14,7 +15,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["@nuxt/vue-app"]
+    "types": ["@nuxt/types"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

@@ -7,6 +7,9 @@ module.exports = {
   srcDir: 'src/',
   modulesDir: path.resolve(__dirname, 'node_modules'),
 
+  buildModules: ['@nuxt/typescript-build'],
+  typeCheck: true,
+
   /*
   ** Environmental Variables
   */
@@ -54,9 +57,6 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=M+PLUS+1p'
-      },
-      {
-        src: 'https://cdnjs.cloudflare.com/ajax/libs/reflect-metadata/0.1.13/Reflect.min.js'
       }
     ]
   },
@@ -162,9 +162,10 @@ module.exports = {
    */
   sentry: {
     dsn: process.env.SENTRY_DSN,
+    disabled: process.env.NODE_ENV === 'development',
     publishRelease: process.env.NODE_ENV === 'production',
-    disableClientRelease: false,
-    disableServerSide: false,
+    disableClientRelease: process.env.NODE_ENV === 'development' ? true : false,
+    disableServerSide: process.env.NODE_ENV === 'development' ? true : false,
     webpackConfig: {
       release: process.env.RELEASE_VERSION,
       urlPrefix: '~/_nuxt/'
@@ -255,17 +256,19 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    useForkTsChecker: true,
+    additionalExtensions: ['ts', 'tsx'],
     loaders: {
       vueStyle: {
         manualInject: true
       },
       css: {
         modules: true,
-        importLoaders: 1,
-        localIdentName: '[local]_[hash:base64:5]'
+        importLoaders: 1
+        // localIdentName: '[local]_[hash:base64:5]'
       }
     },
+    devtools: true,
+    profile: true,
     babel: {
       presets: [['@babel/env', { modules: 'commonjs' }]],
       plugins: [
