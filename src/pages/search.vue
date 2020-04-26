@@ -34,6 +34,7 @@ export default Vue.extend({
       postRepository: new PostRepository(store)
     })
 
+    // @ts-ignore
     await usecase.execute(Array.isArray(query.query) ? query.query[0] : query.query)
   }
 })

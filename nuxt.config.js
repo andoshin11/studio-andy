@@ -7,6 +7,9 @@ module.exports = {
   srcDir: 'src/',
   modulesDir: path.resolve(__dirname, 'node_modules'),
 
+  buildModules: ['@nuxt/typescript-build'],
+  typeCheck: true,
+
   /*
   ** Environmental Variables
   */
@@ -23,7 +26,7 @@ module.exports = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    title: pkg.name,
+    title: 'Studio Andy',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -81,7 +84,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed', '@nuxtjs/google-adsense'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed'],
 
   /*
   ** Extensions
@@ -155,20 +158,14 @@ module.exports = {
   },
 
   /*
-   * Google AdSense settings
-   */
-  'google-adsense': {
-    id: 'ca-pub-6290151984791211'
-  },
-
-  /*
    * Sentry settings
    */
   sentry: {
     dsn: process.env.SENTRY_DSN,
+    disabled: process.env.NODE_ENV === 'development',
     publishRelease: process.env.NODE_ENV === 'production',
-    disableClientRelease: false,
-    disableServerSide: false,
+    disableClientRelease: process.env.NODE_ENV === 'development' ? true : false,
+    disableServerSide: process.env.NODE_ENV === 'development' ? true : false,
     webpackConfig: {
       release: process.env.RELEASE_VERSION,
       urlPrefix: '~/_nuxt/'
@@ -259,17 +256,19 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    useForkTsChecker: true,
+    additionalExtensions: ['ts', 'tsx'],
     loaders: {
       vueStyle: {
         manualInject: true
       },
       css: {
         modules: true,
-        importLoaders: 1,
-        localIdentName: '[local]_[hash:base64:5]'
+        importLoaders: 1
+        // localIdentName: '[local]_[hash:base64:5]'
       }
     },
+    devtools: true,
+    profile: true,
     babel: {
       presets: [['@babel/env', { modules: 'commonjs' }]],
       plugins: [

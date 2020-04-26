@@ -1,14 +1,18 @@
 import { IPostProps } from '@/entities/Post'
 
-export enum Types {
-  STORE_POSTS = 'post/store_posts',
-  STORE_LATEST_POSTS = 'post/store_latest_posts',
-  STORE_SEARCH_RESULTS = 'post/store_search_result',
-  STORE_TAG_RESULT = 'post/store_tag_result',
-  STORE_SEARCH_QUERY = 'post/store_search_query',
-  STORE_CURRENT_TAG = 'post/store_current_tag',
-  STORE_CURRENT_POST = 'post/store_current_post'
+import { createRootTypes } from '@/storeConstruct/helper'
+
+export const LocalTypes = {
+  STORE_POSTS: 'store_posts',
+  STORE_LATEST_POSTS: 'store_latest_posts',
+  STORE_SEARCH_RESULTS: 'store_search_result',
+  STORE_TAG_RESULT: 'store_tag_result',
+  STORE_SEARCH_QUERY: 'store_search_query',
+  STORE_CURRENT_TAG: 'store_current_tag',
+  STORE_CURRENT_POST: 'store_current_post'
 }
+
+export const Types = createRootTypes('post', LocalTypes)
 
 export class StorePosts implements FluxStandardAction {
   type = Types.STORE_POSTS
