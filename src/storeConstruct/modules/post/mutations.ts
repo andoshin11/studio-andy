@@ -1,9 +1,9 @@
 import { MutationTree } from 'vuex'
-import { IPostState } from '@/store/modules/Post/state'
-import { Types, StorePosts, StoreLatestPosts, StoreSearchResults, StoreCurrentPost, StoreSearchQuery, StoreCurrentTag, StoreTagResult } from '@/store/modules/Post/types'
+import { IPostState } from './state'
+import { LocalTypes, StorePosts, StoreLatestPosts, StoreSearchResults, StoreCurrentPost, StoreSearchQuery, StoreCurrentTag, StoreTagResult } from './types'
 
 export const mutations: MutationTree<IPostState> = {
-  [Types.STORE_POSTS]: (state, action: StorePosts) => {
+  [LocalTypes.STORE_POSTS]: (state, action: StorePosts) => {
     const posts = action.payload
     posts.forEach(post => {
       state.byIds = {
@@ -12,27 +12,27 @@ export const mutations: MutationTree<IPostState> = {
       }
     })
   },
-  [Types.STORE_LATEST_POSTS]: (state, action: StoreLatestPosts) => {
+  [LocalTypes.STORE_LATEST_POSTS]: (state, action: StoreLatestPosts) => {
     const latestPosts = action.payload
     state.latestPosts = latestPosts
   },
-  [Types.STORE_SEARCH_RESULTS]: (state, action: StoreSearchResults) => {
+  [LocalTypes.STORE_SEARCH_RESULTS]: (state, action: StoreSearchResults) => {
     const searchResults = action.payload
     state.searchResult = searchResults
   },
-  [Types.STORE_TAG_RESULT]: (state, action: StoreTagResult) => {
+  [LocalTypes.STORE_TAG_RESULT]: (state, action: StoreTagResult) => {
     const tagResult = action.payload
     state.tagResult = tagResult
   },
-  [Types.STORE_CURRENT_TAG]: (state, action: StoreCurrentTag) => {
+  [LocalTypes.STORE_CURRENT_TAG]: (state, action: StoreCurrentTag) => {
     const currentTag = action.payload
     state.currentTag = currentTag
   },
-  [Types.STORE_SEARCH_QUERY]: (state, action: StoreSearchQuery) => {
+  [LocalTypes.STORE_SEARCH_QUERY]: (state, action: StoreSearchQuery) => {
     const searchQuery = action.payload
     state.searchQuery = searchQuery
   },
-  [Types.STORE_CURRENT_POST]: (state, action: StoreCurrentPost) => {
+  [LocalTypes.STORE_CURRENT_POST]: (state, action: StoreCurrentPost) => {
     const currentPost = action.payload
     state.currentPost = currentPost
   }
