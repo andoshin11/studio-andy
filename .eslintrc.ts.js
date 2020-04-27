@@ -16,7 +16,9 @@ const overrideConfig = {
     'typescript/member-ordering': 'off',
     'typescript/no-parameter-properties': 'off',
     'typescript/member-delimiter-style': 'off',
-    'typescript/interface-name-prefix': 'off'
+    'typescript/interface-name-prefix': 'off',
+    'typescript/explicit-function-return-type': 'off',
+    'typescript/no-non-null-assertion': 'off'
   }
 }
 
