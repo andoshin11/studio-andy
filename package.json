@@ -27,7 +27,8 @@
     "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen",
     "test": "npm-run-all test:*",
     "test:size": "bundlewatch --config .bundlewatch.config.js",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test:type": "tsc --noEmit"
   },
   "husky": {
     "hooks": {
