@@ -25,6 +25,7 @@
     "lintfix:css": "yarn run lint:css --fix",
     "precommit": "npm run lint",
     "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen",
+    "test": "npm-run-all test:*",
     "test:size": "bundlewatch --config .bundlewatch.config.js",
     "test:unit": "jest"
   },
