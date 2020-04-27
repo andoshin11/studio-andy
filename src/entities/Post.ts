@@ -66,8 +66,8 @@ const AssetFactory = (): Asset => {
   }
 }
 
-export const PostFactory = (): PostEntity => {
-  const dummyProps: IPostProps = {
+export const PostPropsFactory = (props?: Partial<IPostProps>): IPostProps => {
+  return {
     slug: 'dummy',
     id: 'dummyId',
     tags: ['Life', 'Space'],
@@ -78,8 +78,11 @@ export const PostFactory = (): PostEntity => {
     headerImage: AssetFactory(),
     headerImageLight: AssetFactory(),
     isPublished: true,
-    relatedPosts: []
+    relatedPosts: [],
+    ...props
   }
+}
 
-  return new PostEntity(dummyProps)
+export const PostEntityFactory = (props?: Partial<IPostProps>): PostEntity => {
+  return new PostEntity(PostPropsFactory(props))
 }
