@@ -43,7 +43,9 @@ const AssetFactory = (): Asset => {
       description: 'Vue Fes Japan 2018',
       file: {
         contentType: 'image/jpeg',
-        details: {},
+        details: {
+          size: 1000
+        },
         fileName: 'vuefes.jpg',
         url: '//images.ctfassets.net/2p1otbbee5vt/1IT8b2qoAEyc0SOwqSy6QS/f5f517ed6f292497270bf3b85d608dea/vuefes.jpg'
       }
