@@ -90,6 +90,7 @@ data "google_container_registry_image" "nuxt" {
 resource "google_cloud_run_service" "studio-andy" {
   name     = "studio-andy"
   location = "asia-northeast1"
+  autogenerate_revision_name = true
 
   template {
     metadata {
