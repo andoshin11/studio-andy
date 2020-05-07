@@ -13,3 +13,9 @@ variable "SENTRY_AUTH_TOKEN" {}
 variable "CTF_SPACE_ID" {}
 
 variable "CTF_CDA_ACCESS_TOKEN" {}
+
+variable "CLOUDFLARE_ZONE_ID" {}
+
+variable "CLOUDFLARE_USER_EMAIL" {}
+
+variable "CLOUDFLARE_API_KEY" {}
