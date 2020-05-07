@@ -84,7 +84,7 @@ resource "google_cloudbuild_trigger" "studio-andy-deploy" {
 data "google_container_registry_image" "nuxt" {
   name = "nuxt"
   region = "asia"
-  # tag = "latest"
+  tag = "b079e8c2782c16089591bd6e4400f39e64033e7388108057a7612fbc92a33875"
 }
 
 resource "google_cloud_run_service" "studio-andy" {
