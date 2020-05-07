@@ -101,7 +101,7 @@ resource "google_cloud_run_service" "studio-andy" {
       containers {
         image = data.google_container_registry_image.nuxt.image_url
         resources {
-          limits = { "memory" : "512Mi" }
+          limits = { "memory" : "512Mi", "cpu": "1000m" }
         }
       }
     }
