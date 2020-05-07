@@ -1,9 +1,9 @@
 module.exports = {
-  moduleFileExtensions: ['js', 'ts', 'json'],
+  moduleFileExtensions: ['js', 'ts', 'tsx', 'json'],
   moduleDirectories: ['node_modules'],
   transform: {
     '^.+\\.js$': 'ts-jest',
-    '^.+\\.ts$': 'ts-jest'
+    '^.+\\.tsx?$': 'ts-jest'
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
@@ -11,7 +11,8 @@ module.exports = {
   verbose: true,
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.json'
+      tsConfig: 'tsconfig.json',
+      diagnostics: false
     }
   }
 }

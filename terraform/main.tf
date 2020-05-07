@@ -56,6 +56,9 @@ resource "google_cloudbuild_trigger" "studio-andy-deploy" {
     _SENTRY_AUTH_TOKEN    = var.SENTRY_AUTH_TOKEN
     _CTF_SPACE_ID         = var.CTF_SPACE_ID
     _CTF_CDA_ACCESS_TOKEN = var.CTF_CDA_ACCESS_TOKEN
+    _CLOUDFLARE_ZONE_ID = var.CLOUDFLARE_ZONE_ID
+    _CLOUDFLARE_USER_EMAIL = var.CLOUDFLARE_USER_EMAIL
+    _CLOUDFLARE_API_KEY = var.CLOUDFLARE_API_KEY
   }
 
   github {
