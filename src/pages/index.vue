@@ -6,6 +6,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { defineComponent, withContext } from 'nuxt-composition-api'
+import { useHead } from '@/util/vue'
+import { Context } from '@nuxt/types'
+
 const HomeContainer = () => import('@/containers/Home')
 
 // Use Case
@@ -20,17 +24,18 @@ import ContentfulGateway from '@/gateway/ContentfulGateway'
 // Service
 import LogService from '@/services/LogService'
 
-export default Vue.extend({
+const { head } = useHead({
+  title: 'Home | Studio Andy',
+  meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
+})
+
+export default defineComponent({
+  head,
   components: {
     HomeContainer
   },
-  head() {
-    return {
-      title: 'Home | Studio Andy',
-      meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
-    }
-  },
-  async fetch({ store, $sentry }) {
+  async middleware(ctx: Context) {
+    const { store, $sentry } = ctx
     const usecase = new FetchLatestPostsUseCase({
       postRepository: new PostRepository(store),
       logService: new LogService({ logger: $sentry }),
