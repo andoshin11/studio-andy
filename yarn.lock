@@ -2404,6 +2404,13 @@
   optionalDependencies:
     prettier "^1.18.2"
 
+"@vue/composition-api@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-0.5.0.tgz#2dbaa02a5d1f5d0d407d53d5529fe444aa8362f3"
+  integrity sha512-9QDFWq7q839G1CTTaxeruPOTrrVOPSaVipJ2TxxK9QAruePNTHOGbOOFRpc8WLl4YPsu1/c29yBhMVmrXz8BZw==
+  dependencies:
+    tslib "^1.9.3"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -9010,6 +9017,13 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
+
+nuxt-composition-api@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/nuxt-composition-api/-/nuxt-composition-api-0.3.2.tgz#0d8c8d771e57534d200023e7ee01ae2ec3cec106"
+  integrity sha512-c6jPzv2hBglit0DNcFOr8QItP9YoQYGd8Vimq7xdIjL/K+3le3OIforXysg25qAwA9oNWzQrnfKBVESwH7Fb2w==
+  dependencies:
+    "@vue/composition-api" "^0.5.0"
 
 nuxt@^2.12.2:
   version "2.12.2"

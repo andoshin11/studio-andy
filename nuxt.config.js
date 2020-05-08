@@ -7,7 +7,7 @@ module.exports = {
   srcDir: 'src/',
   modulesDir: path.resolve(__dirname, 'node_modules'),
 
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', 'nuxt-composition-api'],
   typeCheck: true,
 
   /*
