@@ -31,7 +31,9 @@
       </a>
     </div>
     <div 
-      class="copyright" 
+      class="copyright"
+      role="button"
+      @keydown="debugError"
       @click="debugError">Copyright © 2020 Shin Ando</div>
   </div>
 </template>
