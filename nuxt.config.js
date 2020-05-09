@@ -257,32 +257,8 @@ module.exports = {
   */
   build: {
     additionalExtensions: ['ts', 'tsx'],
-    loaders: {
-      vueStyle: {
-        manualInject: true
-      },
-      css: {
-        modules: true,
-        importLoaders: 1
-        // localIdentName: '[local]_[hash:base64:5]'
-      }
-    },
     devtools: true,
     profile: true,
-    babel: {
-      presets: [['@babel/env', { modules: 'commonjs' }]],
-      plugins: [
-        'babel-plugin-vue-jsx-modifier',
-        'babel-plugin-transform-vue-jsx',
-        '@babel/plugin-syntax-dynamic-import',
-        [
-          '@babel/plugin-transform-runtime',
-          {
-            regenerator: true
-          }
-        ]
-      ]
-    },
     /*
     ** You can extend webpack config here
     */
