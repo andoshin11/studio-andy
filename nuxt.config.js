@@ -10,6 +10,8 @@ module.exports = {
   buildModules: ['@nuxt/typescript-build', 'nuxt-composition-api'],
   typeCheck: true,
 
+  modern: true,
+
   /*
   ** Environmental Variables
   */
