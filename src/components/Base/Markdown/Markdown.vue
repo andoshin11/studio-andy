@@ -6,11 +6,9 @@
 
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'nuxt-composition-api'
-import * as tsx from 'vue-tsx-support'
 import marked from 'marked'
 import Prism from 'prismjs'
 import Embed from '@/lib/embed'
-import './styles.css'
 
 export default defineComponent({
   name: 'Markdown',
