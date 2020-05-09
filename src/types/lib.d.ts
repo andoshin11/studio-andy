@@ -1,6 +1,4 @@
-import { TsxComponentAttrs } from 'vue-tsx-support'
 import { Location } from 'vue-router'
-import 'vue-tsx-support/enable-check'
 
 interface RouterLinkProps {
   to: string | Location
@@ -15,13 +13,4 @@ interface RouterLinkProps {
 
 interface RouterViewProps {
   name?: string
-}
-
-declare global {
-  // eslint-disable-next-line
-  namespace JSX {
-    interface IntrinsicElements {
-      'nuxt-link'?: TsxComponentAttrs<RouterLinkProps>
-    }
-  }
 }

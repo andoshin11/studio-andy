@@ -6,12 +6,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { defineComponent, getCurrentInstance, useContext } from 'nuxt-composition-api'
+import { Context } from '@nuxt/types'
+
 const PostContainer = () => import('@/containers/Post')
 import PostEntity from '@/entities/Post'
 
 // Use Case
 import FetchPostUseCase from '@/usecases/post/FetchPostUseCase'
 import FetchRelatedPostsUseCase from '@/usecases/post/FetchRelatedPostsUseCase'
+import FetchLatestPostsUseCase from '@/usecases/post/FetchLatestPostsUseCase'
 
 // Repositories
 import PostRepository from '@/repositories/PostRepository'
@@ -25,29 +29,41 @@ import LogService from '@/services/LogService'
 // Error
 import { NotFoundError, ErrorType } from '@/common/errors'
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     PostContainer
   },
-  methods: {
-    async fetchRelatedPosts(post: PostEntity) {
-      const usecase = new FetchRelatedPostsUseCase({
+  setup() {
+    const vm = getCurrentInstance()
+    if (!vm) throw new Error('could not retrieve vm')
+    const { $store } = vm
+    const { store, $sentry } = useContext()
+
+    const fetchRelatedPosts = async (post: PostEntity) => {
+      const fetchRelatedPostsUseCase = new FetchRelatedPostsUseCase({
         logService: new LogService({
-          logger: (this as any).logger //FIXME
+          logger: $sentry
         }),
-        postRepository: new PostRepository(this.$store),
+        postRepository: new PostRepository(store),
+        contentfulGateway: new ContentfulGateway()
+      })
+      const fetchLatestPostsUseCase = new FetchLatestPostsUseCase({
+        logService: new LogService({
+          logger: $sentry
+        }),
+        postRepository: new PostRepository(store),
         contentfulGateway: new ContentfulGateway()
       })
 
-      await usecase.execute(post)
+      await Promise.all([fetchLatestPostsUseCase.execute(), fetchRelatedPostsUseCase.execute(post)])
     }
-  },
-  async asyncData({ $sentry }) {
+
     return {
-      logger: $sentry
+      fetchRelatedPosts
     }
   },
-  async fetch({ params, store, $sentry, error }) {
+  async middleware(ctx: Context) {
+    const { params, store, $sentry, error } = ctx
     try {
       const usecase = new FetchPostUseCase({
         postRepository: new PostRepository(store),

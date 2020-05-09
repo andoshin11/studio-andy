@@ -6,6 +6,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { defineComponent } from 'nuxt-composition-api'
+
 const TagsContainer = () => import('@/containers/Tags')
 
 // Use Case
@@ -20,11 +22,11 @@ import ContentfulGateway from '@/gateway/ContentfulGateway'
 // Service
 import LogService from '@/services/LogService'
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     TagsContainer
   },
-  async fetch({ params, store, $sentry }) {
+  async middleware({ params, store, $sentry }) {
     const usecase = new FetchPostsByTagUseCase({
       postRepository: new PostRepository(store),
       logService: new LogService({ logger: $sentry }),

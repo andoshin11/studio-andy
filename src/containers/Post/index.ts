@@ -1,3 +1,3 @@
-import Post from './Post'
+import Post from './Post.vue'
 
 export default Post

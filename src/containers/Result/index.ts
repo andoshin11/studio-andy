@@ -1,3 +1,3 @@
-import Result from './Result'
+import Result from './Result.vue'
 
 export default Result

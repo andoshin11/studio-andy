@@ -1,3 +1,3 @@
-import Loading from './Loading'
+import Loading from './Loading.vue'
 
 export default Loading
