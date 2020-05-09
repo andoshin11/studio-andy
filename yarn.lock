@@ -9018,10 +9018,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-composition-api@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/nuxt-composition-api/-/nuxt-composition-api-0.3.2.tgz#0d8c8d771e57534d200023e7ee01ae2ec3cec106"
-  integrity sha512-c6jPzv2hBglit0DNcFOr8QItP9YoQYGd8Vimq7xdIjL/K+3le3OIforXysg25qAwA9oNWzQrnfKBVESwH7Fb2w==
+nuxt-composition-api@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/nuxt-composition-api/-/nuxt-composition-api-0.5.0.tgz#b93102c822d90c739275c79e3ac1ef483191868f"
+  integrity sha512-GmXoKr95qMLmU5jbto+WRfFWggoGJUSEM2Puoc2Mfom9jO27bWjpw4D4qrameEgPTMnbJu39I4yZ9bCrvPOE1A==
   dependencies:
     "@vue/composition-api" "^0.5.0"
 
