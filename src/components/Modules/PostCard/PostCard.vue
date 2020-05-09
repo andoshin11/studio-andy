@@ -1,3 +1,88 @@
+<template>
+  <div 
+    class="PostCard" 
+    @mouseenter="prerender">
+    <div class="header">
+      <picture>
+        <source 
+          :srcset="headerWebp" 
+          class="img" 
+          type="image/webp" >
+        <img 
+          :src="headerImage" 
+          :alt="post.props.title" 
+          class="img" >
+      </picture>
+    </div>
+    <div class="body">
+      <span class="date">{{ publishedAt }}</span>
+      <div class="title">{{ post.props.title }}</div>
+      <ul class="tagList">
+        <li 
+          v-for="(tag, i) in post.props.tags" 
+          :key="i" 
+          class="tag">
+          <nuxt-link 
+            :to="tagPath(tag)" 
+            tag="button">
+            {{ tag }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'nuxt-composition-api'
+import dayjs from 'dayjs'
+import PostEntity from '@/entities/Post'
+import { prerender as _prerender } from '@/util/util'
+
+export default defineComponent({
+  name: 'PostCard',
+  props: {
+    post: {
+      type: Object as () => PostEntity,
+      required: true
+    }
+  },
+  setup(props) {
+    const { post } = props
+
+    // Computed
+    const publishedAt = computed(() => {
+      const publishedAt = dayjs(post.props.publishedAt)
+      return publishedAt.format('MMM D, YYYY')
+    })
+    const headerImage = computed(() => {
+      const { headerImage } = post.props
+      return headerImage ? headerImage.fields.file.url : ''
+    })
+    const headerWebp = computed(() => {
+      const { headerImageLight } = post.props
+      return headerImageLight ? headerImageLight.fields.file.url : ''
+    })
+
+    // Methods
+    const tagPath = (tag: string) => `/tags/${tag}`
+    const prerender = () => {
+      const href = `/posts/${post.props.slug}`
+      _prerender(href)
+    }
+
+    return {
+      publishedAt,
+      headerImage,
+      headerWebp,
+      tagPath,
+      prerender
+    }
+  }
+})
+</script>
+
+<style scoped>
 .PostCard {
   overflow: hidden;
   color: #222;
@@ -134,3 +219,4 @@
     letter-spacing: 0.5px;
   }
 }
+</style>

@@ -1,3 +1,3 @@
-import SocialButtons from './SocialButtons'
+import SocialButtons from './SocialButtons.vue'
 
 export default SocialButtons
