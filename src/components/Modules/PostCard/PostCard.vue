@@ -11,6 +11,7 @@
         <img 
           :src="headerImage" 
           :alt="post.props.title" 
+          loading="lazy"
           class="img" >
       </picture>
     </div>
