@@ -1,3 +1,78 @@
+<template>
+  <div 
+    :class="{ shrink: shrink }" 
+    class="Header">
+    <div class="inner">
+      <nuxt-link 
+        exact 
+        to="/" 
+        class="logo">
+        Studio Andy
+      </nuxt-link>
+    </div>
+    <form 
+      class="search" 
+      role="search" 
+      @submit.prevent="searchPosts">
+      <input 
+        ref="inputRef" 
+        v-model="query" 
+        name="query" 
+        aria-label="query" 
+        type="text" 
+        class="searchInput" >
+      <button 
+        type="submit" 
+        aria-label="search" 
+        class="searchButton">
+        <Icon name="search" />
+      </button>
+      <div class="mask" />
+    </form>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, useContext } from 'nuxt-composition-api'
+import Icon from '@/components/Base/Icon'
+
+export default defineComponent({
+  name: 'Header',
+  components: {
+    Icon
+  },
+  props: {
+    shrink: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup() {
+    const query = ref('')
+    const inputRef = ref<HTMLInputElement>(null)
+
+    const {
+      app: { router }
+    } = useContext()
+
+    const searchPosts = (e: Event) => {
+      // e.preventDefault()
+      if (!query.value || !inputRef.value || !router) return
+      inputRef.value.blur()
+      router.push({ path: `/search?query=${query.value}` })
+      query.value = ''
+    }
+
+    return {
+      query,
+      inputRef,
+      searchPosts
+    }
+  }
+})
+</script>
+
+<style scoped>
 .Header {
   position: relative;
   width: 100%;
@@ -148,3 +223,4 @@
   width: 100vw;
   height: 100vh;
 }
+</style>
