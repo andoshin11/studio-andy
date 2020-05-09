@@ -12,3 +12,9 @@ export const createStore = () =>
       post: post.module
     }
   })
+
+export const createStoreFromState = (state: RootState) => {
+  const store = createStore()
+  store.replaceState(state)
+  return store
+}
