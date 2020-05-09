@@ -1,3 +1,3 @@
-import HeaderImg from './HeaderImg'
+import HeaderImg from './HeaderImg.vue'
 
 export default HeaderImg
