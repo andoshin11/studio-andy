@@ -28,7 +28,7 @@
     <lazy-component 
       class="relatedPosts" 
       @show="fetchRelatedPosts">
-      <Loading v-if="!presenter.relatedPosts.length && false" />
+      <Loading v-if="!presenter.relatedPosts.length" />
       <template v-else>
         <div class="relatedPostsLabel">関連する記事</div>
         <PostList :data="presenter.relatedPosts" />
@@ -89,12 +89,6 @@ export default defineComponent({
     const { $route, $store } = ctx.root
 
     // Comptuted
-    // const presenter = computed<IPresenter>(() => {
-    //   return Presenter({
-    //     postRepository: new PostRepository(ctx.root.$store)
-    //   })
-    // })
-
     const presenterFn: PresenterFn<IPresenter> = store =>
       Presenter({
         postRepository: new PostRepository(store)
