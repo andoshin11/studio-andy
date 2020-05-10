@@ -38,7 +38,7 @@ export default defineComponent({
 .Home {
   display: flex;
   flex-direction: column;
-  padding-bottom: 200px;
+  padding-bottom: 0px;
 }
 
 @media screen and (max-width: 768px) {
