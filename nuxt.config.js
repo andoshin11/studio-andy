@@ -10,6 +10,8 @@ module.exports = {
   buildModules: ['@nuxt/typescript-build', 'nuxt-composition-api'],
   typeCheck: true,
 
+  modern: true,
+
   /*
   ** Environmental Variables
   */
@@ -52,12 +54,10 @@ module.exports = {
       { rel: 'apple-touch-icon', size: '180x180', href: '/apple-icon-180x180.png' },
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#da532c' },
       {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Merriweather'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=M+PLUS+1p'
+        ref: 'preload',
+        as: 'font',
+        type: 'font/woff2',
+        href: '/fonts/noto-sans-jp-v25-latin_japanese-regular.woff2'
       }
     ]
   },

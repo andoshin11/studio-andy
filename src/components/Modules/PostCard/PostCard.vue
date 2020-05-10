@@ -1,9 +1,14 @@
 <template>
-  <div 
+  <div
+    ref="rootRef"
     class="PostCard" 
     @mouseenter="prerender">
     <div class="header">
-      <picture>
+      <Empty 
+        v-if="!isImageReady" 
+        :aria-label="post.props.title" 
+        class="img"/>
+      <picture v-else>
         <source 
           :srcset="headerWebp" 
           class="img" 
@@ -11,6 +16,7 @@
         <img 
           :src="headerImage" 
           :alt="post.props.title" 
+          loading="lazy"
           class="img" >
       </picture>
     </div>
@@ -34,10 +40,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'nuxt-composition-api'
+import { defineComponent, computed, ref, onMounted } from 'nuxt-composition-api'
 import dayjs from 'dayjs'
 import PostEntity from '@/entities/Post'
 import { prerender as _prerender } from '@/util/util'
+import Empty from '@/components/Base/Empty'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 export default defineComponent({
   name: 'PostCard',
@@ -47,8 +55,14 @@ export default defineComponent({
       required: true
     }
   },
+  components: {
+    Empty
+  },
   setup(props) {
     const { post } = props
+
+    const isImageReady = ref(false)
+    const rootRef = ref<HTMLElement>(null)
 
     // Computed
     const publishedAt = computed(() => {
@@ -70,13 +84,35 @@ export default defineComponent({
       const href = `/posts/${post.props.slug}`
       _prerender(href)
     }
+    const handleObservability = () => {
+      try {
+        useIntersectionObserver(rootRef, entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              isImageReady.value = true
+              return
+            }
+          })
+        })
+      } catch (e) {
+        isImageReady.value = true
+        return
+      }
+    }
+
+    // Lifecycle
+    onMounted(() => {
+      handleObservability()
+    })
 
     return {
       publishedAt,
       headerImage,
       headerWebp,
       tagPath,
-      prerender
+      prerender,
+      isImageReady,
+      rootRef
     }
   }
 })
@@ -148,7 +184,6 @@ export default defineComponent({
   display: inline-block;
   margin-bottom: 8px;
   font-size: 12px;
-  font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   transition: 0.4s ease-out;
 }
 
@@ -164,7 +199,6 @@ export default defineComponent({
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 24px;
-  font-family: Hiragino Kaku Gothic Pro, 'M PLUS 1p', sans-serif, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   letter-spacing: 0.5px;
   transition: 0.4s ease-out;
 }

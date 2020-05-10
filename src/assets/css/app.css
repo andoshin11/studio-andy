@@ -1,6 +1,23 @@
+/* noto-sans-jp-regular - latin_japanese */
+@font-face {
+  font-weight: 400;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  src: local('Noto Sans Japanese Regular'), local('NotoSansJapanese-Regular'), url('/fonts/noto-sans-jp-v25-latin_japanese-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('/fonts/noto-sans-jp-v25-latin_japanese-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
+}
+/* noto-sans-jp-700 - latin_japanese */
+@font-face {
+  font-weight: 700;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  src: local('Noto Sans Japanese Bold'), local('NotoSansJapanese-Bold'), url('/fonts/noto-sans-jp-v25-latin_japanese-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('/fonts/noto-sans-jp-v25-latin_japanese-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
+}
+
 body {
   margin: 0;
-  font-family: Hiragino Kaku Gothic Pro, 'M PLUS 1p', sans-serif, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
+  font-family: 'Noto Sans JP', Hiragino Kaku Gothic Pro, sans-serif, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
 
   /* background: #e1ddce; */
 }
