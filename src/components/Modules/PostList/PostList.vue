@@ -32,7 +32,7 @@ import { defineComponent, ref, computed } from 'nuxt-composition-api'
 import PostEntity from '@/entities/Post'
 import PostCard from '@/components/Modules/PostCard'
 
-const PER_PAGE = 4
+const PER_PAGE = 8
 
 export default defineComponent({
   name: 'PostList',
