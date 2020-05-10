@@ -184,7 +184,6 @@ export default defineComponent({
   display: inline-block;
   margin-bottom: 8px;
   font-size: 12px;
-  font-family: 'M PLUS 1p', sans-serif, Hiragino Kaku Gothic Pro, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   transition: 0.4s ease-out;
 }
 
@@ -200,7 +199,6 @@ export default defineComponent({
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 24px;
-  font-family: Hiragino Kaku Gothic Pro, 'M PLUS 1p', sans-serif, Meiryo, MS PGothic, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, 'メイリオ';
   letter-spacing: 0.5px;
   transition: 0.4s ease-out;
 }
