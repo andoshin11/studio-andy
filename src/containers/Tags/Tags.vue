@@ -2,20 +2,20 @@
   <div class="Result">
     <div class="summary">
       <span class="query">{{ presenter.tag }}</span>
-      カテゴリの記事 {{ presenter.postList.length }}件
+      カテゴリの記事 {{ presenter.posts.length }}件
     </div>
     <div class="PostList">
-      <PostList :data="presenter.postList" />
+      <PostList :posts="presenter.posts" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
-import { usePresenter, PresenterFn } from '@/hooks/usePresenter'
+import { defineComponent } from '@nuxtjs/composition-api'
+import { container } from 'tsyringe'
+import { usePresenter } from '@/hooks/usePresenter'
+import PostRepository from '@/interface/repository/PostRepository'
 
-import Presenter, { IPresenter } from './presenter'
-import PostRepository from '@/repositories/PostRepository'
 import PostList from '@/components/Modules/PostList'
 
 export default defineComponent({
@@ -24,11 +24,16 @@ export default defineComponent({
     PostList
   },
   setup() {
-    const presenterFn: PresenterFn<IPresenter> = store =>
-      Presenter({
-        postRepository: new PostRepository(store)
-      })
-    const presenter = usePresenter(presenterFn)
+    const presenter = usePresenter(() => {
+      const postRepository = container.resolve<PostRepository>('PostRepository')
+      const posts = postRepository.getTagResult()
+      const tag = postRepository.getCurrentTag()
+
+      return {
+        posts,
+        tag
+      }
+    })
 
     return {
       presenter

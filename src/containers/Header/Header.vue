@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useContext } from 'nuxt-composition-api'
+import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
 import Icon from '@/components/Base/Icon'
 
 export default defineComponent({
@@ -49,7 +49,7 @@ export default defineComponent({
   },
   setup() {
     const query = ref('')
-    const inputRef = ref<HTMLInputElement>(null)
+    const inputRef = ref<HTMLInputElement | null>(null)
 
     const {
       app: { router }

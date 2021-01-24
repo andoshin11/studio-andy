@@ -1,16 +1,16 @@
 <template>
   <div class="Post">
     <div 
-      v-if="presenter.post && !presenter.post.props.isPublished" 
+      v-if="presenter.post && !presenter.post.toJson().isPublished"
       class="preview">
       未公開の記事をPreview機能で閲覧中です。この記事はURLを知っているユーザーにしか表示されません。
     </div>
     <div class="inner">
       <div class="header">
         <HeaderImg :post="presenter.post" />
-        <PostDate :text="presenter.post ? presenter.post.props.publishedAt : ''" />
-        <PostTitle :title="presenter.post ? presenter.post.props.title : ''" />
-        <TagList :list="presenter.post ? presenter.post.props.tags : []" />
+        <PostDate :text="presenter.post ? presenter.post.publishedAtStr : ''" />
+        <PostTitle :title="presenter.post ? presenter.post.toJson().title : ''" />
+        <TagList :list="presenter.post ? presenter.post.toJson().tags : []" />
       </div>
       <div class="body">
         <div 
@@ -21,31 +21,29 @@
             :post="presenter.post" />
         </div>
         <div class="content">
-          <Markdown :text="presenter.post ? presenter.post.props.content : ''" />
+          <Markdown :text="presenter.post ? presenter.post.toJson().content : ''" />
         </div>
       </div>
     </div>
-    <lazy-component 
-      class="relatedPosts" 
+    <!-- <lazy-component
+      class="relatedPosts"
       @show="fetchRelatedPosts">
       <Loading v-if="!presenter.relatedPosts.length" />
       <template v-else>
         <div class="relatedPostsLabel">関連する記事</div>
         <PostList :data="presenter.relatedPosts" />
       </template>
-    </lazy-component>
+    </lazy-component> -->
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { defineComponent, ref, computed, Ref } from 'nuxt-composition-api'
-import { useHead } from '@/util/vue'
-import { usePresenter, PresenterFn } from '@/hooks/usePresenter'
+import { container } from 'tsyringe'
+import { defineComponent, computed, useContext, useMeta } from '@nuxtjs/composition-api'
 
-import Presenter, { IPresenter } from './presenter'
-import PostRepository from '@/repositories/PostRepository'
-import PostEntity from '@/entities/Post'
+import { usePresenter } from '@/hooks/usePresenter'
+import PostRepository from '@/interface/repository/PostRepository'
+
 import PostTitle from '@/components/Base/Post/Title'
 import PostDate from '@/components/Base/Post/Date'
 import TagList from '@/components/Base/Post/TagList'
@@ -54,23 +52,6 @@ import Markdown from '@/components/Base/Markdown'
 import SocialButtons from '@/components/Modules/SocialButtons'
 import Loading from '@/components/Base/Loading'
 import PostList from '@/components/Modules/PostList'
-
-const { head, useMeta } = useHead()
-
-const setHeader = (presenter: Ref<IPresenter>) => {
-  const { title, meta } = useMeta()
-  const { post } = presenter.value
-
-  title!.value = `${post ? post.props.title : ''} | Studio Andy`
-  meta!.value = [
-    { hid: 'description', name: 'description', content: post ? post.props.summary : '' },
-    { hid: 'og:type', property: 'og:type', content: 'article' },
-    { hid: 'og:description', property: 'og:description', content: post ? post.props.summary : '' },
-    { hid: 'og:title', property: 'og:title', content: post ? post.props.title : '' },
-    { hid: 'og:image', property: 'og:image', content: post ? `https:${post.props.headerImage.fields.file.url}` : '' },
-    { hid: 'og:url', property: 'og:url', content: `https://blog.andoshin11.me/posts/${post ? post.props.slug : ''}` }
-  ]
-}
 
 export default defineComponent({
   components: {
@@ -83,37 +64,51 @@ export default defineComponent({
     Loading,
     PostList
   },
-  head,
+  head: {},
   name: 'Post',
-  setup(_, ctx) {
-    const { $route, $store } = ctx.root
+  props: {
+    slug: {
+      type: String,
+      required: true
+    }
+  },
+  setup(props) {
+    const { route } = useContext()
 
-    // Comptuted
-    const presenterFn: PresenterFn<IPresenter> = store =>
-      Presenter({
-        postRepository: new PostRepository(store)
-      })
-    const presenter = usePresenter(presenterFn)
-    const pagePath = computed(() => {
-      const base = 'https://blog.andoshin11.me'
-      return base + $route.fullPath
+    const presenter = usePresenter(() => {
+      const postRepository = container.resolve<PostRepository>('PostRepository')
+      const post = postRepository.getPost(props.slug)
+
+      return {
+        post
+      }
     })
 
-    // Methods
-    const fetchRelatedPosts = () => {
-      const { post } = presenter.value
-      if (post) {
-        ctx.emit('fetchRelatedPosts', post)
-      }
-    }
+    // Comptuted
+    const pagePath = computed(() => {
+      const base = 'https://blog.andoshin11.me'
+      return base + route.value.fullPath
+    })
 
-    // Head
-    setHeader(presenter)
+    useMeta(() => {
+      const { post } = presenter.value
+
+      return {
+        title: `${post ? post.toJson().title : ''} | Studio Andy`,
+        meta: [
+          { hid: 'description', name: 'description', content: post ? post.toJson().summary : '' },
+          { hid: 'og:type', property: 'og:type', content: 'article' },
+          { hid: 'og:description', property: 'og:description', content: post ? post.toJson().summary : '' },
+          { hid: 'og:title', property: 'og:title', content: post ? post.toJson().title : '' },
+          { hid: 'og:image', property: 'og:image', content: post ? `https:${post.headerImageURL}` : '' },
+          { hid: 'og:url', property: 'og:url', content: `https://blog.andoshin11.me/posts/${post ? post.toJson().slug : ''}` }
+        ]
+      }
+    })
 
     return {
       presenter,
-      pagePath,
-      fetchRelatedPosts
+      pagePath
     }
   }
 })

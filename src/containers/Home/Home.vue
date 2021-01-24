@@ -1,18 +1,18 @@
 <template>
   <div class="Home">
     <div class="PostList">
-      <PostList :data="presenter.postList" />
+      <PostList :posts="presenter.posts" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
-import { usePresenter, PresenterFn } from '@/hooks/usePresenter'
+import { container } from 'tsyringe'
+import { defineComponent } from '@nuxtjs/composition-api'
+import { usePresenter } from '@/hooks/usePresenter'
 
-import Presenter, { IPresenter, ListType } from './presenter'
-import PostRepository from '@/repositories/PostRepository'
 import PostList from '@/components/Modules/PostList'
+import PostRepository from '@/interface/repository/PostRepository'
 
 export default defineComponent({
   name: 'Home',
@@ -20,12 +20,14 @@ export default defineComponent({
     PostList
   },
   setup() {
-    const presenterFn: PresenterFn<IPresenter> = store =>
-      Presenter({
-        postRepository: new PostRepository(store),
-        listType: ListType.Latest
-      })
-    const presenter = usePresenter(presenterFn)
+    const presenter = usePresenter(() => {
+      const postRepository = container.resolve<PostRepository>('PostRepository')
+      const posts = postRepository.getPosts('publishedAt')
+
+      return {
+        posts
+      }
+    })
 
     return {
       presenter
