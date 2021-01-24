@@ -1,88 +1,76 @@
 import { Store } from 'vuex'
+import { singleton } from 'tsyringe'
 import { RootState } from '@/storeConstruct'
-import { StoreLatestPosts, StorePosts, StoreCurrentPost, StoreSearchResults, StoreSearchQuery, StoreTagResult, StoreCurrentTag } from '@/storeConstruct/modules/post/types'
-import PostEntity, { IPostProps } from '@/entities/Post'
+import { StoreLatestPosts, StorePosts, StoreSearchResults, StoreSearchQuery, StoreTagResult, StoreCurrentTag } from '@/storeConstruct/modules/post/types'
+import PostRepository from '@/interface/repository/PostRepository'
+import Post, { PostData, SortableKey, Tag } from '@/domain/Post'
+import { pluck } from '@/util/helpers'
 
-export default class PostRepository {
+@singleton()
+export default class PostRepositoryImpl implements PostRepository {
   constructor(private _store: Store<RootState>) {}
 
-  savePosts(posts: IPostProps[]) {
+  getPosts(orderBy?: SortableKey) {
+    const { state } = this._store
+    let dataList: PostData[]
+
+    if (typeof orderBy === 'undefined') {
+      dataList = Object.values(state.post.byIds)
+    } else if (orderBy === 'publishedAt') {
+      const slugs = state.post.latestPosts
+      dataList = slugs.map(slug => state.post.byIds[slug])
+    } else {
+      throw new Error(`unsupported sorting key: ${orderBy}`)
+    }
+
+    return dataList.filter(Boolean).map(data => new Post(data))
+  }
+
+  getPost(slug: PostData['slug']) {
+    const data = this._store.state.post.byIds[slug]
+    return data ? new Post(data) : null
+  }
+
+  savePosts(posts: PostData[], orderBy?: SortableKey) {
     this._store.commit(new StorePosts(posts))
+
+    if (orderBy === 'publishedAt') {
+      const slugs = pluck(posts, 'slug')
+      this._store.commit(new StoreLatestPosts(slugs))
+    }
   }
 
-  saveLatestPosts(posts: IPostProps[]) {
-    const slugs = posts.map(post => post.slug)
-
-    this.savePosts(posts)
-    this._store.commit(new StoreLatestPosts(slugs))
-  }
-
-  saveSearchResults(posts: IPostProps[]) {
-    const slugs = posts.map(post => post.slug)
-
+  saveSearchResult(query: string, posts: PostData[]) {
+    const slugs = pluck(posts, 'slug')
+    this._store.commit(new StoreSearchQuery(query))
     this.savePosts(posts)
     this._store.commit(new StoreSearchResults(slugs))
   }
 
-  saveTagResult(posts: IPostProps[]) {
-    const slugs = posts.map(post => post.slug)
-
+  saveTagResult(tag: Tag, posts: PostData[]) {
+    const slugs = pluck(posts, 'slug')
+    this._store.commit(new StoreCurrentTag(tag))
     this.savePosts(posts)
     this._store.commit(new StoreTagResult(slugs))
-  }
-
-  saveSearchQuery(query: string) {
-    this._store.commit(new StoreSearchQuery(query))
-  }
-
-  saveCurrentTag(tag: string) {
-    this._store.commit(new StoreCurrentTag(tag))
   }
 
   getCurrentTag(): string | null {
     return this._store.state.post.currentTag
   }
 
-  saveCurrentPost(post: IPostProps) {
-    const slug = post.slug
-    this.savePosts([post])
-    this._store.commit(new StoreCurrentPost(slug))
-  }
-
-  getLatestPosts(): PostEntity[] {
-    const slugs = this._store.state.post.latestPosts
-    const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
-    const posts = propsList.map(props => new PostEntity(props))
-    return posts
-  }
-
-  getSearchResults(): PostEntity[] {
+  getSearchResult(): Post[] {
     const slugs = this._store.state.post.searchResult
-    const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
-    const posts = propsList.map(props => new PostEntity(props))
+    const dataList = slugs.map(slug => this._store.state.post.byIds[slug])
+    const posts = dataList.map(props => new Post(props))
     return posts
   }
 
-  getTagResult(): PostEntity[] {
-    const slugs = this._store.state.post.tagResult
-    const propsList = slugs.map(slug => this._store.state.post.byIds[slug])
-    const posts = propsList.map(props => new PostEntity(props))
+  getTagResult(): Post[] {
+    const { state } = this._store
+    const slugs = state.post.tagResult
+    const dataList = slugs.map(slug => state.post.byIds[slug])
+    const posts = dataList.map(props => new Post(props))
     return posts
-  }
-
-  getPost(slug: string): PostEntity | null {
-    const post = this._store.state.post.byIds[slug]
-    return post ? new PostEntity(post) : null
-  }
-
-  getCurrentPost(): PostEntity | null {
-    const slug = this._store.state.post.currentPost
-    if (!slug) return null
-
-    const currentPost = this._store.state.post.byIds[slug]
-    if (!currentPost) return null
-
-    return new PostEntity(currentPost)
   }
 
   getSearchQuery(): string | null {

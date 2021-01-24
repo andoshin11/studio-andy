@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { createStore } from '@/storeConstruct'
@@ -17,6 +18,6 @@ describe('PostRepository', () => {
 
     repository.savePosts([post])
 
-    expect(repository.getPost(slug)!.props).toEqual(post)
+    expect(repository.getPost(slug)!.toJson()).toEqual(post)
   })
 })
