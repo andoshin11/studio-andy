@@ -1,37 +1,20 @@
-import ContentfulGateway from '@/gateway/ContentfulGateway'
+import { injectable, inject } from 'tsyringe'
+import PostGateway from '@/interface/gateway/PostGateway'
 import PostRepository from '@/repositories/PostRepository'
 import LogService, { LogType } from '@/services/LogService'
+import { Tag } from '@/domain/Post'
 
-export interface IFetchPostsByTagUseCase {
-  logService: LogService
-  contentfulGateway: ContentfulGateway
-  postRepository: PostRepository
-}
-
+@injectable()
 export default class FetchPostsByTagUseCase implements BaseUseCase {
-  logService: LogService
-  contentfulGateway: ContentfulGateway
-  postRepository: PostRepository
+  constructor(@inject('PostGateway') private postGateway: PostGateway, @inject('PostRepository') private postRepository: PostRepository, @inject('LogService') private logService: LogService) {}
 
-  constructor({ logService, contentfulGateway, postRepository }: IFetchPostsByTagUseCase) {
-    this.logService = logService
-    this.contentfulGateway = contentfulGateway
-    this.postRepository = postRepository
-  }
-
-  async execute(tag: string) {
+  async execute(tag: Tag) {
     try {
-      // Check if the result already exists
-      const cache = this.postRepository.getCurrentTag()
-
-      if (tag !== cache) {
-        this.postRepository.saveCurrentTag(tag)
-        const results = await this.contentfulGateway.getPostsByTag(tag)
-        this.postRepository.saveTagResult(results)
-      }
-    } catch (error) {
-      await this.logService.handle({ type: LogType.Error, error })
-      throw new Error(error)
+      const posts = await this.postGateway.getPostsByTag(tag)
+      this.postRepository.saveTagResult(tag, posts)
+    } catch (e) {
+      await this.logService.handle({ type: LogType.Error, error: e })
+      throw e
     }
   }
 }

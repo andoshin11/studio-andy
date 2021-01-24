@@ -2,20 +2,16 @@ import { injectable, inject } from 'tsyringe'
 import PostGateway from '@/interface/gateway/PostGateway'
 import PostRepository from '@/interface/repository/PostRepository'
 import LogService, { LogType } from '@/interface/service/LogService'
-import { PostData } from '@/domain/Post'
+import { SortableKey } from '@/domain/Post'
 
 @injectable()
-export default class FetchPostUseCase implements BaseUseCase {
+export default class FetchPostsUseCase implements BaseUseCase {
   constructor(@inject('PostGateway') private postGateway: PostGateway, @inject('PostRepository') private postRepository: PostRepository, @inject('LogService') private logService: LogService) {}
 
-  async execute(slug: PostData['slug']) {
+  async execute(orderBy?: SortableKey) {
     try {
-      // Check if the post already exists
-      const existed = this.postRepository.getPost(slug)
-      if (existed) return
-
-      const post = await this.postGateway.getPost(slug)
-      this.postRepository.savePosts([post])
+      const posts = await this.postGateway.getPosts(orderBy)
+      this.postRepository.savePosts(posts, orderBy)
     } catch (e) {
       await this.logService.handle({ type: LogType.Error, error: e })
       throw e
