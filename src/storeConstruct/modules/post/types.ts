@@ -1,4 +1,4 @@
-import { IPostProps } from '@/entities/Post'
+import { PostData } from '@/domain/Post'
 
 import { createRootTypes } from '@/storeConstruct/helper'
 
@@ -16,7 +16,7 @@ export const Types = createRootTypes('post', LocalTypes)
 
 export class StorePosts implements FluxStandardAction {
   type = Types.STORE_POSTS
-  constructor(public payload: IPostProps[]) {}
+  constructor(public payload: PostData[]) {}
 }
 
 export class StoreLatestPosts implements FluxStandardAction {

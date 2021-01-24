@@ -1,8 +1,8 @@
-import { IPostProps } from '@/entities/Post'
+import { PostData } from '@/domain/Post'
 
 export interface IPostState {
   byIds: {
-    [slug: string]: IPostProps
+    [slug: string]: PostData
   }
   latestPosts: string[]
   searchResult: string[]
