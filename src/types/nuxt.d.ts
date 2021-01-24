@@ -1,7 +1,5 @@
-import * as SentryNode from '@sentry/node'
+import * as SentryTypes from '@sentry/minimal'
 import { Context } from '@nuxt/vue-app'
-
-export type Logger = typeof SentryNode
 
 declare module 'vuex/types/index' {
   interface ActionTree<S, R> {
@@ -15,6 +13,6 @@ declare module 'vue/types/vue' {
 
 declare module '@nuxt/types/index' {
   interface Context {
-    $sentry?: Logger
+    readonly $sentry: typeof SentryTypes
   }
 }
