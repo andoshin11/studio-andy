@@ -1,4 +1,6 @@
-import { Logger } from '@/types/nuxt'
+import { singleton, inject } from 'tsyringe'
+import LogService from '@/interface/service/LogService'
+import { Logger } from '@/infra/logger'
 
 export interface ILogServiceArgs {
   logger?: Logger
@@ -19,16 +21,11 @@ type LogPayload =
       message: string
     }
 
-export default class LogService implements BaseService {
-  logger?: Logger
-
-  constructor({ logger }: ILogServiceArgs) {
-    this.logger = logger
-  }
+@singleton()
+export default class LogServiceImpl implements LogService {
+  constructor(@inject('Logger') private logger: Logger) {}
 
   async handle(payload: LogPayload) {
-    if (!this.logger) return
-
     if (payload.type === LogType.Error) {
       this.logger.captureException(payload.error)
     } else if (payload.type === LogType.Message) {
