@@ -5,4 +5,6 @@ const config = {
   accessToken: process.env.CTF_CDA_ACCESS_TOKEN as string
 }
 
-export const createClient = (): ContentfulClientApi => createContentfulClient(config)
+export type ContentfulClient = ContentfulClientApi
+
+export const createClient = (): ContentfulClient => createContentfulClient(config)
