@@ -19,6 +19,7 @@ export default class PostEntity {
 
   constructor(props: IPostProps) {
     this._props = {
+      // @ts-ignore
       relatedPosts: [],
       ...props
     }

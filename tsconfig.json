@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "target": "es5",
+    "target": "esnext",
     "strict": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -9,6 +9,8 @@
     "noImplicitThis": true,
     "skipLibCheck": true,
     "allowJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
     "paths": {
@@ -16,5 +18,5 @@
     },
     "types": ["@nuxt/types", "jest"]
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"]
+  "include": ["src/**/*.ts"]
 }
