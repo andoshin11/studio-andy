@@ -1,53 +1,49 @@
 <template>
-  <section :class="$style.container">
+  <section class="container">
     <HomeContainer/>
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { defineComponent, withContext } from 'nuxt-composition-api'
-import { useHead } from '@/util/vue'
-import { Context } from '@nuxt/types'
+import { container } from 'tsyringe'
+import { defineComponent, useFetch, watch, useContext } from '@nuxtjs/composition-api'
+import FetchPostsUseCase from '@/usecases/post/FetchPostsUseCase'
 
 const HomeContainer = () => import('@/containers/Home')
 
-// Use Case
-import FetchLatestPostsUseCase from '@/usecases/post/FetchLatestPostsUseCase'
-
-// Repositories
-import PostRepository from '@/repositories/PostRepository'
-
-// Gateway
-import ContentfulGateway from '@/gateway/ContentfulGateway'
-
-// Service
-import LogService from '@/services/LogService'
-
-const { head } = useHead({
-  title: 'Home | Studio Andy',
-  meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
-})
-
 export default defineComponent({
-  head,
+  head: {
+    title: 'Home | Studio Andy',
+    meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
+  },
   components: {
     HomeContainer
   },
-  async middleware(ctx: Context) {
-    const { store, $sentry } = ctx
-    const usecase = new FetchLatestPostsUseCase({
-      postRepository: new PostRepository(store),
-      logService: new LogService({ logger: $sentry }),
-      contentfulGateway: new ContentfulGateway()
+  setup() {
+    const { error } = useContext()
+
+    const { fetchState } = useFetch(async () => {
+      try {
+        await container.resolve(FetchPostsUseCase).execute('publishedAt')
+      } catch (e) {
+        throw e // TODO: Explicit error handling
+      }
     })
-    await usecase.execute()
+
+    watch(
+      () => fetchState.pending,
+      () => {
+        if (fetchState.error) {
+          error({ statusCode: 500, message: fetchState.error.message })
+        }
+      }
+    )
   }
 })
 </script>
 
 
-<style module>
+<style scoped>
 .container {
   display: flex;
   justify-content: center;

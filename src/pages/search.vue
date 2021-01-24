@@ -1,47 +1,45 @@
 <template>
-  <section :class="$style.container">
+  <section class="container">
     <ResultContainer/>
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { container } from 'tsyringe'
+import { defineComponent, useContext, useFetch, watch } from '@nuxtjs/composition-api'
+import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
 const ResultContainer = () => import('@/containers/Result')
 
-// Use Case
-import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
-
-// Repositories
-import PostRepository from '@/repositories/PostRepository'
-
-// Gateway
-import ContentfulGateway from '@/gateway/ContentfulGateway'
-
-// Service
-import LogService from '@/services/LogService'
-
-export default Vue.extend({
+export default defineComponent({
   components: {
     ResultContainer
   },
   watchQuery: ['query'],
-  async fetch({ query, store, $sentry }) {
-    if (!query.query) return
+  setup() {
+    const { query, error } = useContext()
 
-    const usecase = new SearchPostsUseCase({
-      contentfulGateway: new ContentfulGateway(),
-      logService: new LogService({ logger: $sentry }),
-      postRepository: new PostRepository(store)
+    const { fetch } = useFetch(async () => {
+      try {
+        if (typeof query.value.query !== 'string') return
+        const usecase = container.resolve(SearchPostsUseCase)
+        await usecase.execute(query.value.query)
+      } catch (e) {
+        error({ statusCode: 500, message: e.message })
+      }
     })
 
-    // @ts-ignore
-    await usecase.execute(Array.isArray(query.query) ? query.query[0] : query.query)
+    watch(
+      () => query.value.query,
+      () => {
+        fetch()
+      }
+    )
   }
 })
 </script>
 
 
-<style module>
+<style scoped>
 .container {
   width: 1180px;
   margin: 0 auto;

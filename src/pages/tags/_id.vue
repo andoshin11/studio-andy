@@ -1,43 +1,37 @@
 <template>
-  <section :class="$style.container">
+  <section class="container">
     <TagsContainer/>
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { defineComponent } from 'nuxt-composition-api'
-
-const TagsContainer = () => import('@/containers/Tags')
-
-// Use Case
+import { defineComponent, useContext, useFetch } from '@nuxtjs/composition-api'
+import { container } from 'tsyringe'
 import FetchPostsByTagUseCase from '@/usecases/post/FetchPostsByTagUseCase'
 
-// Repositories
-import PostRepository from '@/repositories/PostRepository'
-
-// Gateway
-import ContentfulGateway from '@/gateway/ContentfulGateway'
-
-// Service
-import LogService from '@/services/LogService'
+const TagsContainer = () => import('@/containers/Tags')
 
 export default defineComponent({
   components: {
     TagsContainer
   },
-  async middleware({ params, store, $sentry }) {
-    const usecase = new FetchPostsByTagUseCase({
-      postRepository: new PostRepository(store),
-      logService: new LogService({ logger: $sentry }),
-      contentfulGateway: new ContentfulGateway()
+  setup() {
+    const { params, error } = useContext()
+
+    useFetch(async () => {
+      try {
+        const tag = params.value.id
+        const usecase = container.resolve(FetchPostsByTagUseCase)
+        await usecase.execute(tag)
+      } catch (e) {
+        error({ statusCode: 500, message: e.message })
+      }
     })
-    await usecase.execute(params.id)
   }
 })
 </script>
 
-<style module>
+<style scoped>
 .container {
   width: 1180px;
   margin: 0 auto;
