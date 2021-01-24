@@ -5,14 +5,13 @@
       class="empty">
       <Empty />
     </div>
-    {{ date }}
+    {{ text }}
   </div>
   
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'nuxt-composition-api'
-import dayjs from 'dayjs'
+import { defineComponent } from '@nuxtjs/composition-api'
 import Empty from '@/components/Base/Empty'
 
 export default defineComponent({
@@ -23,18 +22,7 @@ export default defineComponent({
   props: {
     text: {
       type: String,
-      required: true as true,
-      default: ''
-    }
-  },
-  setup(props) {
-    const { text } = props
-    const date = computed(() => {
-      return text.length > 1 ? dayjs(text).format('MMM D, YYYY') : ''
-    })
-
-    return {
-      date
+      required: true
     }
   }
 })

@@ -2,9 +2,9 @@
   <div class="Wrapper">
     <div class="PostList">
       <nuxt-link 
-        v-for="(post, index) in data" 
+        v-for="(post, index) in posts"
         v-show="isVisible(index)"
-        :key="post.props.slug" 
+        :key="post.toJson().slug"
         :to="postPath(post)" 
         :class="{ hidden: !isVisible(index) }"
         class="post">
@@ -28,11 +28,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'nuxt-composition-api'
-import PostEntity from '@/entities/Post'
+import { defineComponent, ref, computed } from '@nuxtjs/composition-api'
+import Post from '@/domain/Post'
 import PostCard from '@/components/Modules/PostCard'
 
-const PER_PAGE = 8
+const PER_PAGE = 16
 
 export default defineComponent({
   name: 'PostList',
@@ -40,25 +40,23 @@ export default defineComponent({
     PostCard
   },
   props: {
-    data: {
-      type: Array as () => PostEntity[],
+    posts: {
+      type: Array as () => Post[],
       required: true as true
     }
   },
   setup(props) {
-    const { data } = props
-
     // Data
     const page = ref(1)
 
     // Computed
     const isLastPage = computed(() => {
-      return page.value * PER_PAGE >= data.length
+      return page.value * PER_PAGE >= props.posts.length
     })
 
     // Methods
-    const postPath = (post: PostEntity) => `/posts/${post.props.slug}`
-    const loadNextPage = (state: any) => {
+    const postPath = (post: Post) => `/posts/${post.toJson().slug}`
+    const loadNextPage = () => {
       if (isLastPage.value) return
       page.value = page.value + 1
     }

@@ -1,36 +1,36 @@
 <template>
   <div class="SocialButtons">
     <a 
-      :href="`http://b.hatena.ne.jp/entry/${pagePath}`" 
+      :href="`http://b.hatena.ne.jp/entry/${pagePath}`"
       class="socialButton">
       <svg 
-        width="20px" 
+        width="20px"
         height="40px" 
-        viewBox="0 0 141.732 141.732" 
+        viewBox="0 0 141.732 141.732"
         enable-background="new 0 0 141.732 141.732">
         <use href="/hatena.svg#root" />
       </svg>
     </a>
     <a 
-      :href="`http://twitter.com/share?url=${pagePath}&text=${post.props.title}`" 
-      class="socialButton" 
+      :href="`http://twitter.com/share?url=${pagePath}&text=${post.toJson().title}`"
+      class="socialButton"
       target="_blank">
       <svg 
-        height="16" 
-        width="20" 
+        height="16"
+        width="20"
         viewBox="0 0 20 16">
         <use href="/twitter.svg#root" />
       </svg>
     </a>
     <a 
-      :href="`http://getpocket.com/edit?url=${pagePath}`" 
-      class="socialButton" 
+      :href="`http://getpocket.com/edit?url=${pagePath}`"
+      class="socialButton"
       target="_blank">
       <svg 
-        width="20px" 
-        height="40px" 
-        viewBox="0 0 141.732 141.732" 
-        enable-background="new 0 0 141.732 141.732" 
+        width="20px"
+        height="40px"
+        viewBox="0 0 141.732 141.732"
+        enable-background="new 0 0 141.732 141.732"
         xmlSpace="preserve">
         <use href="/pocket.svg#root" />
       </svg>
@@ -39,8 +39,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
-import PostEntity from '@/entities/Post'
+import { defineComponent } from '@nuxtjs/composition-api'
+import Post from '@/domain/Post'
 
 export default defineComponent({
   name: 'SocialButtons',
@@ -50,7 +50,7 @@ export default defineComponent({
       required: true as true
     },
     post: {
-      type: Object as () => PostEntity,
+      type: Object as () => Post,
       required: true as true
     }
   }

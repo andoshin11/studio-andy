@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'nuxt-composition-api'
+import { defineComponent, computed, onMounted } from '@nuxtjs/composition-api'
 import marked from 'marked'
 import Prism from 'prismjs'
 import Embed from '@/lib/embed'
@@ -19,10 +19,8 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { text } = props
-
     // Computed
-    const markedContents = computed(() => marked(text))
+    const markedContents = computed(() => marked(props.text))
 
     // Methods
     const getApiKey = async () => {

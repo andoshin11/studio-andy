@@ -2,12 +2,12 @@
   <div class="HeaderImg">
     <picture v-if="post">
       <source 
-        :srcset="post.props.headerImageLight.fields.file.url" 
+        :srcset="post.headerImageLightURL"
         class="img" 
         type="image/webp" >
       <img 
-        :src="post.props.headerImage.fields.file.url" 
-        :alt="post.props.headerImage.fields.file.fileName" 
+        :src="post.headerImageLightURL"
+        :alt="post.headerImageLightFileName"
         class="img" >
     </picture>
     <div 
@@ -19,9 +19,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
+import Post from '@/domain/Post'
 import Empty from '@/components/Base/Empty'
-import PostEntity from '@/entities/Post'
 
 export default defineComponent({
   name: 'HeaderImg',
@@ -30,16 +30,10 @@ export default defineComponent({
   },
   props: {
     post: {
-      type: Object as () => PostEntity | null,
+      type: Object as () => Post | null,
       default: null
     }
   }
-  // setup(props) {
-  //   const { post } = props
-  //   return {
-  //     post
-  //   }
-  // }
 })
 </script>
 
