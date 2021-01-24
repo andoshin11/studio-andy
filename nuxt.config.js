@@ -1,16 +1,43 @@
 require('dotenv').config()
 const pkg = require('./package')
 const path = require('path')
+const { createClient } = require('contentful')
+
+const contentfulClient = createClient({
+  space: process.env.CTF_SPACE_ID,
+  accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+})
 
 module.exports = {
-  mode: 'universal',
+  ssr: false, // set true when generate
+  target: 'static',
   srcDir: 'src/',
   modulesDir: path.resolve(__dirname, 'node_modules'),
 
-  buildModules: ['@nuxt/typescript-build', 'nuxt-composition-api'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/composition-api'],
   typeCheck: true,
 
   modern: true,
+
+  generate: {
+    interval: 2000,
+    crawler: false,
+    dir: 'gen',
+    routes: async function() {
+      console.log('preparing routes')
+      // fetch all posts and create URL list from slugs
+      const { items } = await contentfulClient.getEntries({
+        content_type: 'post',
+        'fields.isPublished': true,
+        order: '-fields.publishedAt'
+      })
+      console.log('fetched')
+      const slugs = items.map(({ fields: { slug } }) => slug)
+      const routes = slugs.map(s => `/posts/${s}`)
+      console.log(routes)
+      return routes
+    }
+  },
 
   /*
   ** Environmental Variables
@@ -75,7 +102,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }],
+  plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }, { src: '~/plugins/initializer' }],
 
   /**
    * Server Middleware

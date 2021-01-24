@@ -1,4 +1,4 @@
-FROM node:12.13.0-alpine
+FROM node:14.15.4-alpine as builder
 
 ENV NODE_ENV=production
 ENV SENTRY_ORG=studio-andy
@@ -30,8 +30,13 @@ RUN apk del build-base
 ADD src ./src
 ADD nuxt.config.js ./
 ADD tsconfig.json ./
-RUN yarn run build
+RUN yarn run generate
+
 RUN yarn sentry-cli releases set-commits $RELEASE_VERSION --commit "andoshin11/studio-andy@$RELEASE_VERSION"
 RUN yarn sentry-cli releases deploys $RELEASE_VERSION new -e $NODE_ENV
 
-CMD ["yarn", "start"]
+FROM nginx:1.19.2
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/gen /nuxt/gen
+
+EXPOSE 80
