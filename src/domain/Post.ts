@@ -1,6 +1,7 @@
 import { Asset } from 'contentful'
 import dayjs from 'dayjs'
 import BaseEntity from './Base'
+import { STANDARD_DATE_FORMAT } from '@/common/const'
 
 export type Tag = string
 
@@ -22,7 +23,7 @@ export interface PostData {
 export default class Post extends BaseEntity<PostData> {
   get publishedAtStr() {
     const { publishedAt } = this.toJson()
-    return dayjs(publishedAt).format('MMM D, YYYY')
+    return dayjs(publishedAt).format(STANDARD_DATE_FORMAT)
   }
 
   get headerImageURL() {
