@@ -50,22 +50,21 @@ import TagList from '@/components/Base/Post/TagList'
 import HeaderImg from '@/components/Base/Post/HeaderImg'
 import Markdown from '@/components/Base/Markdown'
 import SocialButtons from '@/components/Modules/SocialButtons'
-import Loading from '@/components/Base/Loading'
-import PostList from '@/components/Modules/PostList'
+// import Loading from '@/components/Base/Loading'
+// import PostList from '@/components/Modules/PostList'
 
 export default defineComponent({
+  name: 'Post',
   components: {
     PostTitle,
     PostDate,
     TagList,
     HeaderImg,
     Markdown,
-    SocialButtons,
-    Loading,
-    PostList
+    SocialButtons
+    // Loading,
+    // PostList
   },
-  head: {},
-  name: 'Post',
   props: {
     slug: {
       type: String,
@@ -110,7 +109,8 @@ export default defineComponent({
       presenter,
       pagePath
     }
-  }
+  },
+  head: {}
 })
 </script>
 

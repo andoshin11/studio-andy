@@ -12,7 +12,8 @@ const overrideConfig = {
     ...baseConfig.rules,
     'no-undef': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-inferrable-types': 'off'
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/ban-types': 'off'
   }
 }
 

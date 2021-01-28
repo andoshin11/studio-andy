@@ -7,22 +7,24 @@
       <Empty 
         v-if="!isImageReady" 
         :aria-label="post.toJson().title"
-        class="img"/>
+        class="img" />
       <picture v-else>
         <source 
           :srcset="post.headerImageLightURL"
           class="img" 
-          type="image/webp" >
+          type="image/webp">
         <img 
           :src="post.headerImageURL"
           :alt="post.toJson().title"
           loading="lazy"
-          class="img" >
+          class="img">
       </picture>
     </div>
     <div class="body">
       <span class="date">{{ post.publishedAtStr }}</span>
-      <div class="title">{{ post.toJson().title }}</div>
+      <div class="title">
+        {{ post.toJson().title }}
+      </div>
       <ul class="tagList">
         <li 
           v-for="(tag, i) in post.toJson().tags"
@@ -48,14 +50,14 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 export default defineComponent({
   name: 'PostCard',
+  components: {
+    Empty
+  },
   props: {
     post: {
       type: Object as () => Post,
       required: true
     }
-  },
-  components: {
-    Empty
   },
   setup(props) {
     const { post } = props

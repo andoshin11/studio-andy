@@ -47,11 +47,11 @@ export default defineComponent({
   props: {
     pagePath: {
       type: String,
-      required: true as true
+      required: true
     },
     post: {
       type: Object as () => Post,
-      required: true as true
+      required: true
     }
   }
 })

@@ -1,20 +1,21 @@
 <template>
   <div :class="$style.App">
     <header :class="[$style.App__Header, { shrink: isHeaderShrink }]">
-      <HeaderContainer :shrink="isHeaderShrink"/>
+      <HeaderContainer :shrink="isHeaderShrink" />
     </header>
     <main :class="$style.App__Body">
-      <nuxt/>
+      <nuxt />
     </main>
     <footer :class="$style.App__Footer">
-      <FooterContainer/>
+      <FooterContainer />
     </footer>
     <transition name="fade">
       <button
         v-show="showScrollToTop && screenPosition > 500"
         :class="$style.scrollToTop"
-        @click="scrollToTop"
-      >↑</button>
+        @click="scrollToTop">
+        ↑
+      </button>
     </transition>
   </div>
 </template>

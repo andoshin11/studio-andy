@@ -4,11 +4,11 @@
       <source 
         :srcset="post.headerImageLightURL"
         class="img" 
-        type="image/webp" >
+        type="image/webp">
       <img 
         :src="post.headerImageLightURL"
         :alt="post.headerImageLightFileName"
-        class="img" >
+        class="img">
     </picture>
     <div 
       v-else 

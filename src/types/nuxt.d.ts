@@ -7,10 +7,6 @@ declare module 'vuex/types/index' {
   }
 }
 
-declare module 'vue/types/vue' {
-  interface Vue {}
-}
-
 declare module '@nuxt/types/index' {
   interface Context {
     readonly $sentry: typeof SentryTypes

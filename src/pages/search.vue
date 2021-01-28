@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <ResultContainer/>
+    <ResultContainer />
   </section>
 </template>
 
@@ -14,7 +14,6 @@ export default defineComponent({
   components: {
     ResultContainer
   },
-  watchQuery: ['query'],
   setup() {
     const { query, error } = useContext()
 
@@ -34,7 +33,8 @@ export default defineComponent({
         fetch()
       }
     )
-  }
+  },
+  watchQuery: ['query']
 })
 </script>
 

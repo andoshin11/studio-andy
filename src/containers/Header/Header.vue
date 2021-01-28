@@ -20,7 +20,7 @@
         name="query" 
         aria-label="query" 
         type="text" 
-        class="searchInput" >
+        class="searchInput">
       <button 
         type="submit" 
         aria-label="search" 
@@ -55,8 +55,7 @@ export default defineComponent({
       app: { router }
     } = useContext()
 
-    const searchPosts = (e: Event) => {
-      // e.preventDefault()
+    const searchPosts = () => {
       if (!query.value || !inputRef.value || !router) return
       inputRef.value.blur()
       router.push({ path: `/search?query=${query.value}` })

@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <PostContainer :slug="slug"/>
+    <PostContainer :slug="slug" />
   </section>
 </template>
 

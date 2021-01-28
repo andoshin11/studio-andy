@@ -69,7 +69,9 @@ const AssetFactory = (): Asset => {
         }
       }
     },
-    toPlainObject(): any {}
+    toPlainObject(): Record<string, unknown> {
+      return {}
+    }
   }
 }
 

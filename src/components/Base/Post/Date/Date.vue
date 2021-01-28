@@ -7,7 +7,6 @@
     </div>
     {{ text }}
   </div>
-  
 </template>
 
 <script lang="ts">

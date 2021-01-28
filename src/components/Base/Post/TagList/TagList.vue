@@ -4,7 +4,9 @@
       v-for="tag in list" 
       :key="tag" 
       class="tag">
-      <nuxt-link :to="tagPath(tag)">{{ tag }}</nuxt-link>
+      <nuxt-link :to="tagPath(tag)">
+        {{ tag }}
+      </nuxt-link>
     </li>
     <li 
       v-if="list.length < 1" 
@@ -26,7 +28,7 @@ export default defineComponent({
   props: {
     list: {
       type: Array as () => string[],
-      required: true as true
+      required: true
     }
   },
   setup() {

@@ -45,7 +45,7 @@ export default class Post extends BaseEntity<PostData> {
     const { content } = this.toJson()
     const matched = content.matchAll(/<a href="([^"]*)" class="embedly-card"[^>]*>/g)
 
-    let urls: string[] = []
+    const urls: string[] = []
     for (const m of matched) {
       urls.push(m[1])
     }
@@ -82,7 +82,9 @@ const AssetFactory = (): Asset => {
         }
       }
     },
-    toPlainObject(): any {}
+    toPlainObject(): Record<string, unknown> {
+      return {}
+    }
   }
 }
 

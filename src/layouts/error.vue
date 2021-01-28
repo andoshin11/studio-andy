@@ -1,15 +1,21 @@
 <template>
   <div class="Error">
     <template v-if="error.statusCode == 404">
-      <div class="message">お探しのページは存在しません。</div>
+      <div class="message">
+        お探しのページは存在しません。
+      </div>
     </template>
     <template v-else>
-      <div class="message">エラーが発生しました。</div>
+      <div class="message">
+        エラーが発生しました。
+      </div>
     </template>
     <nuxt-link 
       exact 
       to="/" 
-      class="link">トップページへ</nuxt-link>
+      class="link">
+      トップページへ
+    </nuxt-link>
   </div>
 </template>
 

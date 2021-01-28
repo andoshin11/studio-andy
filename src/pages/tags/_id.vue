@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <TagsContainer/>
+    <TagsContainer />
   </section>
 </template>
 

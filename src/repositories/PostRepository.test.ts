@@ -3,14 +3,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { createStore } from '@/storeConstruct'
 import PostRepository from './PostRepository'
-import { PostPropsFactory } from '@/entities/Post'
+import { PostDataFactory } from '@/domain/Post'
 
 Vue.use(Vuex)
 
 describe('PostRepository', () => {
   test('should be able to save and get post', () => {
     const slug = 'test'
-    const post = PostPropsFactory({ slug })
+    const post = PostDataFactory({ slug })
     const store = createStore()
     const repository = new PostRepository(store)
 
@@ -18,6 +18,7 @@ describe('PostRepository', () => {
 
     repository.savePosts([post])
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     expect(repository.getPost(slug)!.toJson()).toEqual(post)
   })
 })

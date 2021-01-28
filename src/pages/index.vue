@@ -1,43 +1,34 @@
 <template>
   <section class="container">
-    <HomeContainer/>
+    <HomeContainer />
   </section>
 </template>
 
 <script lang="ts">
 import { container } from 'tsyringe'
-import { defineComponent, useFetch, watch, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, useFetch, useContext } from '@nuxtjs/composition-api'
 import FetchPostsUseCase from '@/usecases/post/FetchPostsUseCase'
 
 const HomeContainer = () => import('@/containers/Home')
 
 export default defineComponent({
-  head: {
-    title: 'Home | Studio Andy',
-    meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
-  },
   components: {
     HomeContainer
   },
   setup() {
     const { error } = useContext()
 
-    const { fetchState } = useFetch(async () => {
+    useFetch(async () => {
       try {
         await container.resolve(FetchPostsUseCase).execute('publishedAt')
       } catch (e) {
-        throw e // TODO: Explicit error handling
+        error({ statusCode: 500, message: e.message })
       }
     })
-
-    watch(
-      () => fetchState.pending,
-      () => {
-        if (fetchState.error) {
-          error({ statusCode: 500, message: fetchState.error.message })
-        }
-      }
-    )
+  },
+  head: {
+    title: 'Home | Studio Andy',
+    meta: [{ hid: 'description', name: 'description', content: "Welcome to Shin Ando's (you may know me as Andy!) personal blog. I'm excited to share some parts of my daily life to all of you, my fellas." }]
   }
 })
 </script>
