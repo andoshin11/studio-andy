@@ -1,20 +1,18 @@
-import Vuex from 'vuex'
+import { createTypeSafeStore, TypeSafeStore } from '@/lib/vuex-type-kit'
 
 import * as post from './modules/post'
 
 export interface RootState {
-  post: post.IPostState
+  post: post.PostState
+}
+
+const modules = {
+  post: post.module,
 }
 
 export const createStore = () =>
-  new Vuex.Store<RootState>({
-    modules: {
-      post: post.module
-    }
+  createTypeSafeStore<RootState, typeof modules>({
+    modules,
   })
 
-export const createStoreFromState = (state: RootState) => {
-  const store = createStore()
-  store.replaceState(state)
-  return store
-}
+export type Store = TypeSafeStore<RootState, typeof modules>

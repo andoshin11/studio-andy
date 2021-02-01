@@ -1,14 +1,12 @@
-import { Store } from 'vuex'
-import { singleton } from 'tsyringe'
-import { RootState } from '@/storeConstruct'
-import { StoreLatestPosts, StorePosts, StoreSearchResults, StoreSearchQuery, StoreTagResult, StoreCurrentTag } from '@/storeConstruct/modules/post/types'
+import { singleton, inject } from 'tsyringe'
+import { Store } from '@/storeConstruct'
 import PostRepository from '@/interface/repository/PostRepository'
 import Post, { PostData, SortableKey, Tag } from '@/domain/Post'
 import { pluck } from '@/util/helpers'
 
 @singleton()
 export default class PostRepositoryImpl implements PostRepository {
-  constructor(private _store: Store<RootState>) {}
+  constructor(@inject('Store') private _store: Store) {}
 
   getPosts(orderBy?: SortableKey) {
     const { state } = this._store
@@ -32,26 +30,26 @@ export default class PostRepositoryImpl implements PostRepository {
   }
 
   savePosts(posts: PostData[], orderBy?: SortableKey) {
-    this._store.commit(new StorePosts(posts))
+    this._store.commit('post/store_posts', { posts })
 
     if (orderBy === 'publishedAt') {
       const slugs = pluck(posts, 'slug')
-      this._store.commit(new StoreLatestPosts(slugs))
+      this._store.commit('post/store_latest_posts', { slugs })
     }
   }
 
   saveSearchResult(query: string, posts: PostData[]) {
     const slugs = pluck(posts, 'slug')
-    this._store.commit(new StoreSearchQuery(query))
+    this._store.commit('post/store_search_query', { query })
     this.savePosts(posts)
-    this._store.commit(new StoreSearchResults(slugs))
+    this._store.commit('post/store_search_result', { slugs })
   }
 
   saveTagResult(tag: Tag, posts: PostData[]) {
     const slugs = pluck(posts, 'slug')
-    this._store.commit(new StoreCurrentTag(tag))
+    this._store.commit('post/store_current_tag', { tag })
     this.savePosts(posts)
-    this._store.commit(new StoreTagResult(slugs))
+    this._store.commit('post/store_tag_result', { slugs })
   }
 
   getCurrentTag(): string | null {

@@ -1,7 +1,6 @@
 import 'reflect-metadata'
 import { container, Lifecycle } from 'tsyringe'
 import { Plugin } from '@nuxt/types'
-import { Store } from 'vuex'
 import { ContentfulClient, createClient } from '@/infra/contentful'
 import { Logger } from '@/infra/logger'
 import PostGatewayImpl from '@/gateway/PostGateway'
@@ -28,7 +27,7 @@ const plugin: Plugin = context => {
   container.register('LogService', { useClass: LogServiceImpl }, { lifecycle: Lifecycle.Singleton })
 
   // Others
-  container.register(Store, { useValue: store })
+  container.register('Store', { useValue: store })
   container.register<Logger>('Logger', { useValue: $sentry })
 }
 

@@ -1,6 +1,6 @@
 import { PostData } from '@/domain/Post'
 
-export interface IPostState {
+export interface PostState {
   byIds: {
     [slug: string]: PostData
   }
@@ -9,15 +9,13 @@ export interface IPostState {
   tagResult: string[]
   searchQuery: string | null
   currentTag: string | null
-  currentPost: string | null
 }
 
-export const initialState = (): IPostState => ({
+export const initialState = (): PostState => ({
   byIds: {},
   latestPosts: [],
   searchResult: [],
   tagResult: [],
   searchQuery: null,
-  currentTag: null,
-  currentPost: null
+  currentTag: null
 })
