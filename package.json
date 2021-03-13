@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "andoshin11",
   "scripts": {
-    "dev:old": "cross-env NODE_ENV=development nodemon src/server/index.js --watch server",
+    "dev:old": "cross-env NODE_ENV=development NUXT_TELEMETRY_DISABLED=1 nodemon src/server/index.js --watch server",
     "dev": "cross-env NODE_ENV=development nuxt",
     "generate": "nuxt generate",
     "build": "cross-env NODE_ENV=production nuxt build",
@@ -57,7 +57,7 @@
     ]
   },
   "dependencies": {
-    "@nuxtjs/composition-api": "^0.18.1",
+    "@nuxtjs/composition-api": "^0.22.1",
     "@nuxtjs/feed": "^0.2.0",
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/pwa": "^2.6.0",
@@ -71,7 +71,7 @@
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "marked": "^0.5.1",
-    "nuxt": "^2.14.6",
+    "nuxt": "^2.15.3",
     "prismjs": "^1.15.0",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.4.0",
