@@ -1,25 +1,12 @@
 <template>
   <div class="Wrapper">
     <div class="PostList">
-      <nuxt-link 
-        v-for="(post, index) in posts"
-        v-show="isVisible(index)"
-        :key="post.toJson().slug"
-        :to="postPath(post)" 
-        :class="{ hidden: !isVisible(index) }"
-        class="post">
+      <nuxt-link v-for="post in visiblePosts" :key="post.toJson().slug" :to="postPath(post)" class="post">
         <PostCard :post="post" />
       </nuxt-link>
     </div>
-    <button 
-      v-if="!isLastPage" 
-      class="showMore" 
-      @click="loadNextPage">
-      <svg 
-        class="showMoreIcon" 
-        focusable="false" 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewbox="0 0 24 24">
+    <button v-if="!isLastPage" class="showMore" @click="loadNextPage">
+      <svg class="showMoreIcon" focusable="false" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
         <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
       </svg>
       <span>もっと見る</span>
@@ -29,21 +16,22 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from '@nuxtjs/composition-api'
-import Post from '@/domain/Post'
-import PostCard from '@/components/Modules/PostCard'
+import PostSummary from '@/domain/PostSummary'
 
-const PER_PAGE = 16
+const PostCard = () => import('@/components/Modules/PostCard')
+
+const PER_PAGE = 10
 
 export default defineComponent({
   name: 'PostList',
   components: {
-    PostCard
+    PostCard,
   },
   props: {
     posts: {
-      type: Array as () => Post[],
-      required: true
-    }
+      type: Array as () => PostSummary[],
+      required: true,
+    },
   },
   setup(props) {
     // Data
@@ -53,9 +41,10 @@ export default defineComponent({
     const isLastPage = computed(() => {
       return page.value * PER_PAGE >= props.posts.length
     })
+    const visiblePosts = computed(() => props.posts.filter((_, i) => isVisible(i)))
 
     // Methods
-    const postPath = (post: Post) => `/posts/${post.toJson().slug}`
+    const postPath = (post: PostSummary) => `/posts/${post.toJson().slug}`
     const loadNextPage = () => {
       if (isLastPage.value) return
       page.value = page.value + 1
@@ -66,9 +55,9 @@ export default defineComponent({
       postPath,
       loadNextPage,
       isLastPage,
-      isVisible
+      visiblePosts,
     }
-  }
+  },
 })
 </script>
 
@@ -85,6 +74,7 @@ export default defineComponent({
   flex-wrap: wrap;
   width: 100%;
 }
+
 @media screen and (max-width: 768px) {
   .PostList {
     flex-direction: column;
@@ -92,6 +82,7 @@ export default defineComponent({
     width: 100%;
   }
 }
+
 .post {
   box-sizing: border-box;
   width: 50%;
@@ -100,10 +91,6 @@ export default defineComponent({
   transition: 0.3s ease;
   animation-name: fade-in;
   animation-duration: 0.5s;
-}
-
-.post.hidden {
-  opacity: 0;
 }
 
 @media screen and (max-width: 768px) {
