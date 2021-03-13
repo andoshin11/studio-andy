@@ -2,10 +2,10 @@
   <div class="Result">
     <div class="summary">
       <span class="query">{{ presenter.query }}</span>
-      の検索結果 {{ presenter.posts.length }}件
+      の検索結果 {{ presenter.postSummaries.length }}件
     </div>
     <div class="PostList">
-      <PostList :posts="presenter.posts" />
+      <PostList :posts="presenter.postSummaries" />
     </div>
   </div>
 </template>
@@ -20,24 +20,24 @@ import PostList from '@/components/Modules/PostList'
 export default defineComponent({
   name: 'Result',
   components: {
-    PostList
+    PostList,
   },
   setup() {
     const presenter = usePresenter(() => {
       const postRepository = container.resolve<PostRepository>('PostRepository')
-      const posts = postRepository.getSearchResult()
+      const postSummaries = postRepository.getSearchResult()
       const query = postRepository.getSearchQuery()
 
       return {
-        posts,
-        query
+        postSummaries,
+        query,
       }
     })
 
     return {
-      presenter
+      presenter,
     }
-  }
+  },
 })
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="Home">
     <div class="PostList">
-      <PostList :posts="presenter.posts" />
+      <PostList :posts="presenter.postSummaries" />
     </div>
   </div>
 </template>
@@ -10,29 +10,29 @@
 import { container } from 'tsyringe'
 import { defineComponent } from '@nuxtjs/composition-api'
 import { usePresenter } from '@/hooks/usePresenter'
-
-import PostList from '@/components/Modules/PostList'
 import PostRepository from '@/interface/repository/PostRepository'
+
+const PostList = () => import('@/components/Modules/PostList')
 
 export default defineComponent({
   name: 'Home',
   components: {
-    PostList
+    PostList,
   },
   setup() {
     const presenter = usePresenter(() => {
       const postRepository = container.resolve<PostRepository>('PostRepository')
-      const posts = postRepository.getPosts('publishedAt')
+      const postSummaries = postRepository.getPostSummaries('publishedAt', true)
 
       return {
-        posts
+        postSummaries,
       }
     })
 
     return {
-      presenter
+      presenter,
     }
-  }
+  },
 })
 </script>
 

@@ -2,10 +2,10 @@
   <div class="Result">
     <div class="summary">
       <span class="query">{{ presenter.tag }}</span>
-      カテゴリの記事 {{ presenter.posts.length }}件
+      カテゴリの記事 {{ presenter.postSummaries.length }}件
     </div>
     <div class="PostList">
-      <PostList :posts="presenter.posts" />
+      <PostList :posts="presenter.postSummaries" />
     </div>
   </div>
 </template>
@@ -21,24 +21,24 @@ import PostList from '@/components/Modules/PostList'
 export default defineComponent({
   name: 'Tags',
   components: {
-    PostList
+    PostList,
   },
   setup() {
     const presenter = usePresenter(() => {
       const postRepository = container.resolve<PostRepository>('PostRepository')
-      const posts = postRepository.getTagResult()
+      const postSummaries = postRepository.getTagResult()
       const tag = postRepository.getCurrentTag()
 
       return {
-        posts,
-        tag
+        postSummaries,
+        tag,
       }
     })
 
     return {
-      presenter
+      presenter,
     }
-  }
+  },
 })
 </script>
 
