@@ -1,6 +1,7 @@
-import { initialState } from './state'
+import { initialState, PostState } from './state'
 import { createTypeSafeModule } from '@/lib/vuex-type-kit'
 import { PostData } from '@/domain/Post'
+import { PostSummaryData } from '@/domain/PostSummary'
 
 export * from './state'
 
@@ -9,13 +10,18 @@ export const module = createTypeSafeModule({
   state: initialState,
   mutations: {
     store_posts: (state, payload: { posts: PostData[] }) => {
-      const { posts } = payload
-      posts.forEach((post) => {
-        state.byIds = {
-          ...state.byIds,
-          [post.slug]: post,
-        }
-      })
+      const hash = payload.posts.reduce((acc, ac) => ((acc[ac.slug] = ac), acc), {} as PostState['byIds'])
+      state.byIds = {
+        ...state.byIds,
+        ...hash,
+      }
+    },
+    store_postSummaries: (state, payload: { postSummaries: PostSummaryData[] }) => {
+      const hash = payload.postSummaries.reduce((acc, ac) => ((acc[ac.slug] = ac), acc), {} as PostState['postSummaries'])
+      state.postSummaries = {
+        ...state.postSummaries,
+        ...hash,
+      }
     },
     store_latest_posts: (state, payload: { slugs: string[] }) => {
       state.latestPosts = payload.slugs

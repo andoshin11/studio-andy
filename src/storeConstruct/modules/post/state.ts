@@ -1,9 +1,11 @@
 import { PostData } from '@/domain/Post'
+import { PostSummaryData } from '@/domain/PostSummary'
 
 export interface PostState {
   byIds: {
     [slug: string]: PostData
   }
+  postSummaries: Record<PostSummaryData['slug'], PostSummaryData>
   latestPosts: string[]
   searchResult: string[]
   tagResult: string[]
@@ -13,9 +15,10 @@ export interface PostState {
 
 export const initialState = (): PostState => ({
   byIds: {},
+  postSummaries: {},
   latestPosts: [],
   searchResult: [],
   tagResult: [],
   searchQuery: null,
-  currentTag: null
+  currentTag: null,
 })
