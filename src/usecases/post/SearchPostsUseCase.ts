@@ -9,8 +9,8 @@ export default class SearchPostsUseCase implements BaseUseCase {
 
   async execute(query: string) {
     try {
-      const posts = await this.postGateway.searchPosts(query)
-      this.postRepository.saveSearchResult(query, posts)
+      const postSummaries = await this.postGateway.searchPosts(query)
+      this.postRepository.saveSearchResult(query, postSummaries)
     } catch (e) {
       await this.logService.handle({ type: LogType.Error, error: e })
       throw e

@@ -10,8 +10,8 @@ export default class FetchPostsByTagUseCase implements BaseUseCase {
 
   async execute(tag: Tag) {
     try {
-      const posts = await this.postGateway.getPostsByTag(tag)
-      this.postRepository.saveTagResult(tag, posts)
+      const postSummaries = await this.postGateway.getPostsByTag(tag)
+      this.postRepository.saveTagResult(tag, postSummaries)
     } catch (e) {
       await this.logService.handle({ type: LogType.Error, error: e })
       throw e

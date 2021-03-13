@@ -5,7 +5,7 @@ import { STANDARD_DATE_FORMAT } from '@/common/const'
 
 export type Tag = string
 
-export type SortableKey = Exclude<keyof PostData, 'id'>
+export type SortableKey = Exclude<keyof PostData, 'id' | 'content'>
 
 export interface PostData {
   slug: string
@@ -62,11 +62,11 @@ const AssetFactory = (): Asset => {
       file: {
         contentType: 'image/jpeg',
         details: {
-          size: 1000
+          size: 1000,
         },
         fileName: 'vuefes.jpg',
-        url: '//images.ctfassets.net/2p1otbbee5vt/1IT8b2qoAEyc0SOwqSy6QS/f5f517ed6f292497270bf3b85d608dea/vuefes.jpg'
-      }
+        url: '//images.ctfassets.net/2p1otbbee5vt/1IT8b2qoAEyc0SOwqSy6QS/f5f517ed6f292497270bf3b85d608dea/vuefes.jpg',
+      },
     },
     sys: {
       type: 'Asset',
@@ -78,13 +78,13 @@ const AssetFactory = (): Asset => {
         sys: {
           id: 'master',
           type: 'Link',
-          linkType: 'ContentType'
-        }
-      }
+          linkType: 'ContentType',
+        },
+      },
     },
     toPlainObject(): Record<string, unknown> {
       return {}
-    }
+    },
   }
 }
 
@@ -100,7 +100,7 @@ export const PostDataFactory = (data?: Partial<PostData>): PostData => {
     headerImage: AssetFactory(),
     headerImageLight: AssetFactory(),
     isPublished: true,
-    ...data
+    ...data,
   }
 }
 
