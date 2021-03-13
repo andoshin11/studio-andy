@@ -5,56 +5,57 @@ const { createClient } = require('contentful')
 
 const contentfulClient = createClient({
   space: process.env.CTF_SPACE_ID,
-  accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+  accessToken: process.env.CTF_CDA_ACCESS_TOKEN,
 })
 
 module.exports = {
-  ssr: false, // set true when generate
-  target: 'static',
+  ssr: true, // set true when generate
+  target: 'server',
+  // mode: 'universal',
   srcDir: 'src/',
   modulesDir: path.resolve(__dirname, 'node_modules'),
 
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/composition-api'],
   typeCheck: true,
 
-  modern: true,
+  modern: 'client',
 
-  generate: {
-    interval: 2000,
-    crawler: false,
-    dir: 'gen',
-    routes: async function() {
-      console.log('preparing routes')
-      // fetch all posts and create URL list from slugs
-      const { items } = await contentfulClient.getEntries({
-        content_type: 'post',
-        'fields.isPublished': true,
-        order: '-fields.publishedAt'
-      })
-      console.log('fetched')
-      const slugs = items.map(({ fields: { slug } }) => slug)
-      const routes = slugs.map(s => `/posts/${s}`)
-      console.log(routes)
-      return routes
-    }
-  },
+  // generate: {
+  //   interval: 2000,
+  //   crawler: false,
+  //   dir: 'gen',
+  //   routes: async function() {
+  //     console.log('preparing routes')
+  //     // fetch all posts and create URL list from slugs
+  //     const { items } = await contentfulClient.getEntries({
+  //       content_type: 'post',
+  //       'fields.isPublished': true,
+  //       order: '-fields.publishedAt'
+  //     })
+  //     console.log('fetched')
+  //     const slugs = items.map(({ fields: { slug } }) => slug)
+  //     const routes = slugs.map(s => `/posts/${s}`)
+  //     console.log(routes)
+  //     return routes
+  //   }
+  // },
 
   /*
-  ** Environmental Variables
-  */
+   ** Environmental Variables
+   */
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
-    SENTRY_DSN: process.env.SENTRY_DSN
+    SENTRY_DSN: process.env.SENTRY_DSN,
   },
 
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#',
-      lang: 'ja'
+      lang: 'ja',
     },
     title: 'Studio Andy',
     meta: [
@@ -68,7 +69,7 @@ module.exports = {
       { hid: 'og:image', property: 'og:image', content: 'https://blog.andoshin11.me/share.jpg' },
       { property: 'og:site_name', content: 'Studio Andy' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@andoshin11' }
+      { name: 'twitter:site', content: '@andoshin11' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -84,41 +85,41 @@ module.exports = {
         ref: 'preload',
         as: 'font',
         type: 'font/woff2',
-        href: '/fonts/noto-sans-jp-v25-latin_japanese-regular.woff2'
-      }
-    ]
+        href: '/fonts/noto-sans-jp-v25-latin_japanese-regular.woff2',
+      },
+    ],
   },
 
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#ef6530' },
 
   /*
-  ** Global CSS
-  */
+   ** Global CSS
+   */
   css: ['~/assets/css/app.css', '~/assets/css/prism.css'],
 
   /*
-  ** Plugins to load before mounting the App
-  */
+   ** Plugins to load before mounting the App
+   */
   plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }, { src: '~/plugins/initializer' }],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: ['@nuxtjs/sitemap', '@nuxtjs/pwa', '@nuxtjs/google-analytics', '@nuxtjs/sentry', '@nuxtjs/feed'],
 
   /*
-  ** Extensions
-  */
+   ** Extensions
+   */
   extensions: ['ts', 'js'],
 
   /*
-  ** PWA settings
-  */
+   ** PWA settings
+   */
   workbox: {
-    importScripts: ['main-sw.js']
+    importScripts: ['main-sw.js'],
   },
 
   icon: false,
@@ -130,54 +131,54 @@ module.exports = {
       {
         src: 'icon-72x72.png',
         sizes: '72x72',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-96x96.png',
         sizes: '96x96',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-128x128.png',
         sizes: '128x128',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-144x144.png',
         sizes: '144x144',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-152x152.png',
         sizes: '152x152',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-192x192.png',
         sizes: '192x192',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-384x384.png',
         sizes: '384x384',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'icon-512x512.png',
         sizes: '512x512',
-        type: 'image/png'
-      }
+        type: 'image/png',
+      },
     ],
     background_color: '#ef6530',
     start_url: '/',
-    display: 'minimal-ui'
+    display: 'minimal-ui',
   },
 
   /*
    * Google Analytics settings
    */
   'google-analytics': {
-    id: 'UA-129690358-1'
+    id: 'UA-129690358-1',
   },
 
   /*
@@ -191,17 +192,17 @@ module.exports = {
     disableServerSide: process.env.NODE_ENV === 'development' ? true : false,
     webpackConfig: {
       release: process.env.RELEASE_VERSION,
-      urlPrefix: '~/_nuxt/'
+      urlPrefix: '~/_nuxt/',
     },
     config: {
-      environment: process.env.NODE_ENV
+      environment: process.env.NODE_ENV,
     },
     serverConfig: {
-      release: process.env.RELEASE_VERSION
+      release: process.env.RELEASE_VERSION,
     },
     clientConfig: {
-      release: process.env.RELEASE_VERSION
-    }
+      release: process.env.RELEASE_VERSION,
+    },
   },
 
   /*
@@ -214,15 +215,15 @@ module.exports = {
       const contentful = require('contentful')
       const client = contentful.createClient({
         space: process.env.CTF_SPACE_ID,
-        accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+        accessToken: process.env.CTF_CDA_ACCESS_TOKEN,
       })
 
       const posts = await client.getEntries({
         content_type: 'post',
-        'fields.isPublished': true
+        'fields.isPublished': true,
       })
-      return posts.items.map(item => `posts/${item.fields.slug}`)
-    }
+      return posts.items.map((item) => `posts/${item.fields.slug}`)
+    },
   },
 
   /*
@@ -235,21 +236,21 @@ module.exports = {
         feed.options = {
           title: 'Studio Andy',
           link: 'https://blog.andoshin11.me/feed.xml',
-          description: "This is Shin Ando's personal feed!"
+          description: "This is Shin Ando's personal feed!",
         }
 
         const contentful = require('contentful')
         const client = contentful.createClient({
           space: process.env.CTF_SPACE_ID,
-          accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+          accessToken: process.env.CTF_CDA_ACCESS_TOKEN,
         })
 
         const posts = await client.getEntries({
           content_type: 'post',
-          'fields.isPublished': true
+          'fields.isPublished': true,
         })
 
-        posts.items.forEach(post => {
+        posts.items.forEach((post) => {
           feed.addItem({
             title: post.fields.title,
             id: post.fields.slug,
@@ -257,7 +258,7 @@ module.exports = {
             description: post.fields.summary,
             content: post.fields.summary,
             date: new Date(post.fields.publishedAt),
-            image: post.fields.headerImage.fields.file.url
+            image: post.fields.headerImage.fields.file.url,
           })
         })
 
@@ -267,24 +268,24 @@ module.exports = {
         feed.addContributor({
           name: 'Shin Ando',
           email: 'shinglish11@gmail.com',
-          link: 'https://blog.andoshin11.me/'
+          link: 'https://blog.andoshin11.me/',
         })
       },
       cacheTime: 1000 * 60 * 60 * 6, // 6 hours
-      type: 'atom1'
-    }
+      type: 'atom1',
+    },
   ],
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     additionalExtensions: ['ts', 'tsx'],
     devtools: true,
     profile: true,
     /*
-    ** You can extend webpack config here
-    */
+     ** You can extend webpack config here
+     */
     extend(config, { isDev, isClient }) {
       if (!isDev) {
         if (isClient) {
@@ -307,6 +308,6 @@ module.exports = {
       }
 
       return
-    }
-  }
+    },
+  },
 }
