@@ -1,8 +1,6 @@
 <template>
   <div class="Date">
-    <div 
-      v-if="text.length < 1" 
-      class="empty">
+    <div v-if="text.length < 1" class="empty">
       <Empty />
     </div>
     {{ text }}
@@ -16,14 +14,14 @@ import Empty from '@/components/Base/Empty'
 export default defineComponent({
   name: 'Date',
   components: {
-    Empty
+    Empty,
   },
   props: {
     text: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>
 

@@ -1,18 +1,10 @@
 <template>
   <div class="HeaderImg">
     <picture v-if="post">
-      <source 
-        :srcset="post.headerImageLightURL"
-        class="img" 
-        type="image/webp">
-      <img 
-        :src="post.headerImageLightURL"
-        :alt="post.headerImageLightFileName"
-        class="img">
+      <source :srcset="post.headerImageLightURL" class="img" type="image/webp" />
+      <img :src="post.headerImageLightURL" :alt="post.headerImageLightFileName" class="img" />
     </picture>
-    <div 
-      v-else 
-      class="empty">
+    <div v-else class="empty">
       <Empty />
     </div>
   </div>
@@ -26,14 +18,14 @@ import Empty from '@/components/Base/Empty'
 export default defineComponent({
   name: 'HeaderImg',
   components: {
-    Empty
+    Empty,
   },
   props: {
     post: {
       type: Object as () => Post | null,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 })
 </script>
 

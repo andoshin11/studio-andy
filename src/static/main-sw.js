@@ -4,12 +4,12 @@ workbox.routing.registerRoute(
     cacheName: 'page-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -19,12 +19,12 @@ workbox.routing.registerRoute(
     cacheName: 'entry-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -34,12 +34,12 @@ workbox.routing.registerRoute(
     cacheName: 'site-parts-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 30 // for 1 month
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 30, // for 1 month
+      }),
+    ],
   })
 )
 
@@ -49,12 +49,12 @@ workbox.routing.registerRoute(
     cacheName: 'image-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -64,12 +64,12 @@ workbox.routing.registerRoute(
     cacheName: 'gyazo-mobile-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -79,12 +79,12 @@ workbox.routing.registerRoute(
     cacheName: 'gyazo-pc-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -94,12 +94,12 @@ workbox.routing.registerRoute(
     cacheName: 'embedly-asset-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -109,12 +109,12 @@ workbox.routing.registerRoute(
     cacheName: 'embedly-api-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -124,12 +124,12 @@ workbox.routing.registerRoute(
     cacheName: 'embedly-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -139,12 +139,12 @@ workbox.routing.registerRoute(
     cacheName: 'embedly-img-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -154,12 +154,12 @@ workbox.routing.registerRoute(
     cacheName: 'github-icon-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 14 // for 2 weeks
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 14, // for 2 weeks
+      }),
+    ],
   })
 )
 
@@ -169,12 +169,12 @@ workbox.routing.registerRoute(
     cacheName: 'google-fonts-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 30 // for 1 month
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 30, // for 1 month
+      }),
+    ],
   })
 )
 
@@ -184,11 +184,11 @@ workbox.routing.registerRoute(
     cacheName: 'youtube-cache',
     plugins: [
       new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200]
+        statuses: [0, 200],
       }),
       new workbox.expiration.Plugin({
-        maxAgeSeconds: 60 * 60 * 24 * 30 // for 1 month
-      })
-    ]
+        maxAgeSeconds: 60 * 60 * 24 * 30, // for 1 month
+      }),
+    ],
   })
 )

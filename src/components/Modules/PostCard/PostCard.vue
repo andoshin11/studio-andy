@@ -1,23 +1,10 @@
 <template>
-  <div
-    ref="rootRef"
-    class="PostCard" 
-    @mouseenter="prerender">
+  <div ref="rootRef" class="PostCard" @mouseenter="prerender">
     <div class="header">
-      <Empty 
-        v-if="!isImageReady" 
-        :aria-label="post.toJson().title"
-        class="img" />
+      <Empty v-if="!isImageReady" :aria-label="post.toJson().title" class="img" />
       <picture v-else>
-        <source 
-          :srcset="post.headerImageLightURL"
-          class="img" 
-          type="image/webp">
-        <img 
-          :src="post.headerImageURL"
-          :alt="post.toJson().title"
-          loading="lazy"
-          class="img">
+        <source :srcset="post.headerImageLightURL" class="img" type="image/webp" />
+        <img :src="post.headerImageURL" :alt="post.toJson().title" loading="lazy" class="img" />
       </picture>
     </div>
     <div class="body">
@@ -26,13 +13,8 @@
         {{ post.toJson().title }}
       </div>
       <ul class="tagList">
-        <li 
-          v-for="(tag, i) in post.toJson().tags"
-          :key="i" 
-          class="tag">
-          <nuxt-link 
-            :to="tagPath(tag)" 
-            tag="button">
+        <li v-for="(tag, i) in post.toJson().tags" :key="i" class="tag">
+          <nuxt-link :to="tagPath(tag)" tag="button">
             {{ tag }}
           </nuxt-link>
         </li>
@@ -51,13 +33,13 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 export default defineComponent({
   name: 'PostCard',
   components: {
-    Empty
+    Empty,
   },
   props: {
     post: {
       type: Object as () => Post,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const { post } = props
@@ -73,8 +55,8 @@ export default defineComponent({
     }
     const handleObservability = () => {
       try {
-        useIntersectionObserver(rootRef, entries => {
-          entries.forEach(entry => {
+        useIntersectionObserver(rootRef, (entries) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               isImageReady.value = true
               return
@@ -96,9 +78,9 @@ export default defineComponent({
       tagPath,
       prerender,
       isImageReady,
-      rootRef
+      rootRef,
     }
-  }
+  },
 })
 </script>
 

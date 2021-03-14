@@ -1,16 +1,11 @@
 <template>
   <ul class="TagList">
-    <li 
-      v-for="tag in list" 
-      :key="tag" 
-      class="tag">
+    <li v-for="tag in list" :key="tag" class="tag">
       <nuxt-link :to="tagPath(tag)">
         {{ tag }}
       </nuxt-link>
     </li>
-    <li 
-      v-if="list.length < 1" 
-      class="empty">
+    <li v-if="list.length < 1" class="empty">
       <Empty />
     </li>
   </ul>
@@ -23,22 +18,22 @@ import Empty from '@/components/Base/Empty'
 export default defineComponent({
   name: 'TagList',
   components: {
-    Empty
+    Empty,
   },
   props: {
     list: {
       type: Array as () => string[],
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
     // Methods
     const tagPath = (tag: string) => (tag.length ? `/tags/${tag}` : '')
 
     return {
-      tagPath
+      tagPath,
     }
-  }
+  },
 })
 </script>
 

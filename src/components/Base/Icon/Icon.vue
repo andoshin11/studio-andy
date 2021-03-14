@@ -12,8 +12,8 @@ export default defineComponent({
   props: {
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const { name } = props
@@ -22,9 +22,9 @@ export default defineComponent({
     })
 
     return {
-      iconPath
+      iconPath,
     }
-  }
+  },
 })
 </script>
 

@@ -8,7 +8,7 @@ export interface ILogServiceArgs {
 
 export enum LogType {
   Error,
-  Message
+  Message,
 }
 
 type LogPayload =

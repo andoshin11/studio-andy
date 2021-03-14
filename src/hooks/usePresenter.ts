@@ -9,7 +9,7 @@ export const usePresenter = <R>(presenterFn: PresenterFn<R>) => {
   const { store } = useContext()
   const data = ref(presenterFn())
 
-  const unWatch = (store as Store<RootState>).watch(presenterFn, newVal => {
+  const unWatch = (store as Store<RootState>).watch(presenterFn, (newVal) => {
     if (!deepEqueal(data.value, newVal)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       data.value = newVal as any

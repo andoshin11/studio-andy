@@ -21,6 +21,7 @@
     "lintfix:vue": "yarn run lint:vue --fix",
     "lint:css": "stylelint '**/*.vue'",
     "lintfix:css": "yarn run lint:css --fix",
+    "format": "prettier --write 'src/**/*.{vue,css,js,ts}'",
     "g:global": "HYGEN_TMPLS=$HOME/dev/hygen-andoshin11-templates/_templates hygen",
     "test": "npm-run-all test:*",
     "bundlewatch": "bundlewatch --config .bundlewatch.config.js",

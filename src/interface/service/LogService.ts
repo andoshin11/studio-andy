@@ -1,6 +1,6 @@
 export enum LogType {
   Error,
-  Message
+  Message,
 }
 
 export type LogPayload =
