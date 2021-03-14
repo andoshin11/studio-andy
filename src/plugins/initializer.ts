@@ -7,28 +7,32 @@ import PostGatewayImpl from '@/gateway/PostGateway'
 import PostRepositoryImpl from '@/repositories/PostRepository'
 import LogServiceImpl from '@/services/LogService'
 
-const plugin: Plugin = context => {
+const plugin: Plugin = (context) => {
   const { $sentry, store } = context
+
+  const _container = container.createChildContainer()
 
   /**
    * Container Registration
    */
 
   // Infra
-  container.register<ContentfulClient>('ContentfulClient', { useValue: createClient() })
+  _container.register<ContentfulClient>('ContentfulClient', { useValue: createClient() })
 
   // Gateway
-  container.register('PostGateway', { useClass: PostGatewayImpl }, { lifecycle: Lifecycle.Singleton })
+  _container.register('PostGateway', { useClass: PostGatewayImpl }, { lifecycle: Lifecycle.Singleton })
 
   // Repository
-  container.register('PostRepository', { useClass: PostRepositoryImpl }, { lifecycle: Lifecycle.Singleton })
+  _container.register('PostRepository', { useClass: PostRepositoryImpl }, { lifecycle: Lifecycle.Singleton })
 
   // Service
-  container.register('LogService', { useClass: LogServiceImpl }, { lifecycle: Lifecycle.Singleton })
+  _container.register('LogService', { useClass: LogServiceImpl }, { lifecycle: Lifecycle.Singleton })
 
   // Others
-  container.register('Store', { useValue: store })
-  container.register<Logger>('Logger', { useValue: $sentry })
+  _container.register('Store', { useValue: store })
+  _container.register<Logger>('Logger', { useValue: $sentry })
+
+  context.$container = _container
 }
 
 export default plugin

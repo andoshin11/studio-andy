@@ -5,22 +5,21 @@
 </template>
 
 <script lang="ts">
-import { container } from 'tsyringe'
 import { defineComponent, useContext, useFetch, watch } from '@nuxtjs/composition-api'
 import SearchPostsUseCase from '@/usecases/post/SearchPostsUseCase'
 const ResultContainer = () => import('@/containers/Result')
 
 export default defineComponent({
   components: {
-    ResultContainer
+    ResultContainer,
   },
   setup() {
-    const { query, error } = useContext()
+    const { query, error, $container } = useContext()
 
     const { fetch } = useFetch(async () => {
       try {
         if (typeof query.value.query !== 'string') return
-        const usecase = container.resolve(SearchPostsUseCase)
+        const usecase = $container.resolve(SearchPostsUseCase)
         await usecase.execute(query.value.query)
       } catch (e) {
         error({ statusCode: 500, message: e.message })
@@ -34,10 +33,9 @@ export default defineComponent({
       }
     )
   },
-  watchQuery: ['query']
+  watchQuery: ['query'],
 })
 </script>
-
 
 <style scoped>
 .container {

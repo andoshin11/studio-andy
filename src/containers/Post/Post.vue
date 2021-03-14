@@ -1,10 +1,6 @@
 <template>
   <div class="Post">
-    <div 
-      v-if="presenter.post && !presenter.post.toJson().isPublished"
-      class="preview">
-      未公開の記事をPreview機能で閲覧中です。この記事はURLを知っているユーザーにしか表示されません。
-    </div>
+    <div v-if="presenter.post && !presenter.post.toJson().isPublished" class="preview">未公開の記事をPreview機能で閲覧中です。この記事はURLを知っているユーザーにしか表示されません。</div>
     <div class="inner">
       <div class="header">
         <HeaderImg :post="presenter.post" />
@@ -13,12 +9,8 @@
         <TagList :list="presenter.post ? presenter.post.toJson().tags : []" />
       </div>
       <div class="body">
-        <div 
-          v-if="presenter.post" 
-          class="socialLinks">
-          <SocialButtons 
-            :page-path="pagePath" 
-            :post="presenter.post" />
+        <div v-if="presenter.post" class="socialLinks">
+          <SocialButtons :page-path="pagePath" :post="presenter.post" />
         </div>
         <div class="content">
           <Markdown :text="presenter.post ? presenter.post.toJson().content : ''" />
@@ -38,7 +30,6 @@
 </template>
 
 <script lang="ts">
-import { container } from 'tsyringe'
 import { defineComponent, computed, useContext, useMeta } from '@nuxtjs/composition-api'
 
 import { usePresenter } from '@/hooks/usePresenter'
@@ -61,25 +52,25 @@ export default defineComponent({
     TagList,
     HeaderImg,
     Markdown,
-    SocialButtons
+    SocialButtons,
     // Loading,
     // PostList
   },
   props: {
     slug: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
-    const { route } = useContext()
+    const { route, $container } = useContext()
 
     const presenter = usePresenter(() => {
-      const postRepository = container.resolve<PostRepository>('PostRepository')
+      const postRepository = $container.resolve<PostRepository>('PostRepository')
       const post = postRepository.getPost(props.slug)
 
       return {
-        post
+        post,
       }
     })
 
@@ -100,17 +91,17 @@ export default defineComponent({
           { hid: 'og:description', property: 'og:description', content: post ? post.toJson().summary : '' },
           { hid: 'og:title', property: 'og:title', content: post ? post.toJson().title : '' },
           { hid: 'og:image', property: 'og:image', content: post ? `https:${post.headerImageURL}` : '' },
-          { hid: 'og:url', property: 'og:url', content: `https://blog.andoshin11.me/posts/${post ? post.toJson().slug : ''}` }
-        ]
+          { hid: 'og:url', property: 'og:url', content: `https://blog.andoshin11.me/posts/${post ? post.toJson().slug : ''}` },
+        ],
       }
     })
 
     return {
       presenter,
-      pagePath
+      pagePath,
     }
   },
-  head: {}
+  head: {},
 })
 </script>
 

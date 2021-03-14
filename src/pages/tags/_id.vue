@@ -6,28 +6,27 @@
 
 <script lang="ts">
 import { defineComponent, useContext, useFetch } from '@nuxtjs/composition-api'
-import { container } from 'tsyringe'
 import FetchPostsByTagUseCase from '@/usecases/post/FetchPostsByTagUseCase'
 
 const TagsContainer = () => import('@/containers/Tags')
 
 export default defineComponent({
   components: {
-    TagsContainer
+    TagsContainer,
   },
   setup() {
-    const { params, error } = useContext()
+    const { params, error, $container } = useContext()
 
     useFetch(async () => {
       try {
         const tag = params.value.id
-        const usecase = container.resolve(FetchPostsByTagUseCase)
+        const usecase = $container.resolve(FetchPostsByTagUseCase)
         await usecase.execute(tag)
       } catch (e) {
         error({ statusCode: 500, message: e.message })
       }
     })
-  }
+  },
 })
 </script>
 

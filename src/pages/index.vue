@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts">
-import { container } from 'tsyringe'
 import { defineComponent, useFetch, useContext } from '@nuxtjs/composition-api'
 import FetchPostSummariesUseCase from '@/usecases/post/FetchPostSummariesUseCase'
 
@@ -16,11 +15,11 @@ export default defineComponent({
     HomeContainer,
   },
   setup() {
-    const { error } = useContext()
+    const { error, $container } = useContext()
 
     useFetch(async () => {
       try {
-        await container.resolve(FetchPostSummariesUseCase).execute()
+        await $container.resolve(FetchPostSummariesUseCase).execute()
       } catch (e) {
         error({ statusCode: 500, message: e.message })
       }

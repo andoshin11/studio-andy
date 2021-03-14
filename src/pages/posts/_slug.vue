@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts">
-import { container } from 'tsyringe'
 import { defineComponent, useContext, useFetch } from '@nuxtjs/composition-api'
 import FetchPostUseCase from '@/usecases/post/FetchPostUseCase'
 import { ErrorType } from '@/common/errors'
@@ -13,15 +12,15 @@ const PostContainer = () => import('@/containers/Post')
 
 export default defineComponent({
   components: {
-    PostContainer
+    PostContainer,
   },
   setup() {
-    const { params, error } = useContext()
+    const { params, error, $container } = useContext()
     const slug = params.value.slug
 
     useFetch(async () => {
       try {
-        const usecase = container.resolve(FetchPostUseCase)
+        const usecase = $container.resolve(FetchPostUseCase)
         await usecase.execute(slug)
       } catch (e) {
         if (e.type === ErrorType.NOT_FOUND) {
@@ -34,9 +33,9 @@ export default defineComponent({
     })
 
     return {
-      slug
+      slug,
     }
-  }
+  },
 })
 </script>
 

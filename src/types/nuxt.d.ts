@@ -1,4 +1,5 @@
 import * as SentryTypes from '@sentry/minimal'
+import { DependencyContainer } from 'tsyringe'
 import { Context } from '@nuxt/vue-app'
 
 declare module 'vuex/types/index' {
@@ -10,5 +11,6 @@ declare module 'vuex/types/index' {
 declare module '@nuxt/types/index' {
   interface Context {
     readonly $sentry: typeof SentryTypes
+    $container: DependencyContainer
   }
 }

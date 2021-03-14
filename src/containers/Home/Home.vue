@@ -7,8 +7,7 @@
 </template>
 
 <script lang="ts">
-import { container } from 'tsyringe'
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
 import { usePresenter } from '@/hooks/usePresenter'
 import PostRepository from '@/interface/repository/PostRepository'
 
@@ -20,8 +19,10 @@ export default defineComponent({
     PostList,
   },
   setup() {
+    const { $container } = useContext()
+
     const presenter = usePresenter(() => {
-      const postRepository = container.resolve<PostRepository>('PostRepository')
+      const postRepository = $container.resolve<PostRepository>('PostRepository')
       const postSummaries = postRepository.getPostSummaries('publishedAt', true)
 
       return {
