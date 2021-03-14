@@ -5,7 +5,7 @@ import { PostSummaryData } from '@/domain/PostSummary'
 
 export * from './state'
 
-export const module = createTypeSafeModule({
+export const postModule = createTypeSafeModule({
   namespaced: true,
   state: initialState,
   mutations: {
@@ -40,5 +40,3 @@ export const module = createTypeSafeModule({
     },
   },
 })
-
-export const mutations = module.mutations

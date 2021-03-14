@@ -7,7 +7,7 @@ export interface RootState {
 }
 
 const modules = {
-  post: post.module,
+  post: post.postModule,
 }
 
 export const createStore = () =>
