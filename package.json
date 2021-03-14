@@ -5,9 +5,7 @@
   "license": "MIT",
   "author": "andoshin11",
   "scripts": {
-    "dev:old": "cross-env NODE_ENV=development NUXT_TELEMETRY_DISABLED=1 nodemon src/server/index.js --watch server",
-    "dev": "cross-env NODE_ENV=development nuxt",
-    "generate": "nuxt generate",
+    "dev": "cross-env NODE_ENV=development NUXT_TELEMETRY_DISABLED=1 nodemon src/server/index.js --watch server",
     "build": "cross-env NODE_ENV=production nuxt build",
     "analyze": "cross-env NODE_ENV=production nuxt build --analyze",
     "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=8080 node src/server/index.js",

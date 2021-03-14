@@ -67,7 +67,6 @@ jspm_packages/
 
 # Nuxt generate
 dist
-gen
 
 # vuepress build output
 .vuepress/dist

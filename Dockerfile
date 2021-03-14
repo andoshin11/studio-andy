@@ -30,13 +30,9 @@ RUN apk del build-base
 ADD src ./src
 ADD nuxt.config.js ./
 ADD tsconfig.json ./
-RUN yarn run generate
+RUN yarn run build
 
 RUN yarn sentry-cli releases set-commits $RELEASE_VERSION --commit "andoshin11/studio-andy@$RELEASE_VERSION"
 RUN yarn sentry-cli releases deploys $RELEASE_VERSION new -e $NODE_ENV
 
-FROM nginx:1.19.2
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/gen /nuxt/gen
-
-EXPOSE 80
+CMD ["yarn", "start"]

@@ -11,4 +11,3 @@ node_modules/
 .DS_Store
 .git/
 .nuxt
-gen
