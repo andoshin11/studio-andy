@@ -1,4 +1,3 @@
-import { number } from '@/assets/css/prism.css'
 import { PropOptions } from 'vue'
 
 export const oneOf = (keys: string[]): PropOptions['validator'] => {
