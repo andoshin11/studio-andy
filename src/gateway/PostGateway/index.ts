@@ -17,16 +17,6 @@ const getSummarySelector = () => SUMMARY_FIELDS.map((f) => `fields.${f}`)
 export default class PostGatewayImpl implements PostGateway {
   constructor(@inject('ContentfulClient') private contentfulClient: ContentfulClient) {}
 
-  async getPosts(orderBy: SortableKey = 'publishedAt', asSummary = true) {
-    const posts = await this.contentfulClient.getEntries<PostData>({
-      content_type: CONTENT_TYPE,
-      'fields.isPublished': true,
-      select: asSummary ? getSummarySelector() : undefined,
-      order: `-fields.${orderBy}`,
-    })
-    return posts.items.map(transtormEntry)
-  }
-
   async getPostSummaries() {
     const postSummaries = await this.contentfulClient.getEntries<PostSummaryData>({
       content_type: CONTENT_TYPE,
