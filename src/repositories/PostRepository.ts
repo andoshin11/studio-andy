@@ -1,7 +1,7 @@
 import { singleton, inject } from 'tsyringe'
 import { Store } from '@/storeConstruct'
 import PostRepository from '@/interface/repository/PostRepository'
-import Post, { PostData, SortableKey, Tag } from '@/domain/Post'
+import Post, { PostData, Tag } from '@/domain/Post'
 import PostSummary, { PostSummaryData, SortableKey as PostSummarySortableKey } from '@/domain/PostSummary'
 import { pluck, sortBy } from '@/util/helpers'
 
