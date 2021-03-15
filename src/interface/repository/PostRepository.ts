@@ -1,4 +1,4 @@
-import Post, { PostData, Tag, SortableKey } from '@/domain/Post'
+import Post, { PostData, Tag } from '@/domain/Post'
 import PostSummary, { PostSummaryData, SortableKey as PostSummarySortableKey } from '@/domain/PostSummary'
 
 export default interface PostRepository {
