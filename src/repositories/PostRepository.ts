@@ -9,22 +9,6 @@ import { pluck, sortBy } from '@/util/helpers'
 export default class PostRepositoryImpl implements PostRepository {
   constructor(@inject('Store') private _store: Store) {}
 
-  getPosts(orderBy?: SortableKey) {
-    const { state } = this._store
-    let dataList: PostData[]
-
-    if (typeof orderBy === 'undefined') {
-      dataList = Object.values(state.post.byIds)
-    } else if (orderBy === 'publishedAt') {
-      const slugs = state.post.latestPosts
-      dataList = slugs.map((slug) => state.post.byIds[slug])
-    } else {
-      throw new Error(`unsupported sorting key: ${orderBy}`)
-    }
-
-    return dataList.filter(Boolean).map((data) => new Post(data))
-  }
-
   getPostSummaries(orderBy: PostSummarySortableKey = 'publishedAt', reverse: boolean = false) {
     const dataList = Object.values(this._store.state.post.postSummaries)
 
@@ -41,22 +25,21 @@ export default class PostRepositoryImpl implements PostRepository {
     return dataList.filter(Boolean).map((data) => new PostSummary(data))
   }
 
+  savePostSummaries(postSummaries: PostSummaryData[]) {
+    this._store.commit('post/store_postSummaries', { postSummaries })
+  }
+
+  /**
+   * Post
+   */
+
+  savePost(post: PostData) {
+    this._store.commit('post/store_post', { post })
+  }
+
   getPost(slug: PostData['slug']) {
     const data = this._store.state.post.byIds[slug]
     return data ? new Post(data) : null
-  }
-
-  savePosts(posts: PostData[], orderBy?: SortableKey) {
-    this._store.commit('post/store_posts', { posts })
-
-    if (orderBy === 'publishedAt') {
-      const slugs = pluck(posts, 'slug')
-      this._store.commit('post/store_latest_posts', { slugs })
-    }
-  }
-
-  savePostSummaries(postSummaries: PostSummaryData[]) {
-    this._store.commit('post/store_postSummaries', { postSummaries })
   }
 
   /**

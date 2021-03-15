@@ -35,7 +35,7 @@ export default class PostGatewayImpl implements PostGateway {
     })
 
     if (!result || !result.items.length) {
-      throw new NotFoundError(`Unavailable slug selected: ${slug}`)
+      throw new NotFoundError(`Post not found: ${slug}`)
     }
     return transtormEntry(result.items[0])
   }

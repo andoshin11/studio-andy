@@ -9,11 +9,10 @@ export const postModule = createTypeSafeModule({
   namespaced: true,
   state: initialState,
   mutations: {
-    store_posts: (state, payload: { posts: PostData[] }) => {
-      const hash = payload.posts.reduce((acc, ac) => ((acc[ac.slug] = ac), acc), {} as PostState['byIds'])
+    store_post: (state, payload: { post: PostData }) => {
       state.byIds = {
         ...state.byIds,
-        ...hash,
+        [payload.post.slug]: payload.post,
       }
     },
     store_postSummaries: (state, payload: { postSummaries: PostSummaryData[] }) => {
@@ -22,9 +21,6 @@ export const postModule = createTypeSafeModule({
         ...state.postSummaries,
         ...hash,
       }
-    },
-    store_latest_posts: (state, payload: { slugs: string[] }) => {
-      state.latestPosts = payload.slugs
     },
     store_search_result: (state, payload: { slugs: string[] }) => {
       state.searchResult = payload.slugs

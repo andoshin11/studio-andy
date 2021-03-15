@@ -10,12 +10,8 @@ export default class FetchPostUseCase implements BaseUseCase {
 
   async execute(slug: PostData['slug']) {
     try {
-      // Check if the post already exists
-      const existed = this.postRepository.getPost(slug)
-      if (existed) return
-
       const post = await this.postGateway.getPost(slug)
-      this.postRepository.savePosts([post])
+      this.postRepository.savePost(post)
     } catch (e) {
       await this.logService.handle({ type: LogType.Error, error: e })
       throw e

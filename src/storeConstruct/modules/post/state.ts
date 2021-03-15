@@ -6,7 +6,6 @@ export interface PostState {
     [slug: string]: PostData
   }
   postSummaries: Record<PostSummaryData['slug'], PostSummaryData>
-  latestPosts: string[]
   searchResult: string[]
   tagResult: string[]
   searchQuery: string | null
@@ -16,7 +15,6 @@ export interface PostState {
 export const initialState = (): PostState => ({
   byIds: {},
   postSummaries: {},
-  latestPosts: [],
   searchResult: [],
   tagResult: [],
   searchQuery: null,
