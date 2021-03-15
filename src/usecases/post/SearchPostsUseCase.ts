@@ -1,37 +1,19 @@
-import LogService, { LogType } from '@/services/LogService'
-import ContentfulGateway from '@/gateway/ContentfulGateway'
+import { injectable, inject } from 'tsyringe'
+import PostGateway from '@/interface/gateway/PostGateway'
 import PostRepository from '@/repositories/PostRepository'
+import LogService, { LogType } from '@/services/LogService'
 
-export interface ISearchPostsUseCase {
-  logService: LogService
-  contentfulGateway: ContentfulGateway
-  postRepository: PostRepository
-}
-
+@injectable()
 export default class SearchPostsUseCase implements BaseUseCase {
-  logService: LogService
-  contentfulGateway: ContentfulGateway
-  postRepository: PostRepository
-
-  constructor({ logService, contentfulGateway, postRepository }: ISearchPostsUseCase) {
-    this.logService = logService
-    this.contentfulGateway = contentfulGateway
-    this.postRepository = postRepository
-  }
+  constructor(@inject('PostGateway') private postGateway: PostGateway, @inject('PostRepository') private postRepository: PostRepository, @inject('LogService') private logService: LogService) {}
 
   async execute(query: string) {
     try {
-      // Check if the query already exists
-      const cache = this.postRepository.getSearchQuery()
-
-      if (query !== cache) {
-        this.postRepository.saveSearchQuery(query)
-        const results = await this.contentfulGateway.searchPosts(query)
-        this.postRepository.saveSearchResults(results)
-      }
-    } catch (error) {
-      await this.logService.handle({ type: LogType.Error, error })
-      throw new Error(error)
+      const postSummaries = await this.postGateway.searchPosts(query)
+      this.postRepository.saveSearchResult(query, postSummaries)
+    } catch (e) {
+      await this.logService.handle({ type: LogType.Error, error: e })
+      throw e
     }
   }
 }

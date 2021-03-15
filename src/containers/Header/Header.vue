@@ -1,30 +1,11 @@
 <template>
-  <div 
-    :class="{ shrink: shrink }" 
-    class="Header">
+  <div :class="{ shrink: shrink }" class="Header">
     <div class="inner">
-      <nuxt-link 
-        exact 
-        to="/" 
-        class="logo">
-        Studio Andy
-      </nuxt-link>
+      <nuxt-link exact to="/" class="logo"> Studio Andy </nuxt-link>
     </div>
-    <form 
-      class="search" 
-      role="search" 
-      @submit.prevent="searchPosts">
-      <input 
-        ref="inputRef" 
-        v-model="query" 
-        name="query" 
-        aria-label="query" 
-        type="text" 
-        class="searchInput" >
-      <button 
-        type="submit" 
-        aria-label="search" 
-        class="searchButton">
+    <form class="search" role="search" @submit.prevent="searchPosts">
+      <input ref="inputRef" v-model="query" name="query" aria-label="query" type="text" class="searchInput" />
+      <button type="submit" aria-label="search" class="searchButton">
         <Icon name="search" />
       </button>
       <div class="mask" />
@@ -33,30 +14,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useContext } from 'nuxt-composition-api'
+import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
 import Icon from '@/components/Base/Icon'
 
 export default defineComponent({
   name: 'Header',
   components: {
-    Icon
+    Icon,
   },
   props: {
     shrink: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup() {
     const query = ref('')
-    const inputRef = ref<HTMLInputElement>(null)
+    const inputRef = ref<HTMLInputElement | null>(null)
 
     const {
-      app: { router }
+      app: { router },
     } = useContext()
 
-    const searchPosts = (e: Event) => {
-      // e.preventDefault()
+    const searchPosts = () => {
       if (!query.value || !inputRef.value || !router) return
       inputRef.value.blur()
       router.push({ path: `/search?query=${query.value}` })
@@ -66,9 +46,9 @@ export default defineComponent({
     return {
       query,
       inputRef,
-      searchPosts
+      searchPosts,
     }
-  }
+  },
 })
 </script>
 

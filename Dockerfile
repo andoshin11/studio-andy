@@ -1,4 +1,4 @@
-FROM node:12.13.0-alpine
+FROM node:14.15.4-alpine as builder
 
 ENV NODE_ENV=production
 ENV SENTRY_ORG=studio-andy
@@ -31,6 +31,7 @@ ADD src ./src
 ADD nuxt.config.js ./
 ADD tsconfig.json ./
 RUN yarn run build
+
 RUN yarn sentry-cli releases set-commits $RELEASE_VERSION --commit "andoshin11/studio-andy@$RELEASE_VERSION"
 RUN yarn sentry-cli releases deploys $RELEASE_VERSION new -e $NODE_ENV
 

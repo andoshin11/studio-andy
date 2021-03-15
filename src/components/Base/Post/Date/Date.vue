@@ -1,42 +1,27 @@
 <template>
   <div class="Date">
-    <div 
-      v-if="text.length < 1" 
-      class="empty">
+    <div v-if="text.length < 1" class="empty">
       <Empty />
     </div>
-    {{ date }}
+    {{ text }}
   </div>
-  
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'nuxt-composition-api'
-import dayjs from 'dayjs'
+import { defineComponent } from '@nuxtjs/composition-api'
 import Empty from '@/components/Base/Empty'
 
 export default defineComponent({
   name: 'Date',
   components: {
-    Empty
+    Empty,
   },
   props: {
     text: {
       type: String,
-      required: true as true,
-      default: ''
-    }
+      required: true,
+    },
   },
-  setup(props) {
-    const { text } = props
-    const date = computed(() => {
-      return text.length > 1 ? dayjs(text).format('MMM D, YYYY') : ''
-    })
-
-    return {
-      date
-    }
-  }
 })
 </script>
 

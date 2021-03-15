@@ -49,15 +49,15 @@ export default class Embed {
       key: this.apiKey,
       native: true,
       scheme: 'https',
-      urls: urls.join(',')
+      urls: urls.join(','),
     }
 
     const createParams = (data: { [key: string]: any }): string => {
-      const params = Object.keys(data).map(key => key + '=' + String(data[key]))
+      const params = Object.keys(data).map((key) => key + '=' + String(data[key]))
       return params.join('&')
     }
 
     const requestUrl = 'https://api-cdn.embed.ly/1/card-details?' + createParams(options)
-    return await fetch(requestUrl).then(res => res.json())
+    return await fetch(requestUrl).then((res) => res.json())
   }
 }

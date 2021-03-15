@@ -1,23 +1,22 @@
-import { IPostProps } from '@/entities/Post'
+import { PostData } from '@/domain/Post'
+import { PostSummaryData } from '@/domain/PostSummary'
 
-export interface IPostState {
+export interface PostState {
   byIds: {
-    [slug: string]: IPostProps
+    [slug: string]: PostData
   }
-  latestPosts: string[]
+  postSummaries: Record<PostSummaryData['slug'], PostSummaryData>
   searchResult: string[]
   tagResult: string[]
   searchQuery: string | null
   currentTag: string | null
-  currentPost: string | null
 }
 
-export const initialState = (): IPostState => ({
+export const initialState = (): PostState => ({
   byIds: {},
-  latestPosts: [],
+  postSummaries: {},
   searchResult: [],
   tagResult: [],
   searchQuery: null,
   currentTag: null,
-  currentPost: null
 })

@@ -1,7 +1,7 @@
 export enum ErrorType {
   NOT_FOUND,
   SERVER_ERROR,
-  UNAUTHORIZED
+  UNAUTHORIZED,
 }
 
 class ErrorBase extends Error {

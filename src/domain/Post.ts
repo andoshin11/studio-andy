@@ -1,6 +1,13 @@
 import { Asset } from 'contentful'
+import dayjs from 'dayjs'
+import BaseEntity from './Base'
+import { STANDARD_DATE_FORMAT } from '@/common/const'
 
-export interface IPostProps {
+export type Tag = string
+
+export type SortableKey = Exclude<keyof PostData, 'id' | 'content'>
+
+export interface PostData {
   slug: string
   id: string
   headerImage: Asset
@@ -9,30 +16,41 @@ export interface IPostProps {
   summary: string
   publishedAt: string
   title: string
-  tags: string[]
+  tags: Tag[]
   isPublished: boolean
-  relatedPosts: string[]
 }
 
-export default class PostEntity {
-  private _props: IPostProps
-
-  constructor(props: IPostProps) {
-    this._props = {
-      relatedPosts: [],
-      ...props
-    }
+export default class Post extends BaseEntity<PostData> {
+  get publishedAtStr() {
+    const { publishedAt } = this.toJson()
+    return dayjs(publishedAt).format(STANDARD_DATE_FORMAT)
   }
 
-  get props(): IPostProps {
-    return this._props
+  get headerImageURL() {
+    const { headerImage } = this.toJson()
+    return headerImage ? headerImage.fields.file.url : ''
   }
 
-  updateRelatedPosts(relatedPosts: string[]) {
-    this._props = {
-      ...this._props,
-      relatedPosts
+  get headerImageLightURL() {
+    const { headerImageLight } = this.toJson()
+    return headerImageLight ? headerImageLight.fields.file.url : ''
+  }
+
+  get headerImageLightFileName() {
+    const { headerImageLight } = this.toJson()
+    return headerImageLight ? headerImageLight.fields.file.fileName : ''
+  }
+
+  getEmbedlyURLs(): string[] {
+    const { content } = this.toJson()
+    const matched = content.matchAll(/<a href="([^"]*)" class="embedly-card"[^>]*>/g)
+
+    const urls: string[] = []
+    for (const m of matched) {
+      urls.push(m[1])
     }
+
+    return urls
   }
 }
 
@@ -44,11 +62,11 @@ const AssetFactory = (): Asset => {
       file: {
         contentType: 'image/jpeg',
         details: {
-          size: 1000
+          size: 1000,
         },
         fileName: 'vuefes.jpg',
-        url: '//images.ctfassets.net/2p1otbbee5vt/1IT8b2qoAEyc0SOwqSy6QS/f5f517ed6f292497270bf3b85d608dea/vuefes.jpg'
-      }
+        url: '//images.ctfassets.net/2p1otbbee5vt/1IT8b2qoAEyc0SOwqSy6QS/f5f517ed6f292497270bf3b85d608dea/vuefes.jpg',
+      },
     },
     sys: {
       type: 'Asset',
@@ -60,15 +78,17 @@ const AssetFactory = (): Asset => {
         sys: {
           id: 'master',
           type: 'Link',
-          linkType: 'ContentType'
-        }
-      }
+          linkType: 'ContentType',
+        },
+      },
     },
-    toPlainObject(): any {}
+    toPlainObject(): Record<string, unknown> {
+      return {}
+    },
   }
 }
 
-export const PostPropsFactory = (props?: Partial<IPostProps>): IPostProps => {
+export const PostDataFactory = (data?: Partial<PostData>): PostData => {
   return {
     slug: 'dummy',
     id: 'dummyId',
@@ -80,11 +100,10 @@ export const PostPropsFactory = (props?: Partial<IPostProps>): IPostProps => {
     headerImage: AssetFactory(),
     headerImageLight: AssetFactory(),
     isPublished: true,
-    relatedPosts: [],
-    ...props
+    ...data,
   }
 }
 
-export const PostEntityFactory = (props?: Partial<IPostProps>): PostEntity => {
-  return new PostEntity(PostPropsFactory(props))
+export const PostFactory = (data?: Partial<PostData>): Post => {
+  return new Post(PostDataFactory(data))
 }

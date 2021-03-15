@@ -1,4 +1,4 @@
-import { Ref, isRef } from 'nuxt-composition-api'
+import { Ref, isRef } from '@nuxtjs/composition-api'
 
 export const useIntersectionObserver = (el: Ref<Element | null> | Element | null, cb: IntersectionObserverCallback) => {
   const _el = isRef(el) ? el.value : el

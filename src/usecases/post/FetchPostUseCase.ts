@@ -1,35 +1,20 @@
-import ContentfulGateway from '@/gateway/ContentfulGateway'
-import LogService, { LogType } from '@/services/LogService'
-import PostRepository from '@/repositories/PostRepository'
+import { injectable, inject } from 'tsyringe'
+import PostGateway from '@/interface/gateway/PostGateway'
+import PostRepository from '@/interface/repository/PostRepository'
+import LogService, { LogType } from '@/interface/service/LogService'
+import { PostData } from '@/domain/Post'
 
-export interface IFetchPostUseCase {
-  logService: LogService
-  contentfulGateway: ContentfulGateway
-  postRepository: PostRepository
-}
-
+@injectable()
 export default class FetchPostUseCase implements BaseUseCase {
-  logService: LogService
-  contentfulGateway: ContentfulGateway
-  postRepository: PostRepository
+  constructor(@inject('PostGateway') private postGateway: PostGateway, @inject('PostRepository') private postRepository: PostRepository, @inject('LogService') private logService: LogService) {}
 
-  constructor({ logService, contentfulGateway, postRepository }: IFetchPostUseCase) {
-    this.logService = logService
-    this.contentfulGateway = contentfulGateway
-    this.postRepository = postRepository
-  }
-
-  async execute(slug: string) {
+  async execute(slug: PostData['slug']) {
     try {
-      // Check if the post already exists
-      const data = this.postRepository.getPost(slug)
-
-      const post = data ? data.props : await this.contentfulGateway.getPost(slug)
-
-      this.postRepository.saveCurrentPost(post)
-    } catch (error) {
-      await this.logService.handle({ type: LogType.Message, message: error.message })
-      throw error
+      const post = await this.postGateway.getPost(slug)
+      this.postRepository.savePost(post)
+    } catch (e) {
+      await this.logService.handle({ type: LogType.Error, error: e })
+      throw e
     }
   }
 }

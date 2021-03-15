@@ -5,7 +5,7 @@ const easeInOutQuad = (t: number, b: number, c: number, d: number): number => {
   return (-c / 2) * (t * (t - 2) - 1) + b
 }
 
-export const scrollWithDuration = (element: any, to: number = 0, duration: number = 1000): void => {
+export const scrollWithDuration = (element: Element, to: number = 0, duration: number = 1000): void => {
   const start = element.scrollTop
   const change = to - start
   const increment = 20

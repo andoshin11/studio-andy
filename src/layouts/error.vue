@@ -6,10 +6,7 @@
     <template v-else>
       <div class="message">エラーが発生しました。</div>
     </template>
-    <nuxt-link 
-      exact 
-      to="/" 
-      class="link">トップページへ</nuxt-link>
+    <nuxt-link exact to="/" class="link"> トップページへ </nuxt-link>
   </div>
 </template>
 
@@ -20,9 +17,9 @@ export default Vue.extend({
   props: {
     error: {
       type: Object as () => { statusCode: number; message: string },
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>
 

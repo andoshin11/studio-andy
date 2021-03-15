@@ -1,36 +1,38 @@
 <template>
   <div class="Home">
     <div class="PostList">
-      <PostList :data="presenter.postList" />
+      <PostList :posts="presenter.postSummaries" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
-import { usePresenter, PresenterFn } from '@/hooks/usePresenter'
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
+import { usePresenter } from '@/hooks/usePresenter'
 
-import Presenter, { IPresenter, ListType } from './presenter'
-import PostRepository from '@/repositories/PostRepository'
-import PostList from '@/components/Modules/PostList'
+const PostList = () => import('@/components/Modules/PostList')
 
 export default defineComponent({
   name: 'Home',
   components: {
-    PostList
+    PostList,
   },
   setup() {
-    const presenterFn: PresenterFn<IPresenter> = store =>
-      Presenter({
-        postRepository: new PostRepository(store),
-        listType: ListType.Latest
-      })
-    const presenter = usePresenter(presenterFn)
+    const { $resolver } = useContext()
+
+    const presenter = usePresenter(() => {
+      const postRepository = $resolver('PostRepository')
+      const postSummaries = postRepository.getPostSummaries('publishedAt', true)
+
+      return {
+        postSummaries,
+      }
+    })
 
     return {
-      presenter
+      presenter,
     }
-  }
+  },
 })
 </script>
 

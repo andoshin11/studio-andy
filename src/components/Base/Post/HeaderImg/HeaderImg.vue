@@ -1,45 +1,31 @@
 <template>
   <div class="HeaderImg">
     <picture v-if="post">
-      <source 
-        :srcset="post.props.headerImageLight.fields.file.url" 
-        class="img" 
-        type="image/webp" >
-      <img 
-        :src="post.props.headerImage.fields.file.url" 
-        :alt="post.props.headerImage.fields.file.fileName" 
-        class="img" >
+      <source :srcset="post.headerImageLightURL" class="img" type="image/webp" />
+      <img :src="post.headerImageLightURL" :alt="post.headerImageLightFileName" class="img" />
     </picture>
-    <div 
-      v-else 
-      class="empty">
+    <div v-else class="empty">
       <Empty />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
+import Post from '@/domain/Post'
 import Empty from '@/components/Base/Empty'
-import PostEntity from '@/entities/Post'
 
 export default defineComponent({
   name: 'HeaderImg',
   components: {
-    Empty
+    Empty,
   },
   props: {
     post: {
-      type: Object as () => PostEntity | null,
-      default: null
-    }
-  }
-  // setup(props) {
-  //   const { post } = props
-  //   return {
-  //     post
-  //   }
-  // }
+      type: Object as () => Post | null,
+      default: null,
+    },
+  },
 })
 </script>
 

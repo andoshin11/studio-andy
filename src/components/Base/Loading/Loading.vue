@@ -1,7 +1,5 @@
 <template>
-  <div 
-    :class="[size, type]" 
-    class="Loading">
+  <div :class="[size, type]" class="Loading">
     <div class="Loading__Dot" />
     <div class="Loading__Dot" />
     <div class="Loading__Dot" />
@@ -9,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { oneOf } from '@/util/helpers'
 
 export default defineComponent({
@@ -18,14 +16,14 @@ export default defineComponent({
     size: {
       type: String,
       default: 'md',
-      validator: oneOf(['sm', 'md', 'lg'])
+      validator: oneOf(['sm', 'md', 'lg']),
     },
     type: {
       type: String,
       default: 'light',
-      validator: oneOf(['light', 'dark'])
-    }
-  }
+      validator: oneOf(['light', 'dark']),
+    },
+  },
 })
 </script>
 

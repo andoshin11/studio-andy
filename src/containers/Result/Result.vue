@@ -2,38 +2,42 @@
   <div class="Result">
     <div class="summary">
       <span class="query">{{ presenter.query }}</span>
-      の検索結果 {{ presenter.postList.length }}件
+      の検索結果 {{ presenter.postSummaries.length }}件
     </div>
     <div class="PostList">
-      <PostList :data="presenter.postList" />
+      <PostList :posts="presenter.postSummaries" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
-import { usePresenter, PresenterFn } from '@/hooks/usePresenter'
-
-import Presenter, { IPresenter } from './presenter'
-import PostRepository from '@/repositories/PostRepository'
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
+import { usePresenter } from '@/hooks/usePresenter'
 import PostList from '@/components/Modules/PostList'
 
 export default defineComponent({
   name: 'Result',
   components: {
-    PostList
+    PostList,
   },
   setup() {
-    const presenterFn: PresenterFn<IPresenter> = store =>
-      Presenter({
-        postRepository: new PostRepository(store)
-      })
-    const presenter = usePresenter(presenterFn)
+    const { $resolver } = useContext()
+
+    const presenter = usePresenter(() => {
+      const postRepository = $resolver('PostRepository')
+      const postSummaries = postRepository.getSearchResult()
+      const query = postRepository.getSearchQuery()
+
+      return {
+        postSummaries,
+        query,
+      }
+    })
 
     return {
-      presenter
+      presenter,
     }
-  }
+  },
 })
 </script>
 

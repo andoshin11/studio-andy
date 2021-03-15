@@ -1,8 +1,6 @@
 <template>
   <h1 class="Title">
-    <div 
-      v-if="title.length < 1" 
-      class="empty">
+    <div v-if="title.length < 1" class="empty">
       <Empty />
     </div>
     {{ title }}
@@ -10,20 +8,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import Empty from '@/components/Base/Empty'
 
 export default defineComponent({
   name: 'Title',
   components: {
-    Empty
+    Empty,
   },
   props: {
     title: {
       type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 })
 </script>
 

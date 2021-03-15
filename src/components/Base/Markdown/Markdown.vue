@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'nuxt-composition-api'
+import { defineComponent, computed, onMounted } from '@nuxtjs/composition-api'
 import marked from 'marked'
 import Prism from 'prismjs'
 import Embed from '@/lib/embed'
@@ -15,18 +15,16 @@ export default defineComponent({
   props: {
     text: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   setup(props) {
-    const { text } = props
-
     // Computed
-    const markedContents = computed(() => marked(text))
+    const markedContents = computed(() => marked(props.text))
 
     // Methods
     const getApiKey = async () => {
-      const source = await fetch('//cdn.embedly.com/widgets/platform.js', {}).then(res => res.text())
+      const source = await fetch('//cdn.embedly.com/widgets/platform.js', {}).then((res) => res.text())
       const key = source.match(/\.EMB_API_KEY="([^"]*)"/)
       if (!key) throw new Error('Embedly key not found.')
 
@@ -34,12 +32,12 @@ export default defineComponent({
     }
     const transformEmbedded = async () => {
       const apiKey = await getApiKey()
-      const targetList = Array.from(document.querySelectorAll('.embedly-card')).filter(el => el.hasAttribute('href'))
-      const urls = targetList.map(el => el.getAttribute('href') as string)
+      const targetList = Array.from(document.querySelectorAll('.embedly-card')).filter((el) => el.hasAttribute('href'))
+      const urls = targetList.map((el) => el.getAttribute('href') as string)
 
       const contents = await new Embed(apiKey).getContents(urls)
-      targetList.forEach(el => {
-        const content = contents.find(c => c.original_url === el.getAttribute('href'))
+      targetList.forEach((el) => {
+        const content = contents.find((c) => c.original_url === el.getAttribute('href'))
         if (!content) return
         el.setAttribute('target', '_blank')
         const defaultImage = content.images[0] || {}
@@ -77,7 +75,7 @@ export default defineComponent({
     onMounted(async () => {
       // Highlight Code
       const targetList = document.querySelectorAll('code')
-      Array.from(targetList).forEach(target => Prism.highlightElement(target))
+      Array.from(targetList).forEach((target) => Prism.highlightElement(target))
 
       await transformEmbedded()
     })
@@ -85,9 +83,9 @@ export default defineComponent({
     return {
       markedContents,
       getApiKey,
-      transformEmbedded
+      transformEmbedded,
     }
-  }
+  },
 })
 </script>
 

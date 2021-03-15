@@ -5,15 +5,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'nuxt-composition-api'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   name: 'Icon',
   props: {
     name: {
       type: String,
-      required: true as true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const { name } = props
@@ -22,9 +22,9 @@ export default defineComponent({
     })
 
     return {
-      iconPath
+      iconPath,
     }
-  }
+  },
 })
 </script>
 

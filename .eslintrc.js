@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: ['eslint:recommended'],
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 10,
     sourceType: 'module'
   },
   plugins: [],
@@ -14,6 +14,7 @@ module.exports = {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['warn', 'single'],
-    semi: ['error', 'never']
+    semi: ['error', 'never'],
+    'require-jsdoc': 'off'
   }
 }

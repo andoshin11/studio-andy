@@ -16,6 +16,10 @@ DOCKER_BUILD_ARGS += \
 release-build:
 	docker build $(DOCKER_BUILD_OPTS) $(DOCKER_BUILD_ARGS) .
 
+.PHONY: run-image
+run-image:
+	docker run -it -p 8080:80 $(DOCKER_BUILD_OPTS)
+
 .PHONY: push-image
 push-image:
 	docker push $(TAG)
