@@ -1,6 +1,6 @@
 import * as SentryTypes from '@sentry/minimal'
-import { DependencyContainer } from 'tsyringe'
 import { Context } from '@nuxt/vue-app'
+import { createResolver } from '@/di'
 
 declare module 'vuex/types/index' {
   interface ActionTree<S, R> {
@@ -11,6 +11,6 @@ declare module 'vuex/types/index' {
 declare module '@nuxt/types/index' {
   interface Context {
     readonly $sentry: typeof SentryTypes
-    $container: DependencyContainer
+    $resolver: ReturnType<typeof createResolver>
   }
 }
