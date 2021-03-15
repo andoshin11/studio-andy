@@ -33,7 +33,6 @@
 import { defineComponent, computed, useContext, useMeta } from '@nuxtjs/composition-api'
 
 import { usePresenter } from '@/hooks/usePresenter'
-import PostRepository from '@/interface/repository/PostRepository'
 
 import PostTitle from '@/components/Base/Post/Title'
 import PostDate from '@/components/Base/Post/Date'
@@ -63,10 +62,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { route, $container } = useContext()
+    const { route, $resolver } = useContext()
 
     const presenter = usePresenter(() => {
-      const postRepository = $container.resolve<PostRepository>('PostRepository')
+      const postRepository = $resolver('PostRepository')
       const post = postRepository.getPost(props.slug)
 
       return {

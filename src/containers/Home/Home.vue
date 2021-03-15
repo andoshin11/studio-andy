@@ -9,7 +9,6 @@
 <script lang="ts">
 import { defineComponent, useContext } from '@nuxtjs/composition-api'
 import { usePresenter } from '@/hooks/usePresenter'
-import PostRepository from '@/interface/repository/PostRepository'
 
 const PostList = () => import('@/components/Modules/PostList')
 
@@ -19,10 +18,10 @@ export default defineComponent({
     PostList,
   },
   setup() {
-    const { $container } = useContext()
+    const { $resolver } = useContext()
 
     const presenter = usePresenter(() => {
-      const postRepository = $container.resolve<PostRepository>('PostRepository')
+      const postRepository = $resolver('PostRepository')
       const postSummaries = postRepository.getPostSummaries('publishedAt', true)
 
       return {

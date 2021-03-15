@@ -15,12 +15,12 @@ export default defineComponent({
     PostContainer,
   },
   setup() {
-    const { params, error, $container } = useContext()
+    const { params, error, $resolver } = useContext()
     const slug = params.value.slug
 
     useFetch(async () => {
       try {
-        const usecase = $container.resolve(FetchPostUseCase)
+        const usecase = $resolver(FetchPostUseCase)
         await usecase.execute(slug)
       } catch (e) {
         if (e.type === ErrorType.NOT_FOUND) {

@@ -14,12 +14,12 @@ export default defineComponent({
     ResultContainer,
   },
   setup() {
-    const { query, error, $container } = useContext()
+    const { query, error, $resolver } = useContext()
 
     const { fetch } = useFetch(async () => {
       try {
         if (typeof query.value.query !== 'string') return
-        const usecase = $container.resolve(SearchPostsUseCase)
+        const usecase = $resolver(SearchPostsUseCase)
         await usecase.execute(query.value.query)
       } catch (e) {
         error({ statusCode: 500, message: e.message })

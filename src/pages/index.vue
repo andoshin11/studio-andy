@@ -15,11 +15,11 @@ export default defineComponent({
     HomeContainer,
   },
   setup() {
-    const { error, $container } = useContext()
+    const { error, $resolver } = useContext()
 
     useFetch(async () => {
       try {
-        await $container.resolve(FetchPostSummariesUseCase).execute()
+        await $resolver(FetchPostSummariesUseCase).execute()
       } catch (e) {
         error({ statusCode: 500, message: e.message })
       }

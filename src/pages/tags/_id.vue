@@ -15,12 +15,12 @@ export default defineComponent({
     TagsContainer,
   },
   setup() {
-    const { params, error, $container } = useContext()
+    const { params, error, $resolver } = useContext()
 
     useFetch(async () => {
       try {
         const tag = params.value.id
-        const usecase = $container.resolve(FetchPostsByTagUseCase)
+        const usecase = $resolver(FetchPostsByTagUseCase)
         await usecase.execute(tag)
       } catch (e) {
         error({ statusCode: 500, message: e.message })
