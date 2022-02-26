@@ -70,7 +70,7 @@
     "marked": "^0.5.1",
     "nuxt": "^2.12.2",
     "nuxt-composition-api": "^0.5.0",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.27.0",
     "vue-lazyload": "^1.2.6"
   },
   "devDependencies": {
